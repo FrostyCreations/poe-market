@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Exile Ledger · PoE Market Tools</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/styles.css" />
+  <link rel="icon" href="https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyDuplicate.png" />
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <img src="https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyDuplicate.png" alt="" />
+      <div>
+        <h1>Exile Ledger</h1>
+        <span class="sub">Market · Playbook · Portfolio · Crafting · Builds</span>
+      </div>
+    </div>
+    <nav class="tabs" id="tabs">
+      <a href="#market" data-tab="market">Market</a>
+      <a href="#playbook" data-tab="playbook">Launch Playbook</a>
+      <a href="#portfolio" data-tab="portfolio">Portfolio</a>
+      <a href="#crafting" data-tab="crafting">Crafting</a>
+      <a href="#builds" data-tab="builds">Builds</a>
+    </nav>
+    <div class="controls">
+      <select id="game" title="Game">
+        <option value="poe1">PoE 1</option>
+        <option value="poe2">PoE 2</option>
+      </select>
+      <select id="league" title="League"></select>
+      <div id="rates" class="rates"></div>
+      <button id="adminBtn" class="ghost small">Admin</button>
+    </div>
+  </header>
+  <main id="view"></main>
+  <div id="modal" class="modal hidden"><div class="modal-card" id="modalCard"></div></div>
+  <div id="toast" class="toast hidden"></div>
+  <footer>Prices from <a href="https://poe.ninja" target="_blank" rel="noopener">poe.ninja</a>. Personal tool, not affiliated with Grinding Gear Games.</footer>
+  <script type="module" src="/assets/app.js"></script>
+</body>
+</html>

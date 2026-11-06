@@ -1,0 +1,70 @@
+{
+  "goal": "PoE1 3.30 softcore trade. Make multiple mirrors through farming, crafting and investing.\nWeek 1: smooth cheap campaign, reach maps by day 2, farm the new league mechanic plus one easy strategy (Legion or essences) from day 3.\nWeek 2+: scale into juiced mapping and bossing for expensive drops, then roll profits into mirror-grade assets.",
+  "weights": { "start": 30, "mapping": 25, "bossing": 15, "farmFit": 15, "scaling": 15 },
+  "builds": [
+    {
+      "uid": "b-trpf", "game": "poe1", "name": "Toxic Rain Pathfinder", "skill": "Toxic Rain", "class": "Pathfinder",
+      "status": "Candidate", "start": 5, "mapping": 4, "bossing": 3, "farmFit": 4, "scaling": 3,
+      "source": "Path of Evening", "guide": "https://www.poebuilds.cc/poe1/author/path-of-evening?league=allflame",
+      "tags": "league starter, DoT, cheap",
+      "notes": "Called 'The Fastest League Start Build in Allflame League'. Very forgiving on day 1, flasks keep it safe.",
+      "patch": "Check 3.30 patch notes for Toxic Rain and Pathfinder changes."
+    },
+    {
+      "uid": "b-lade", "game": "poe1", "name": "Lightning Arrow Deadeye", "skill": "Lightning Arrow", "class": "Deadeye",
+      "status": "Candidate", "start": 4, "mapping": 5, "bossing": 2, "farmFit": 5, "scaling": 4,
+      "source": "Fubgun", "guide": "https://www.poebuilds.cc/poe1/author/fubgun?league=allflame",
+      "tags": "league starter, map blaster",
+      "notes": "Fubgun's go-to league starter. Fastest clear for farming strategies; weak bosser until geared. Mirror-tier gear makes it absurd.",
+      "patch": ""
+    },
+    {
+      "uid": "b-woe", "game": "poe1", "name": "Winter Orb Elementalist", "skill": "Winter Orb", "class": "Elementalist",
+      "status": "Candidate", "start": 4, "mapping": 4, "bossing": 4, "farmFit": 4, "scaling": 4,
+      "source": "Fubgun", "guide": "https://www.poebuilds.cc/poe1/author/fubgun?league=allflame",
+      "tags": "league starter, all-rounder",
+      "notes": "Fubgun's Allflame starter (most viewed guide). Winter Orb Occultist and Elementalist were the #2 and #3 builds on poe.ninja at league end.",
+      "patch": ""
+    },
+    {
+      "uid": "b-kbnecro", "game": "poe1", "name": "Kinetic Blast of Clustering Necromancer", "skill": "Kinetic Blast of Clustering", "class": "Necromancer",
+      "status": "Candidate", "start": 4, "mapping": 5, "bossing": 2, "farmFit": 4, "scaling": 3,
+      "source": "Redviles", "guide": "https://www.poebuilds.cc/poe1/author/redviles/new",
+      "tags": "league starter, map blaster",
+      "notes": "Fast wand clear. Its 21/20 gem sold for 387c on day 3 last league, so its gems are worth levelling if it is popular again.",
+      "patch": ""
+    },
+    {
+      "uid": "b-colddot", "game": "poe1", "name": "Cold Dot Occultist", "skill": "Vortex", "class": "Occultist",
+      "status": "Candidate", "start": 4, "mapping": 3, "bossing": 5, "farmFit": 3, "scaling": 4,
+      "source": "bLut", "guide": "https://www.poebuilds.cc/poe1/author/blut/new",
+      "tags": "league starter, bosser",
+      "notes": "bLut reported up to 18M DPS by day 3. Best bosser of the starters; slower mapper. Check the main skill in his guide (set to Vortex here).",
+      "patch": ""
+    },
+    {
+      "uid": "b-rf", "game": "poe1", "name": "Righteous Fire Chieftain", "skill": "Righteous Fire", "class": "Chieftain",
+      "status": "Candidate", "start": 4, "mapping": 3, "bossing": 3, "farmFit": 4, "scaling": 3,
+      "source": "Community", "guide": "",
+      "tags": "tanky, juiced maps",
+      "notes": "Most played build in Allflame at league end (4.6%). Very tanky for heavily juiced maps; needs life and regen gear first.",
+      "patch": ""
+    },
+    {
+      "uid": "b-cyclone", "game": "poe1", "name": "Shockwave Cyclone Slayer", "skill": "Cyclone", "class": "Slayer",
+      "status": "Candidate", "start": 4, "mapping": 4, "bossing": 3, "farmFit": 4, "scaling": 3,
+      "source": "Big Ducks", "guide": "https://www.poebuilds.cc/poe1/author/big-ducks/new",
+      "tags": "melee, league starter",
+      "notes": "Melee map blaster. Cyclone of Tumult and Void Shockwave Slayers were both top 10 at league end.",
+      "patch": ""
+    },
+    {
+      "uid": "b-luminary", "game": "poe1", "name": "Animate Guardian Luminary", "skill": "Animate Guardian", "class": "Luminary",
+      "status": "Candidate", "start": 3, "mapping": 3, "bossing": 3, "farmFit": 3, "scaling": 3,
+      "source": "Path of Evening", "guide": "",
+      "tags": "mercenary",
+      "notes": "Top 4 in Allflame. Luminary was introduced with Allflame; check if it stays in 3.30.",
+      "patch": "Confirm Luminary still exists in 3.30."
+    }
+  ]
+}

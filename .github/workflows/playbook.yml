@@ -1,0 +1,52 @@
+name: Update launch playbook
+
+# Rebuilds the day-by-day price history for a league from poe.ninja.
+# Runs every day at 06:15 UTC for the leagues listed in TRACKED below,
+# and can be started by hand from the Actions tab for any league.
+
+on:
+  schedule:
+    - cron: '15 6 * * *'
+  workflow_dispatch:
+    inputs:
+      game:
+        description: 'poe1 or poe2'
+        required: true
+        default: 'poe1'
+      league:
+        description: 'League name exactly as poe.ninja shows it (e.g. Allflame)'
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      # Edit this list when a new league starts: "game|League Name" per line.
+      TRACKED: |
+        poe1|Allflame
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Build playbook (manual run)
+        if: github.event_name == 'workflow_dispatch'
+        run: node scripts/build-playbook.mjs --game "${{ inputs.game }}" --league "${{ inputs.league }}"
+      - name: Build playbook (daily run)
+        if: github.event_name == 'schedule'
+        run: |
+          echo "$TRACKED" | while IFS='|' read -r game league; do
+            [ -z "$game" ] && continue
+            node scripts/build-playbook.mjs --game "$game" --league "$league" || echo "Skipped $league"
+          done
+      - name: Commit changes
+        run: |
+          git config user.name "playbook-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/playbook
+          git diff --cached --quiet && echo "No changes" && exit 0
+          git commit -m "Update launch playbook data"
+          git push
