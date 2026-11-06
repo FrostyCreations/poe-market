@@ -112,3 +112,5 @@ body.is-admin .admin-only.inline-flex { display: inline-flex !important; }
 .chart text { fill: var(--muted); font-size: 11px; }
 .legend { display: flex; gap: 14px; font-size: 12px; color: var(--muted); }
 .legend i { display: inline-block; width: 10px; height: 3px; margin-right: 5px; vertical-align: middle; }
+
+input.masked { -webkit-text-security: disc; text-security: disc; }

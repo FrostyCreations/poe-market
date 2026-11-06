@@ -287,7 +287,9 @@ $('#adminBtn').addEventListener('click', () => {
     return;
   }
   openModal(`<h2>Admin login</h2><p class="muted">Friends can view everything. Editing needs the admin password set in Vercel (ADMIN_PASSWORD).</p>
-    <div class="row"><input id="pw" type="password" placeholder="Password" style="flex:1"><button id="go">Log in</button></div>`, (m) => {
+    <div class="row"><input id="pw" type="text" class="masked" autocomplete="off" autocapitalize="off" spellcheck="false" data-lpignore="true" data-1p-ignore placeholder="Password" style="flex:1"><button id="go">Log in</button></div>
+    <label class="muted small"><input type="checkbox" id="showpw"> Show password</label>`, (m) => {
+    $('#showpw', m).onchange = (e) => $('#pw', m).classList.toggle('masked', !e.target.checked);
     const go = async () => {
       const key = $('#pw', m).value;
       if (await checkAdmin(key)) {
