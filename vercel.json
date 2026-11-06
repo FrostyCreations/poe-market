@@ -1,5 +1,5 @@
 {
-  "ignoreCommand": "git diff --quiet HEAD^ HEAD -- . ':(exclude)data/user'",
+  "ignoreCommand": "if git rev-parse -q --verify HEAD^ >/dev/null && git diff --quiet HEAD^ HEAD -- . ':(exclude)data/user'; then exit 0; else exit 1; fi",
   "headers": [
     {
       "source": "/data/playbook/(.*)",
