@@ -288,7 +288,9 @@ $('#adminBtn').addEventListener('click', () => {
   }
   openModal(`<h2>Admin login</h2><p class="muted">Friends can view everything. Editing needs the admin password set in Vercel (ADMIN_PASSWORD).</p>
     <div class="row"><input id="pw" type="text" class="masked" autocomplete="off" autocapitalize="off" spellcheck="false" data-lpignore="true" data-1p-ignore placeholder="Password" style="flex:1"><button id="go">Log in</button></div>
-    <label class="muted small"><input type="checkbox" id="showpw"> Show password</label>`, (m) => {
+    <div class="row spread small"><label class="muted"><input type="checkbox" id="showpw"> Show password</label><span class="muted" id="pwcount">0 characters typed</span></div>
+    <div class="small" id="pwmsg" style="margin-top:6px"></div>`, (m) => {
+    $('#pw', m).oninput = (e) => ($('#pwcount', m).textContent = `${e.target.value.length} characters typed`);
     $('#showpw', m).onchange = (e) => $('#pw', m).classList.toggle('masked', !e.target.checked);
     const go = async () => {
       const key = $('#pw', m).value;
@@ -299,7 +301,10 @@ $('#adminBtn').addEventListener('click', () => {
         closeModal();
         toast('Admin mode on');
         render();
-      } else toast(state.passwordSet === false ? 'No ADMIN_PASSWORD is set on the server yet' : 'Wrong password', 4000);
+      } else {
+        const msg = state.passwordSet === false ? 'The server has no ADMIN_PASSWORD set yet.' : `Wrong password (you typed ${key.length} characters). The value saved in Vercel is different.`;
+        $('#pwmsg', m).innerHTML = `<span class="neg">${esc(msg)}</span>`;
+      }
     };
     $('#go', m).onclick = go;
     $('#pw', m).onkeydown = (e) => e.key === 'Enter' && go();
