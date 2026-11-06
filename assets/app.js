@@ -174,7 +174,7 @@ export async function saveData(file, data, message) {
   dataCache[file] = data;
   const r = await fetch(`/api/data?file=${file}`, {
     method: 'PUT',
-    headers: { 'Content-Type': 'application/json', 'x-admin-key': state.adminKey || '' },
+    headers: { 'Content-Type': 'application/json', 'x-admin-key': encodeURIComponent(state.adminKey || '') },
     body: JSON.stringify({ data, message }),
   });
   const j = await r.json().catch(() => ({}));
@@ -264,9 +264,10 @@ async function fillLeagueSelect() {
 // ---------- admin ----------
 async function checkAdmin(key) {
   try {
-    const r = await fetch('/api/auth', { method: 'POST', headers: { 'x-admin-key': key } });
+    const r = await fetch('/api/auth', { method: 'POST', headers: { 'x-admin-key': encodeURIComponent(key) } });
     const j = await r.json();
     state.storage = j.storage;
+    state.passwordSet = j.passwordSet;
     return j.admin;
   } catch {
     return false;
@@ -296,7 +297,7 @@ $('#adminBtn').addEventListener('click', () => {
         closeModal();
         toast('Admin mode on');
         render();
-      } else toast('Wrong password');
+      } else toast(state.passwordSet === false ? 'No ADMIN_PASSWORD is set on the server yet' : 'Wrong password', 4000);
     };
     $('#go', m).onclick = go;
     $('#pw', m).onkeydown = (e) => e.key === 'Enter' && go();

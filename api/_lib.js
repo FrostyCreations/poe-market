@@ -5,9 +5,14 @@ import path from 'node:path';
 // Files the site is allowed to read and write. They live in data/user/ in the repo.
 export const USER_FILES = ['watchlist', 'portfolio', 'builds', 'notes'];
 
+export const adminConfigured = () => Boolean((process.env.ADMIN_PASSWORD || '').trim());
+
 export function isAdmin(req) {
-  const expected = process.env.ADMIN_PASSWORD || '';
-  const given = String(req.headers['x-admin-key'] || '');
+  // Trim both sides: a pasted password often carries a stray space or newline.
+  const expected = (process.env.ADMIN_PASSWORD || '').trim();
+  let given = String(req.headers['x-admin-key'] || '');
+  try { given = decodeURIComponent(given); } catch {}
+  given = given.trim();
   if (!expected || !given) return false;
   const a = crypto.createHash('sha256').update(expected).digest();
   const b = crypto.createHash('sha256').update(given).digest();
