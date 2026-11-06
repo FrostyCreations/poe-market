@@ -307,7 +307,7 @@ $('#adminBtn').addEventListener('click', () => {
       }
     };
     $('#go', m).onclick = go;
-    $('#pw', m).onkeydown = (e) => e.key === 'Enter' && go();
+    $('#pw', m).onkeydown = (e) => { if (e.key === 'Enter') go(); };
     $('#pw', m).focus();
   });
 });
