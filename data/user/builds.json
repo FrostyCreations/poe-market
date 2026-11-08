@@ -9,6 +9,24 @@
   },
   "builds": [
     {
+      "uid": "b-woocc",
+      "game": "poe1",
+      "name": "Winter Orb Occultist",
+      "skill": "Winter Orb",
+      "class": "Occultist",
+      "status": "Chosen",
+      "start": 4,
+      "mapping": 5,
+      "bossing": 5,
+      "farmFit": 5,
+      "scaling": 5,
+      "source": "Tuadh / Lexyu (poe-vault)",
+      "guide": "https://www.poe-vault.com/guides/winter-orb-occultist-build-guide",
+      "tags": "5/5 mapping + bossing, energy shield, league starter to endgame",
+      "notes": "Most played Winter Orb version in Allflame (4.5%, #2 overall). Starts cheap (Tuadh's Exarch & Eater league start run was ~3 div) and scales very high: a 3.30 PoB shows ~117M DPS with 162k EHP on ~120 div. The 5/5 scores are for the invested version (roughly 50-120 div); expect about 4/4 in the first days.",
+      "patch": "PICK for 3.30. Same skill as the Elementalist, but Occultist's energy shield and curses make it the one that does both mapping and Fate/pinnacle bossing at the top end."
+    },
+    {
       "uid": "b-trpf",
       "game": "poe1",
       "name": "Toxic Rain Pathfinder",
@@ -50,7 +68,7 @@
       "name": "Winter Orb Elementalist",
       "skill": "Winter Orb",
       "class": "Elementalist",
-      "status": "Chosen",
+      "status": "Candidate",
       "start": 4,
       "mapping": 4,
       "bossing": 4,
@@ -60,7 +78,7 @@
       "guide": "https://www.poebuilds.cc/poe1/author/fubgun?league=allflame",
       "tags": "league starter, all-rounder",
       "notes": "Fubgun's Allflame starter (most viewed guide). Winter Orb Occultist and Elementalist were the #2 and #3 builds on poe.ninja at league end.",
-      "patch": "PICK for 3.30. Allflame's #2 and #3 most played builds were Winter Orb (Occultist 4.5%, Elementalist 2.8%), it was buffed in 3.29 and balance is meant to be mild. Kills Fate bosses safely and clears well. People are already posting 3.30 Winter Orb starter PoBs."
+      "patch": "Easier day 1 than the Occultist version, but lower ceiling. Fine backup if Occultist feels slow early."
     },
     {
       "uid": "b-kbnecro",
