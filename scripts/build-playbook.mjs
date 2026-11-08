@@ -18,9 +18,9 @@ const args = Object.fromEntries(
   process.argv.slice(2).reduce((acc, a, i, all) => (a.startsWith('--') ? [...acc, [a.slice(2), all[i + 1]]] : acc), []),
 );
 const game = args.game || 'poe1';
-const league = args.league;
+let league = args.league;
 if (!league) {
-  console.error('Missing --league');
+  console.error('Missing --league (use a league name, or "auto" for the current challenge league)');
   process.exit(1);
 }
 const BASE = 'https://poe.ninja';
@@ -60,7 +60,18 @@ async function pool(items, n, fn) {
   return out;
 }
 
+// "auto" = the current softcore trade challenge league on poe.ninja (not Standard, Hardcore, SSF or Ruthless).
+async function resolveLeague() {
+  if (league !== 'auto') return;
+  const idx = await get(`${BASE}/${game}/api/data/index-state`);
+  const pick = (idx?.economyLeagues || []).find((l) => !/standard|hardcore|\bhc\b|ssf|ruthless|solo/i.test(l.name));
+  if (!pick) throw new Error('Could not find the current challenge league');
+  league = pick.name;
+  console.log(`auto -> ${league}`);
+}
+
 async function main() {
+  await resolveLeague();
   const cfg = GAMES[game];
   // 1. Conversion rates: how many of each core unit buys one divine, per day.
   const divDetails = await details('Currency', 'divine-orb');

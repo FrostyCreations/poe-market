@@ -1,6 +1,10 @@
 import { $, $$, esc, fmt, xfmt, cls, uid, state, loadData, saveData, loadCategory, openModal, closeModal, price, secondaryUnit, toDiv, toast, exchange } from './app.js';
 import { label } from './config.js';
 
+// Watchlist groups: hold into week 2, quick flips, lower priority, and things to dump on day 1-2.
+const PRIORITIES = ['High', 'Flip', 'Medium', 'Low', 'Sell'];
+const PRI_TAG = { High: 'gold', Flip: 'good', Sell: 'bad' };
+
 // ---------- generic form modal ----------
 export function formModal(title, fields, values, onSave) {
   const input = (f) => {
@@ -39,7 +43,7 @@ export async function addToWatchlist(row, extra = {}) {
   formModal(
     `Watch: ${row.name}`,
     [
-      { k: 'priority', label: 'Priority', type: 'select', options: ['High', 'Medium', 'Low'] },
+      { k: 'priority', label: 'Priority', type: 'select', options: PRIORITIES },
       { k: 'buyWindow', label: 'Buy when', placeholder: 'e.g. Day 1-2' },
       { k: 'sellWindow', label: 'Sell when', placeholder: 'e.g. Day 8-12' },
       { k: 'targetX', label: 'Target (x of buy)', type: 'number' },
@@ -140,8 +144,8 @@ export async function render(view, { token }) {
     </div>
 
     <div class="panel">
-      <div class="row spread"><div><h2>Watchlist</h2><div class="muted small">Your shopping list with live ${esc(state.league)} prices. Add items from Market or Playbook.</div></div>
-        <div class="row"><select id="wPri"><option value="">All priorities</option><option>High</option><option>Medium</option><option>Low</option></select></div></div>
+      <div class="row spread"><div><h2>Watchlist</h2><div class="muted small">Live ${esc(state.league)} prices. <b>High</b>: buy day 1-2, hold into week 2. <b>Flip</b>: quick in and out in week 1. <b>Sell</b>: dump your drops on day 1-2, never buy.</div></div>
+        <div class="row"><select id="wPri"><option value="">All groups</option>${PRIORITIES.map((p) => `<option>${p}</option>`).join('')}</select></div></div>
       <div id="wTable" style="margin-top:10px"></div>
     </div>
 
@@ -160,15 +164,15 @@ export async function render(view, { token }) {
   const drawWatch = () => {
     const pri = $('#wPri', view).value;
     const rows = gw.filter((w) => !pri || w.priority === pri);
-    const order = { High: 0, Medium: 1, Low: 2 };
+    const order = Object.fromEntries(PRIORITIES.map((p, i) => [p, i]));
     rows.sort((a, b) => (order[a.priority] ?? 3) - (order[b.priority] ?? 3));
     $('#wTable', view).innerHTML = rows.length
-      ? `<div class="table-wrap"><table><thead><tr><th>Item</th><th>Priority</th><th class="num">Now</th><th class="num">7d</th><th>Buy</th><th>Sell</th><th>Past leagues</th><th>Notes</th><th class="admin-only"></th></tr></thead><tbody>
+      ? `<div class="table-wrap"><table><thead><tr><th>Item</th><th>Group</th><th class="num">Now</th><th class="num">7d</th><th>Buy</th><th>Sell</th><th>Past leagues</th><th>Notes</th><th class="admin-only"></th></tr></thead><tbody>
         ${rows.map((w) => {
           const live = lookupW(w);
           return `<tr data-uid="${w.uid}">
             <td><div class="name">${w.icon ? `<img class="icon" src="${esc(w.icon)}">` : ''}<div>${esc(w.name)}<small>${esc(label(w.type))}</small></div></div></td>
-            <td><span class="tag ${w.priority === 'High' ? 'gold' : ''}">${esc(w.priority || '')}</span></td>
+            <td><span class="tag ${PRI_TAG[w.priority] || ''}">${esc(w.priority || '')}</span></td>
             <td class="num">${live ? `${price(live.div, 'divine')}<br><span class="muted small">${price(sec === 'chaos' ? live.chaos : live.exalted, sec)}</span>` : '<span class="muted small">not in this league yet</span>'}</td>
             <td class="num ${cls(live?.change)}">${live?.change != null ? `${live.change > 0 ? '+' : ''}${live.change.toFixed(0)}%` : '–'}</td>
             <td class="small">${esc(w.buyWindow || '')}</td><td class="small">${esc(w.sellWindow || '')}${w.targetX ? `<br><span class="muted">target ${xfmt(w.targetX)}</span>` : ''}</td>
@@ -190,7 +194,7 @@ export async function render(view, { token }) {
       render(view, { token });
     } else if (a === 'edit') {
       formModal(`Edit: ${w.name}`, [
-        { k: 'priority', label: 'Priority', type: 'select', options: ['High', 'Medium', 'Low'] },
+        { k: 'priority', label: 'Priority', type: 'select', options: PRIORITIES },
         { k: 'buyWindow', label: 'Buy when' }, { k: 'sellWindow', label: 'Sell when' },
         { k: 'targetX', label: 'Target (x of buy)', type: 'number' }, { k: 'history', label: 'Past leagues' },
         { k: 'notes', label: 'Notes', type: 'textarea' },

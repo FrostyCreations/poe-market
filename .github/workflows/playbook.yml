@@ -14,7 +14,7 @@ on:
         required: true
         default: 'poe1'
       league:
-        description: 'League name exactly as poe.ninja shows it (e.g. Allflame)'
+        description: 'League name exactly as poe.ninja shows it (e.g. Allflame), or auto'
         required: true
 
 permissions:
@@ -24,9 +24,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      # Edit this list when a new league starts: "game|League Name" per line.
+      # "auto" follows the current challenge league, so new leagues are picked up by themselves.
+      # Add extra lines ("game|League Name") to keep updating a specific league as well.
       TRACKED: |
-        poe1|Allflame
+        poe1|auto
+        poe2|auto
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
