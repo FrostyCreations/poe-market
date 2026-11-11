@@ -113,7 +113,7 @@
       "source": "bLut",
       "guide": "https://www.poebuilds.cc/poe1/author/blut/new",
       "tags": "5/5 mapping + bossing, DoT, energy shield, untouched by 3.30 nerfs",
-      "notes": "bLut posted a 3.30 '100 Div Endgame' version (Creeping Frost + Vortex) two days ago. One-button mapper that scales into strong bossing, fast campaign. Post-patch tier lists rate it 5 league start, 5 endgame, 5 mapping.",
+      "notes": "bLut posted a 3.30 '100 Div Endgame' version (Creeping Frost + Vortex) two days ago. One-button mapper that scales into strong bossing, fast campaign. Post-patch tier lists rate it 5 league start, 5 endgame, 5 mapping. Endgame path: keep this as the farmer and reroll Penance Brand Elementalist as the mirror-tier bosser.",
       "patch": "PICK for 3.30. Not touched by any nerf (only Winter Orb and golems were hit in the Witch tree). DoT ticks while you dodge Fate mechanics, and bossing reaches 5 with investment (tier lists give 4 on a budget)."
     },
     {
@@ -181,10 +181,10 @@
       "bossing": 5,
       "farmFit": 4,
       "scaling": 5,
-      "source": "Community",
-      "guide": "",
-      "tags": "5/5 mapping + bossing, brands",
-      "notes": "Rated 5 for Fate bossing and 5 for mapping on post-patch tier lists, with top boss damage and defences; brands keep hitting while you move. Was #6 most played in Allflame (2.3%).",
+      "source": "Joker Khrono (Penance Brand of Dissipation, 3.29)",
+      "guide": "https://pobarchives.com/builds/poe/TnDGYRHV",
+      "tags": "5/5 mapping + bossing, brands, mirror-tier endgame pick",
+      "notes": "Best place to sink mirror-level currency in 3.30. Joker Khrono's 3.29 Penance Brand of Dissipation version showed about 48M DPS and was billed as clearing uber bosses almost instantly. It scales cleanly with gear: every big upgrade (gem levels, crit, spell damage, a mirror-tier weapon) adds damage without breaking defences, and brands keep hitting while you dodge. Plan: start Cold DoT Occultist, farm and invest week 1, then build this as the endgame bosser once you have roughly 150+ div.",
       "patch": "Mostly unchanged, but check whether the guide relies on golems with Liege of the Primordial: golem buffs were cut about 20-25% in 3.30.",
       "class": "Elementalist"
     },
@@ -241,6 +241,24 @@
       "notes": "The most watched 3.30 league start plan so far (POEGuy, about 60k views).",
       "patch": "New Artillery Quiver implicit (+1 maximum totems for attack skills) helps ballista builds.",
       "class": "Hierophant"
+    },
+    {
+      "uid": "b-shrine",
+      "game": "poe1",
+      "name": "Shrine Stacker Hierophant",
+      "skill": "Shrine stacking",
+      "class": "Hierophant",
+      "status": "Candidate",
+      "start": 1,
+      "mapping": 5,
+      "bossing": 5,
+      "farmFit": 3,
+      "scaling": 5,
+      "source": "Phoenix (3.29)",
+      "guide": "https://pobarchives.com/build/fTmEmj6f",
+      "tags": "highest ceiling, Mageblood required, not a starter",
+      "notes": "Highest number on any 3.29 PoB (about 384M DPS) but locked behind Mageblood, Bottled Faith, The Gull, Blunderbore and Nimis. A flex build once you already have mirrors, not a way to make them.",
+      "patch": "Check 3.30 notes for any change to shrine buffs before buying in. Gear-gated, so it only makes sense after the first few mirrors."
     }
   ]
 }
