@@ -49,9 +49,17 @@ async function draw(view, token) {
 }
 
 const RISK = { Low: 'pos', Medium: '', High: 'neg', 'Very high': 'neg' };
-const NINJA_PATH = { Currency: 'currency', Artifact: 'artifacts', Essence: 'essences', Fossil: 'fossils', Resonator: 'resonators' };
+const NINJA_PATH = { Currency: 'currency', Artifact: 'artifacts', Essence: 'essences', Fossil: 'fossils', Resonator: 'resonators', Fragment: 'fragments' };
 // Currency words in the step text, mapped to poe.ninja exchange ids. Longest first.
 const ALIASES = [
+  ['Grand Eldritch Embers?', 'Currency|grand-eldritch-ember'],
+  ['Greater Embers?', 'Currency|greater-eldritch-ember'],
+  ['Fracturing Orbs?', 'Currency|fracturing-orb'],
+  ['Essence of Woe', 'Essence|deafening-essence-of-woe'],
+  ['Dense Fossils?', 'Fossil|dense-fossil'],
+  ['Hollow( and Dense)? Fossils?', 'Fossil|hollow-fossil'],
+  ['Primitive Chaotic Resonator', 'Resonator|primitive-chaotic-resonator'],
+  ['Potent Chaotic Resonator', 'Resonator|potent-chaotic-resonator'],
   ["Glassblower's Baubles?", 'Currency|bauble'],
   ['Orbs? of Transmutation', 'Currency|transmute'],
   ['Orbs? of Augmentation', 'Currency|aug'],
@@ -84,8 +92,11 @@ const qkey = (id) => (id.includes('|') ? id : `Currency|${id}`);
 async function profit(body, token) {
   const c = await fetch('/data/crafts.json').then((r) => r.json());
   if (!token()) return;
-  const keys = new Set([...c.crafts.flatMap((x) => x.materials.map((m) => m.join('|'))), ...ALIASES.map((a) => a[1]),
-    ...c.crafts.flatMap((x) => Object.keys(x.estimate?.qty || {}).map(qkey))]);
+  // Every craft has a main route plus optional alternatives, all with the same shape.
+  const routesOf = (x) => [{ name: x.route || 'Main route', steps: x.steps, estimate: x.estimate, materials: x.materials, note: x.note }, ...(x.alts || [])];
+  const allRoutes = c.crafts.flatMap(routesOf);
+  const keys = new Set([...allRoutes.flatMap((r) => (r.materials || []).map((m) => m.join('|'))), ...ALIASES.map((a) => a[1]),
+    ...allRoutes.flatMap((r) => Object.keys(r.estimate?.qty || {}).map(qkey))]);
   const types = [...new Set([...keys].map((k) => k.split('|')[0]))];
   const live = {};
   await Promise.all(types.map(async (t) => {
@@ -128,28 +139,44 @@ async function profit(body, token) {
     return { total, missing, parts };
   };
 
+  const estBlock = (r) => {
+    const e = estimate(r);
+    return `<div class="craft-est">
+        <div class="row spread"><span class="est-label">Estimated cost <span class="muted">${esc(r.estimate?.per || '')}</span></span><b class="est-total">${e.total ? both(e.total) : '<span class="muted small">Not priced, see note</span>'}</b></div>
+        ${e.total ? `<details><summary>How it's worked out</summary><ul class="est-parts">${e.parts}</ul><p class="muted small">${esc(c.estimateNote)}${e.missing ? ' Some prices are missing in this league.' : ''}</p></details>` : ''}
+      </div>`;
+  };
+  const routePane = (r, i) => `
+      <div class="route-pane" data-i="${i}" ${i ? 'hidden' : ''}>
+        ${r.why ? `<p class="route-why">${linkify(r.why)}</p>` : ''}
+        <ol class="craft-steps">${r.steps.map((s) => `<li>${linkify(s)}</li>`).join('')}</ol>
+        ${r.note ? `<p class="muted small craft-note">${linkify(r.note)}</p>` : ''}
+        ${estBlock(r)}
+        ${(r.materials || []).length ? `<div class="mats">${r.materials.map((m) => chip(m.join('|'), live[m.join('|')]?.name || m[1], true)).join('')}</div>` : ''}
+      </div>`;
   const card = (x) => {
-    const e = estimate(x);
+    const routes = routesOf(x);
+    const tabs = routes.length > 1 ? `<div class="route-tabs" role="tablist">${routes.map((r, i) => {
+      const t = estimate(r).total;
+      return `<button class="route-tab ${i ? '' : 'active'}" data-i="${i}" role="tab"><span>${esc(r.name)}</span><small>${t ? price(t, 'chaos') : i ? 'Alternative' : 'Main'}</small></button>`;
+    }).join('')}</div>` : '';
+    const hay = [x.name, x.base, x.targets, ...(x.by || []).map((b) => b.name), ...routes.map((r) => r.name)].join(' ').toLowerCase();
     return `
-    <article class="craft-card tier-${x.tier} ${x.pick ? 'pick' : ''}" data-tier="${x.tier}">
-      <div class="row spread"><h4>${esc(x.name)}</h4><span class="row" style="gap:6px">${x.pick ? '<span class="tag gold">Top pick</span>' : ''}<span class="tag">${esc(x.phase)}</span></span></div>
+    <article class="craft-card tier-${x.tier} ${x.pick ? 'pick' : ''}" data-tier="${x.tier}" data-hay="${esc(hay)}">
+      <div class="row spread"><h4>${esc(x.name)}</h4><span class="row" style="gap:6px">${x.pick ? '<span class="tag gold">Top pick</span>' : ''}${routes.length > 1 ? `<span class="tag">${routes.length} ways</span>` : ''}<span class="tag">${esc(x.phase)}</span></span></div>
+      ${x.by?.length ? `<div class="craft-by">Seen from ${x.by.map((b) => `<a href="${esc(b.url)}" target="_blank" rel="noopener">${esc(b.name)}</a>`).join(' · ')}</div>` : ''}
       <div class="craft-meta">
         <div><span>Base</span>${esc(x.base)}</div>
         <div><span>Target</span>${esc(x.targets)}</div>
         <div><span>Sells to</span>${esc(x.buyers)}</div>
       </div>
-      <ol class="craft-steps">${x.steps.map((s) => `<li>${linkify(s)}</li>`).join('')}</ol>
-      ${x.note ? `<p class="muted small craft-note">${linkify(x.note)}</p>` : ''}
-      <div class="craft-est">
-        <div class="row spread"><span class="est-label">Estimated cost <span class="muted">${esc(x.estimate?.per || '')}</span></span><b class="est-total">${e.total ? both(e.total) : '–'}</b></div>
-        <details><summary>How it's worked out</summary><ul class="est-parts">${e.parts}</ul><p class="muted small">${esc(c.estimateNote)}${e.missing ? ' Some prices are missing in this league.' : ''}</p></details>
-      </div>
+      ${tabs}
+      ${routes.map(routePane).join('')}
       <div class="craft-stats">
         <div><span>Bankroll</span><b>${esc(x.cost)}</b></div>
         <div><span>Typical sale</span><b>${esc(x.sale)}</b></div>
         <div><span>Risk</span><b class="${RISK[x.risk] || ''}">${esc(x.risk)}</b></div>
       </div>
-      ${x.materials.length ? `<div class="mats">${x.materials.map((m) => chip(m.join('|'), live[m.join('|')]?.name || m[1], true)).join('')}</div>` : ''}
     </article>`;
   };
   body.innerHTML = `
@@ -162,18 +189,29 @@ async function profit(body, token) {
     </section>
     <h3 class="section-title">What 3.30 changes for crafters</h3>
     <div class="brief-grid">${c.changes.map((x) => `<article class="brief-card tone-${x.tone}"><h4>${esc(x.title)}</h4><p>${esc(x.body)}</p></article>`).join('')}</div>
-    <div class="row spread" style="margin-top:18px"><h3 class="section-title" style="margin:0">Crafting tiers</h3><div class="pills" id="tiersel"><button class="pill ${tierSel ? '' : 'active'}" data-n="0">All tiers</button>${c.tiers.map((t) => `<button class="pill ${tierSel === t.n ? 'active' : ''}" data-n="${t.n}">T${t.n} ${esc(t.name)}</button>`).join('')}</div></div>
+    <div class="row spread tiers-bar"><h3 class="section-title" style="margin:0">Crafting tiers <span class="muted small">· ${c.crafts.length} crafts, ${allRoutes.length} routes</span></h3><input id="craftq" class="craft-search" type="search" placeholder="Search crafts, bases or creators" autocomplete="off"><div class="pills" id="tiersel"><button class="pill ${tierSel ? '' : 'active'}" data-n="0">All tiers</button>${c.tiers.map((t) => `<button class="pill ${tierSel === t.n ? 'active' : ''}" data-n="${t.n}">T${t.n} ${esc(t.name)}</button>`).join('')}</div></div>
     <div class="tier-ladder">${c.tiers.map((t) => `<button class="rung rung-${t.n}" data-n="${t.n}"><span class="rung-n">T${t.n}</span><b>${esc(t.name)}</b><span class="rung-b">${esc(t.bankroll)}</span><span class="muted small">${esc(t.when)}</span></button>`).join('')}</div>
     <div id="tiers">${c.tiers.map((t) => `<section class="tier-block" data-n="${t.n}">
       <div class="tier-head"><span class="rung-n">T${t.n}</span><div><h3>${esc(t.name)} <span class="muted small">· ${esc(t.bankroll)} · ${esc(t.when)}</span></h3><div class="muted small">${esc(t.blurb)}</div></div></div>
       <div class="craft-grid">${c.crafts.filter((x) => x.tier === t.n).map(card).join('')}</div></section>`).join('')}</div>
+    <p class="muted small" id="craftnone" hidden>No crafts match that search.</p>
+    ${c.routesNote ? `<p class="muted small" style="margin-top:10px">${esc(c.routesNote)}</p>` : ''}
     <div class="grid2" style="margin-top:18px">
       <section class="panel"><h3>Avoid or wait on</h3><ul class="plain-list">${c.avoid.map(([a, b]) => `<li><b>${esc(a)}.</b> <span class="muted">${esc(b)}</span></li>`).join('')}</ul></section>
       <section class="panel"><h3>How to sell</h3><ul class="plain-list">${c.selling.map(([a, b]) => `<li><b>${esc(a)}.</b> <span class="muted">${esc(b)}</span></li>`).join('')}</ul></section>
     </div>
     <section class="panel sources"><h3>Sources</h3><ul>${c.sources.map((s) => `<li><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a></li>`).join('')}</ul></section>`;
   const filter = () => {
-    $$('#tiers .tier-block', body).forEach((el) => { el.style.display = !tierSel || +el.dataset.n === tierSel ? '' : 'none'; });
+    const q = ($('#craftq', body)?.value || '').trim().toLowerCase();
+    let shown = 0;
+    $$('#tiers .tier-block', body).forEach((el) => {
+      let n = 0;
+      $$('.craft-card', el).forEach((cd) => { const ok = !q || cd.dataset.hay.includes(q); cd.style.display = ok ? '' : 'none'; n += ok; });
+      const on = (!tierSel || +el.dataset.n === tierSel) && n > 0;
+      el.style.display = on ? '' : 'none';
+      if (on) shown += n;
+    });
+    $('#craftnone', body).hidden = shown > 0;
     $$('#tiersel .pill', body).forEach((b) => b.classList.toggle('active', +b.dataset.n === tierSel));
     $$('.tier-ladder .rung', body).forEach((b) => b.classList.toggle('active', +b.dataset.n === tierSel));
   };
@@ -185,7 +223,15 @@ async function profit(body, token) {
   };
   $('#tiersel', body).onclick = pickTier;
   $('.tier-ladder', body).onclick = pickTier;
+  $('#craftq', body).oninput = filter;
   filter();
+  body.addEventListener('click', (e) => {
+    const t = e.target.closest('.route-tab');
+    if (!t) return;
+    const cardEl = t.closest('.craft-card');
+    $$('.route-tab', cardEl).forEach((b) => b.classList.toggle('active', b === t));
+    $$('.route-pane', cardEl).forEach((p) => { p.hidden = p.dataset.i !== t.dataset.i; });
+  });
   body.addEventListener('click', (e) => {
     const a = e.target.closest('.cur-link');
     if (!a || e.ctrlKey || e.metaKey || e.shiftKey || e.button !== 0) return;

@@ -1,688 +1,1856 @@
 {
-  "title": "Profit crafting",
-  "subtitle": "Crafts for every budget in 3.30, from day 1 flasks to mirror-tier items",
-  "updated": "2026-11-11",
-  "guideUrl": "https://claude.ai/artifact/EqqSimX4nBnNHeN5rd93Hm",
-  "summary": "Pick the tier that matches your bankroll and move up as it grows. On day 1, craft cheap things levelers need. From day 2 or 3, switch to batch crafts like Rog items and medium cluster jewels. In week 2, put real money into fossils and Eldritch implicits. Influence and mirror-tier crafts come later, once you have hundreds of divines.",
-  "phases": [
-    {
-      "when": "Day 1 (first 24 to 48 hours)",
-      "bankroll": "Under 1 div",
-      "crafts": "Flasks, MS boots, resistance jewellery, Vaal gem corruptions",
-      "why": "Everyone is leveling and gear is scarce"
-    },
-    {
-      "when": "Days 2 to 4",
-      "bankroll": "1 to 5 div",
-      "crafts": "Rog crafts from Expedition, essence boots and belts",
-      "why": "Your atlas already farms the materials"
-    },
-    {
-      "when": "Days 3 to 10",
-      "bankroll": "5 to 20 div",
-      "crafts": "Medium cluster jewels, +1/+2 caster wands, RF gloves and boots",
-      "why": "Steady demand from builds that are already working"
-    }
-  ],
-  "changes": [
-    {
-      "tone": "neutral",
-      "title": "More good drops",
-      "body": "Endgame rares now drop unidentified with a tier, and rarity improves every type of drop. Plain 3-mod rares lose value faster, so craft items that drops can't easily replace."
-    },
-    {
-      "tone": "bad",
-      "title": "Bench locks cost divines",
-      "body": "Locking prefixes or suffixes costs 1 div per side, and locking everything costs 4 div plus a Sacred, Blessed or Exalted. Only metacraft items that sell for many divines."
-    },
-    {
-      "tone": "bad",
-      "title": "Fewer fractured and veiled items",
-      "body": "Most league sources of fractured items are gone, and veiled mods now only come from Betrayal. Avoid crafts that depend on them in week 1."
-    },
-    {
-      "tone": "good",
-      "title": "Cheaper Vaal Orbs",
-      "body": "The Vaal Orb recipe now needs only 5 Vaal gems, so corruption gambling should get better value."
-    }
-  ],
-  "crafts": [
-    {
-      "id": "flasks",
-      "phase": "Day 1",
-      "name": "Utility flasks",
-      "pick": false,
-      "base": "Quicksilver, Silver, Jade, Granite, Diamond",
-      "cost": "A few chaos",
-      "sale": "5c to 1 div early on",
-      "risk": "Low",
-      "steps": [
-        "Transmute, then alteration and augment spam until you hit a useful suffix",
-        "Add quality with Glassblower's Baubles",
-        "Bench craft the finish"
-      ],
-      "targets": "A useful suffix (movement speed on Quicksilver, Onslaught on Silver, bleed or freeze immunity) plus a duration or effect prefix, at 20% quality",
-      "buyers": "Everyone mapping on days 1 to 3",
-      "materials": [
-        [
-          "Currency",
-          "transmute"
-        ],
-        [
-          "Currency",
-          "alt"
-        ],
-        [
-          "Currency",
-          "aug"
-        ],
-        [
-          "Currency",
-          "bauble"
-        ]
-      ],
-      "estimate": {
-        "per": "per flask",
-        "qty": {
-          "transmute": 1,
-          "alt": 15,
-          "aug": 8,
-          "bauble": 10
-        }
-      },
-      "tier": 1
-    },
-    {
-      "id": "boots",
-      "phase": "Day 1",
-      "name": "Movement-speed boots",
-      "pick": false,
-      "base": "Any boots with life or ES",
-      "cost": "Under 10c",
-      "sale": "10c to 1 div",
-      "risk": "Low",
-      "steps": [
-        "Vendor recipe: magic boots + Quicksilver Flask + Orb of Augmentation adds movement speed",
-        "Essence or bench craft resistances",
-        "Bench craft life if a prefix is open"
-      ],
-      "targets": "20%+ movement speed, life or ES, 2 resistances",
-      "buyers": "Levelers and first mappers",
-      "materials": [
-        [
-          "Currency",
-          "aug"
-        ],
-        [
-          "Currency",
-          "transmute"
-        ]
-      ],
-      "estimate": {
-        "per": "per pair",
-        "qty": {
-          "transmute": 1,
-          "aug": 2
-        }
-      },
-      "tier": 1
-    },
-    {
-      "id": "jewellery",
-      "phase": "Day 1",
-      "name": "Resistance rings and belts",
-      "pick": false,
-      "base": "Amethyst rings, Leather or Heavy belts",
-      "cost": "3 to 20c each",
-      "sale": "10c to 1 div",
-      "risk": "Low",
-      "steps": [
-        "Chaos reforge, or use the bench craft that rerolls 3 mods for 3 Chaos Orbs",
-        "Bench craft the missing resistance"
-      ],
-      "targets": "Life plus 2 to 3 resistances",
-      "buyers": "Anyone fixing resistances after Kitava",
-      "materials": [
-        [
-          "Currency",
-          "chaos"
-        ]
-      ],
-      "estimate": {
-        "per": "per item",
-        "qty": {
-          "chaos": 5
-        }
-      },
-      "tier": 1
-    },
-    {
-      "id": "vaal",
-      "phase": "Day 1",
-      "name": "Vaal gem corruptions",
-      "pick": false,
-      "base": "20% quality gems people actually play",
-      "cost": "1 Vaal Orb per try",
-      "sale": "Varies a lot by gem",
-      "risk": "Medium",
-      "steps": [
-        "Open the Gem Vaal & levelling tab",
-        "Vaal only the gems it marks as positive EV",
-        "Sell 21/20s quickly while the skill is popular"
-      ],
-      "targets": "21/20 or 20/23",
-      "buyers": "Players buying perfect gems for their main skill",
-      "materials": [
-        [
-          "Currency",
-          "vaal"
-        ],
-        [
-          "Currency",
-          "gcp"
-        ]
-      ],
-      "estimate": {
-        "per": "per try, gem not included",
-        "qty": {
-          "vaal": 1
-        }
-      },
-      "tier": 1
-    },
-    {
-      "id": "rog",
-      "phase": "Week 1",
-      "name": "Rog crafting (Expedition)",
-      "pick": true,
-      "base": "ilvl 84+ rings, belts and evasion helmets (best). Evasion boots and evasion/armour gloves next",
-      "cost": "Your Expedition loot",
-      "sale": "30c to several div",
-      "risk": "Low",
-      "steps": [
-        "Fill suffixes with Rog's adding option, leaving a prefix open for bench-crafted life",
-        "Reroll the side you're targeting and always take tier upgrades",
-        "Use Divine near the end, once the item looks good",
-        "Bench craft the missing life, or annul a bad mod to make room",
-        "Don't skip options without thinking: skipping raises the artifact cost and can force an option that bricks the item"
-      ],
-      "targets": "Life, resistances and attributes on jewellery; spell suppression with resistances or life on helmets, boots and gloves",
-      "buyers": "Everyone rounding out resistances and suppression",
-      "note": "Run logbooks at ilvl 75+ with 65%+ quantity, and spend explosives on artifact chests first. Rog needs character level 90 to offer ilvl 86+ bases.",
-      "materials": [
-        [
-          "Currency",
-          "eldritch-orb-of-annulment"
-        ]
-      ],
-      "estimate": {
-        "per": "per item, plus artifacts",
-        "qty": {
-          "eldritch-orb-of-annulment": 0.25
-        }
-      },
-      "tier": 2
-    },
-    {
-      "id": "clusters",
-      "phase": "Week 1",
-      "name": "Medium cluster jewels",
-      "pick": true,
-      "base": "Medium Cluster Jewels at the item level the notables need",
-      "cost": "About 70c each, 5 div for a batch of 30",
-      "sale": "1 to 5+ div on hits",
-      "risk": "Medium",
-      "steps": [
-        "Check poe.ninja Builds on day 2 or 3 for the notables the top skills use",
-        "Alteration until you hit a wanted notable",
-        "Regal, then exalt for the second notable",
-        "Price check anything with 2 used notables"
-      ],
-      "targets": "2 notables a popular build uses (for the Cold DoT archetype, cold and DoT clusters)",
-      "buyers": "Builds that have already found their feet",
-      "note": "A 3.29 test crafted 30 jewels at about 70c each and sold them for about 8,600c, a profit of roughly 6,000c.",
-      "materials": [
-        [
-          "Currency",
-          "alt"
-        ],
-        [
-          "Currency",
-          "regal"
-        ],
-        [
-          "Currency",
-          "exalted"
-        ]
-      ],
-      "estimate": {
-        "per": "per jewel, base not included",
-        "qty": {
-          "alt": 40,
-          "aug": 20,
-          "regal": 1,
-          "exalted": 1
-        }
-      },
-      "tier": 2
-    },
-    {
-      "id": "wands",
-      "phase": "Week 1",
-      "name": "+1/+2 caster wands",
-      "pick": false,
-      "base": "Opal or Convoking wands",
-      "cost": "5 to 10 div bankroll",
-      "sale": "1 to 10+ div",
-      "risk": "Medium",
-      "steps": [
-        "Alteration for +1 cold spell gems or DoT multiplier",
-        "Regal",
-        "Bench finish (4-second trigger craft or spell damage)"
-      ],
-      "targets": "+1/+2 cold spell gems, DoT multiplier, spell damage",
-      "buyers": "Every cold DoT and spell build, including yours",
-      "materials": [
-        [
-          "Currency",
-          "alt"
-        ],
-        [
-          "Currency",
-          "aug"
-        ],
-        [
-          "Currency",
-          "regal"
-        ]
-      ],
-      "estimate": {
-        "per": "per wand, base not included",
-        "qty": {
-          "alt": 60,
-          "aug": 30,
-          "regal": 1
-        }
-      },
-      "tier": 2
-    },
-    {
-      "id": "rf",
-      "phase": "Week 1",
-      "name": "RF gloves and boots",
-      "pick": false,
-      "base": "ilvl 85 gloves with high base percentile",
-      "cost": "10 to 20 div bankroll",
-      "sale": "50c to 1 div, a few big hits",
-      "risk": "Medium, depends on demand",
-      "steps": [
-        "Essence spam",
-        "Fill the open slots with exalts",
-        "Annul bad mods",
-        "Bench Fire and Chaos resistance",
-        "Batch the prefixes across a stack of gloves"
-      ],
-      "targets": "High life, life regeneration, Dexterity",
-      "buyers": "Righteous Fire players (RF Chieftain is S-tier on 3.30 league-start lists)",
-      "note": "bLut's 3.29 method, at 40 to 50 gloves an hour. These figures come from a video summary and are approximate.",
-      "materials": [
-        [
-          "Currency",
-          "exalted"
-        ],
-        [
-          "Currency",
-          "annul"
-        ]
-      ],
-      "estimate": {
-        "per": "per pair, base and essences not included",
-        "qty": {
-          "exalted": 3,
-          "annul": 1
-        }
-      },
-      "tier": 2
-    },
-    {
-      "id": "regalia",
-      "tier": 3,
-      "phase": "Week 2",
-      "name": "Max-resistance ES body armour",
-      "pick": true,
-      "base": "High item level Twilight Regalia (about 20c for the base)",
-      "cost": "About 12 div per finished chest at 3.29 prices",
-      "sale": "20 to 60+ div for +2% max res with high ES",
-      "risk": "Medium",
-      "steps": [
-        "Roll energy shield prefixes first (essences or a Dense Fossil), keeping a good ES base",
-        "Use Grand Eldritch Embers until the +% to all maximum Resistances implicit lands",
-        "Finish the open slots with Exalted Orbs or bench crafts"
-      ],
-      "targets": "+1 to +2% to all maximum resistances implicit, high ES, physical taken as chaos",
-      "buyers": "Every ES build, including the Cold DoT Occultist",
-      "note": "A 3.29 planner craft of this chest came to about 11.7 div all in. The Ember count depends on luck.",
-      "estimate": {
-        "per": "per 20 Ember rolls",
-        "qty": {
-          "grand-eldritch-ember": 20
-        }
-      },
-      "materials": [
-        [
-          "Currency",
-          "grand-eldritch-ember"
-        ],
-        [
-          "Currency",
-          "exalted"
-        ]
-      ]
-    },
-    {
-      "id": "shields",
-      "tier": 3,
-      "phase": "Week 2",
-      "name": "Fossil ES spirit shields",
-      "pick": false,
-      "base": "ilvl 86+ Titanium Spirit Shield",
-      "cost": "20 to 40 div bankroll",
-      "sale": "5 to 30 div",
-      "risk": "Medium",
-      "steps": [
-        "Put Dense Fossils in Primitive Chaotic Resonators and reroll the shield",
-        "Stop when you hit 2 to 3 energy shield prefixes",
-        "Bench craft the missing ES prefix or quality, then finish suffixes with resistances"
-      ],
-      "targets": "2 to 3 high ES prefixes, spell block, resistances",
-      "buyers": "Caster and ES builds that use a shield",
-      "estimate": {
-        "per": "per reroll",
-        "qty": {
-          "Fossil|dense-fossil": 1,
-          "Resonator|primitive-chaotic-resonator": 1
-        }
-      },
-      "materials": [
-        [
-          "Fossil",
-          "dense-fossil"
-        ],
-        [
-          "Resonator",
-          "primitive-chaotic-resonator"
-        ]
-      ]
-    },
-    {
-      "id": "abyss",
-      "tier": 3,
-      "phase": "Week 2",
-      "name": "Abyssal socket gear",
-      "pick": false,
-      "base": "High item level helmets, gloves or boots for Intelligence stackers",
-      "cost": "30 to 100 div bankroll",
-      "sale": "10 to 100+ div",
-      "risk": "High",
-      "steps": [
-        "Reroll the base with a Hollow Fossil to get an abyssal socket",
-        "Keep items that also roll the stat you're after (Intelligence, ES, resistances)",
-        "Finish with exalts or bench crafts"
-      ],
-      "targets": "Abyssal socket plus Intelligence and energy shield",
-      "buyers": "Intelligence stackers and abyss jewel builds",
-      "estimate": {
-        "per": "per reroll",
-        "qty": {
-          "Fossil|hollow-fossil": 1,
-          "Resonator|primitive-chaotic-resonator": 1
-        }
-      },
-      "materials": [
-        [
-          "Fossil",
-          "hollow-fossil"
-        ],
-        [
-          "Resonator",
-          "primitive-chaotic-resonator"
-        ]
-      ]
-    },
-    {
-      "id": "influence",
-      "tier": 4,
-      "phase": "Week 2 to 4",
-      "name": "Double-influence gear (Awakener's Orb)",
-      "pick": false,
-      "base": "A donor with a single influence mod and a receiver of another influence, ilvl 86+",
-      "cost": "100 to 300 div bankroll",
-      "sale": "50 to several hundred div",
-      "risk": "High",
-      "steps": [
-        "Prepare a donor with exactly one influence mod, and a receiver of a different influence with the mod you want",
-        "Use the Awakener's Orb on the donor (it's destroyed), then apply it to the receiver",
-        "The receiver keeps one random influence mod from each item, so set up reset points first",
-        "Optional: use an Orb of Dominance to elevate one influence mod. It removes another at random"
-      ],
-      "targets": "Classic pairs: Hunter spell crit with Redeemer aura effect on Vaal Regalia, or elevated resistances with elevated attack crit on armour",
-      "buyers": "Rich players chasing best-in-slot bases",
-      "note": "Awakener's Orbs only drop from Sirus, so supply is thin. A donor with more than one influence mod makes the carried mod random.",
-      "estimate": {
-        "per": "per attempt, bases not included",
-        "qty": {
-          "awakeners-orb": 1
-        }
-      },
-      "materials": [
-        [
-          "Currency",
-          "awakeners-orb"
-        ],
-        [
-          "Currency",
-          "mavens-orb"
-        ],
-        [
-          "Currency",
-          "hunters-exalted-orb"
-        ],
-        [
-          "Currency",
-          "redeemers-exalted-orb"
-        ]
-      ]
-    },
-    {
-      "id": "eldritch",
-      "tier": 4,
-      "phase": "Week 2 to 4",
-      "name": "Exceptional Eldritch implicits",
-      "pick": false,
-      "base": "Already-good rare helmets, gloves and boots on popular bases",
-      "cost": "100+ div bankroll",
-      "sale": "Often doubles an item's value",
-      "risk": "High",
-      "steps": [
-        "Buy finished rares with good explicit mods but weak implicits",
-        "Use Exceptional Eldritch Embers and Ichors to roll top implicits",
-        "Resell, or keep the item for your own build"
-      ],
-      "targets": "Top-tier Exarch and Eater implicits that suit the item's build",
-      "buyers": "Players finishing their endgame gear",
-      "estimate": {
-        "per": "per Ember + Ichor roll",
-        "qty": {
-          "exceptional-eldritch-ember": 1,
-          "exceptional-eldritch-ichor": 1
-        }
-      },
-      "materials": [
-        [
-          "Currency",
-          "exceptional-eldritch-ember"
-        ],
-        [
-          "Currency",
-          "exceptional-eldritch-ichor"
-        ]
-      ]
-    },
-    {
-      "id": "mirror",
-      "tier": 5,
-      "phase": "Week 3+",
-      "name": "Mirror-tier items and mirror services",
-      "pick": false,
-      "base": "A double-elevated or otherwise near-perfect base",
-      "cost": "500+ div",
-      "sale": "Mirrors, or a fee per copy as a mirror service",
-      "risk": "Very high",
-      "steps": [
-        "Start from a top base (two elevated influence mods or the best fracture you can buy)",
-        "Finish the open mods with bench locks (1 div per side in 3.30) and exalts, aiming for 6 top-tier mods",
-        "Add Exceptional Eldritch implicits",
-        "Mirror it once and list the copy, or offer it as a mirror service and charge a fee per copy"
-      ],
-      "targets": "Six top-tier mods plus top implicits for a meta build",
-      "buyers": "The richest players in the league",
-      "note": "Not a week 1 project. Plan for it once you have 500+ div and know which builds will be meta late in the league.",
-      "estimate": {
-        "per": "bench locks for one finish",
-        "qty": {
-          "divine": 4
-        }
-      },
-      "materials": [
-        [
-          "Currency",
-          "divine"
-        ],
-        [
-          "Currency",
-          "mirror"
-        ],
-        [
-          "Currency",
-          "exceptional-eldritch-ember"
-        ]
-      ]
-    }
-  ],
-  "avoid": [
+ "title": "Profit crafting",
+ "subtitle": "Crafts for every budget in 3.30, with more than one way to make each",
+ "updated": "2026-11-11",
+ "guideUrl": "https://claude.ai/artifact/EqqSimX4nBnNHeN5rd93Hm",
+ "summary": "Pick the tier that matches your bankroll and move up as it grows. On day 1, craft cheap things levelers need. From day 2 or 3, switch to batch crafts like Rog items and medium cluster jewels. In week 2, put real money into fossils and Eldritch implicits. Influence and mirror-tier crafts come later, once you have hundreds of divines.",
+ "phases": [
+  {
+   "when": "Day 1 (first 24 to 48 hours)",
+   "bankroll": "Under 1 div",
+   "crafts": "Flasks, MS boots, resistance jewellery, Vaal gem corruptions",
+   "why": "Everyone is leveling and gear is scarce"
+  },
+  {
+   "when": "Days 2 to 4",
+   "bankroll": "1 to 5 div",
+   "crafts": "Rog crafts from Expedition, essence boots and belts",
+   "why": "Your atlas already farms the materials"
+  },
+  {
+   "when": "Days 3 to 10",
+   "bankroll": "5 to 20 div",
+   "crafts": "Medium cluster jewels, +1/+2 caster wands, RF gloves and boots",
+   "why": "Steady demand from builds that are already working"
+  }
+ ],
+ "changes": [
+  {
+   "tone": "neutral",
+   "title": "More good drops",
+   "body": "Endgame rares now drop unidentified with a tier, and rarity improves every type of drop. Plain 3-mod rares lose value faster, so craft items that drops can't easily replace."
+  },
+  {
+   "tone": "bad",
+   "title": "Bench locks cost divines",
+   "body": "Protecting one prefix or suffix costs 1 div, or 2 div for two. A full lock costs 4 div plus a Sacred Orb (weapons), 4 Blessed Orbs (armour) or 8 Exalted Orbs (jewellery)."
+  },
+  {
+   "tone": "bad",
+   "title": "No Allflame crafting",
+   "body": "Strands and Ducats aren't going core, so the 3.29 strand crafts in many videos won't work. The routes here use methods that still exist."
+  },
+  {
+   "tone": "good",
+   "title": "Corrupt twice",
+   "body": "The Altar of Corruption and the Lapidary Lens can corrupt an already corrupted item or gem again. The Lens can also destroy it."
+  },
+  {
+   "tone": "neutral",
+   "title": "Recombinator rules",
+   "body": "The result keeps the item level of the base you pick, and corrupted items can't go in at all."
+  },
+  {
+   "tone": "neutral",
+   "title": "Fractured items, harder and easier",
+   "body": "Most league sources of fractured items are gone, but Tier 5 magic items can now drop fractured. Veiled mods come from Betrayal."
+  }
+ ],
+ "crafts": [
+  {
+   "id": "flasks",
+   "phase": "Day 1",
+   "name": "Utility flasks",
+   "pick": false,
+   "base": "Quicksilver, Silver, Jade, Granite, Diamond",
+   "cost": "A few chaos",
+   "sale": "5c to 1 div early on",
+   "risk": "Low",
+   "steps": [
+    "Transmute, then alteration and augment spam until you hit a useful suffix",
+    "Add quality with Glassblower's Baubles",
+    "Bench craft the finish"
+   ],
+   "targets": "A useful suffix (movement speed on Quicksilver, Onslaught on Silver, bleed or freeze immunity) plus a duration or effect prefix, at 20% quality",
+   "buyers": "Everyone mapping on days 1 to 3",
+   "materials": [
     [
-      "Anything that needs fractured bases",
-      "Most league sources are gone, so the bases cost more than the crafts return in week 1."
+     "Currency",
+     "transmute"
     ],
     [
-      "Unveil and Veiled Chaos crafts",
-      "Veiled mods now only come from Betrayal, so supply is thin early on."
+     "Currency",
+     "alt"
     ],
     [
-      "Metacraft finishes on cheap items",
-      "Prefix or suffix locks cost 1 div each now. Only use them on items worth 10+ div."
+     "Currency",
+     "aug"
     ],
     [
-      "Mercenary gear",
-      "Mercenaries were nerfed, and demand for their claws, chests and shields will drop."
-    ],
-    [
-      "Generic 3-mod rares after day 5",
-      "Tiered drops make decent rares much more common. Craft specific combinations instead."
-    ],
-    [
-      "Big Eldritch and recombinator projects on day 1",
-      "Expensive and thin at the start. Wait until prices settle around day 4 or 5."
+     "Currency",
+     "bauble"
     ]
-  ],
-  "selling": [
+   ],
+   "estimate": {
+    "per": "per flask",
+    "qty": {
+     "transmute": 1,
+     "alt": 15,
+     "aug": 8,
+     "bauble": 10
+    }
+   },
+   "tier": 1,
+   "route": "Alteration spam",
+   "alts": [
+    {
+     "name": "Buy half-done flasks",
+     "why": "Faster once trade fills up on day 2. Skip the alt spam and finish the other side.",
+     "steps": [
+      "Search trade for magic utility flasks with the prefix you want and an open suffix",
+      "Orb of Augmentation for the suffix, alteration only if it misses badly",
+      "Quality to 20% with Glassblower's Baubles and list"
+     ],
+     "estimate": {
+      "per": "per flask, flask not included",
+      "qty": {
+       "aug": 2,
+       "alt": 5,
+       "bauble": 10
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "aug"
+      ],
+      [
+       "Currency",
+       "bauble"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "boots",
+   "phase": "Day 1",
+   "name": "Movement-speed boots",
+   "pick": false,
+   "base": "Any boots with life or ES",
+   "cost": "Under 10c",
+   "sale": "10c to 1 div",
+   "risk": "Low",
+   "steps": [
+    "Vendor recipe: magic boots + Quicksilver Flask + Orb of Augmentation adds movement speed",
+    "Essence or bench craft resistances",
+    "Bench craft life if a prefix is open"
+   ],
+   "targets": "20%+ movement speed, life or ES, 2 resistances",
+   "buyers": "Levelers and first mappers",
+   "materials": [
     [
-      "Price off live listings",
-      "Look up the cheapest 5 to 10 comparable items and list just under them."
+     "Currency",
+     "aug"
     ],
     [
-      "Sell fast in week 1",
-      "Prices on almost everything fall as supply grows, so take today's price."
-    ],
-    [
-      "Use buy orders for materials",
-      "Set them and wait 30 to 60 minutes for better rates on essences and exalts."
-    ],
-    [
-      "Track your costs",
-      "Log each batch on the Portfolio tab so you can see which craft earns the most per hour."
-    ],
-    [
-      "Drop a craft when its margin goes",
-      "If a stack hasn't sold within a few hours, cut the price and move on."
+     "Currency",
+     "transmute"
     ]
-  ],
-  "sources": [
-    {
-      "title": "Maxroll: League start Rog profit crafting guide",
-      "url": "https://maxroll.gg/poe/currency/leaguestart-rog-profit-crafting-guide"
-    },
-    {
-      "title": "bLut: Big money crafting RF gloves, 3.29 (summary)",
-      "url": "https://youtubesummary.com/summary/_Mw3YXIFmdk"
-    },
-    {
-      "title": "bLut's crafting videos",
-      "url": "https://www.poebuilds.cc/poe1/author/blut/top"
-    },
-    {
-      "title": "Cluster jewel profit re-test, 3.29",
-      "url": "https://buymeacoffee.com/poeautocraft/strategy-re-test-does-guide-kill-profit-poe-3-29"
-    },
-    {
-      "title": "PoE Vault: Campaign upgrading and vendor recipes",
-      "url": "https://dev.poe-vault.com/guides/the-campaign"
-    },
-    {
-      "title": "PoE Vault: How to make currency",
-      "url": "https://www.poe-vault.com/guides/how-to-make-currency"
-    },
-    {
-      "title": "3.30 loot rework: tiered rares and rarity",
-      "url": "https://www.vhpg.com/?p=433"
+   ],
+   "estimate": {
+    "per": "per pair",
+    "qty": {
+     "transmute": 1,
+     "aug": 2
     }
-  ],
-  "estimateNote": "Estimates use average currency per finished item at live prices. Your luck will vary.",
-  "tiers": [
-    {
-      "n": 1,
-      "name": "Starter",
-      "bankroll": "Under 1 div",
-      "when": "Day 1 and 2",
-      "blurb": "Cheap crafts for players who are leveling and starting maps."
-    },
-    {
-      "n": 2,
-      "name": "Budget",
-      "bankroll": "1 to 20 div",
-      "when": "Days 2 to 10",
-      "blurb": "Repeatable batch crafts with steady demand."
-    },
-    {
-      "n": 3,
-      "name": "Mid",
-      "bankroll": "20 to 100 div",
-      "when": "Week 2 onward",
-      "blurb": "Fossils and Eldritch implicits on proper endgame bases."
-    },
-    {
-      "n": 4,
-      "name": "High-end",
-      "bankroll": "100 to 500 div",
-      "when": "Week 2 to 4",
-      "blurb": "Influence combinations and top Eldritch implicits for wealthy buyers."
-    },
-    {
-      "n": 5,
-      "name": "Mirror tier",
-      "bankroll": "500+ div",
-      "when": "Week 3 onward",
-      "blurb": "Near-perfect items you mirror-service or sell for mirrors."
+   },
+   "tier": 1
+  },
+  {
+   "id": "jewellery",
+   "phase": "Day 1",
+   "name": "Resistance rings and belts",
+   "pick": false,
+   "base": "Amethyst rings, Leather or Heavy belts",
+   "cost": "3 to 20c each",
+   "sale": "10c to 1 div",
+   "risk": "Low",
+   "steps": [
+    "Chaos reforge, or use the bench craft that rerolls 3 mods for 3 Chaos Orbs",
+    "Bench craft the missing resistance"
+   ],
+   "targets": "Life plus 2 to 3 resistances",
+   "buyers": "Anyone fixing resistances after Kitava",
+   "materials": [
+    [
+     "Currency",
+     "chaos"
+    ]
+   ],
+   "estimate": {
+    "per": "per item",
+    "qty": {
+     "chaos": 5
     }
+   },
+   "tier": 1,
+   "route": "Chaos reforge",
+   "alts": [
+    {
+     "name": "Alt and regal two-stone rings",
+     "why": "Two-stone rings already carry two resistances, so you only need life and one more res.",
+     "steps": [
+      "Buy ilvl 75+ two-stone rings with the res pair you want",
+      "Orbs of Alteration until life plus a resistance",
+      "Regal, then bench craft a resistance or attributes in the open slot"
+     ],
+     "estimate": {
+      "per": "per ring, base not included",
+      "qty": {
+       "alt": 20,
+       "aug": 10,
+       "regal": 1
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "alt"
+      ],
+      [
+       "Currency",
+       "regal"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "starter-gear",
+   "tier": 1,
+   "phase": "Day 1",
+   "name": "Essence league-start armour",
+   "pick": false,
+   "by": [
+    {
+     "name": "XTheFarmerX",
+     "url": "https://www.poebuilds.cc/poe2/author/xthefarmerx/new"
+    }
+   ],
+   "base": "Any ilvl 68+ body armour, helmet or boots in the common base for its stat",
+   "cost": "A few chaos per item",
+   "sale": "5 to 30c each, fast sellers on day 1 and 2",
+   "risk": "Low",
+   "route": "Essence of Greed",
+   "steps": [
+    "Essence of Greed for guaranteed life",
+    "Keep any roll with 2 resistances alongside",
+    "Bench craft the last resistance and list cheap in bulk"
+   ],
+   "targets": "Life plus 2 or 3 resistances",
+   "buyers": "Players finishing the campaign and their first white maps",
+   "note": "Based on XTheFarmerX's cheap league-start gear videos, which are for PoE2. The same idea works in PoE1 with essences.",
+   "estimate": {
+    "per": "per item",
+    "qty": {
+     "Essence|wailing-essence-of-greed": 4
+    }
+   },
+   "materials": [
+    [
+     "Essence",
+     "wailing-essence-of-greed"
+    ]
+   ],
+   "alts": [
+    {
+     "name": "Alt and regal",
+     "why": "Cheaper when essences are scarce on day 1.",
+     "steps": [
+      "Orbs of Alteration until life and a resistance",
+      "Regal, then bench craft a second resistance"
+     ],
+     "estimate": {
+      "per": "per item",
+      "qty": {
+       "alt": 15,
+       "aug": 8,
+       "regal": 1
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "alt"
+      ],
+      [
+       "Currency",
+       "regal"
+      ]
+     ]
+    },
+    {
+     "name": "Chaos reforge",
+     "why": "No thinking needed. Fine when Chaos Orbs are cheap compared to essences.",
+     "steps": [
+      "Chaos Orbs until life plus 2 resistances",
+      "Bench craft whatever is missing"
+     ],
+     "estimate": {
+      "per": "per item",
+      "qty": {
+       "chaos": 8
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "chaos"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "jewels",
+   "tier": 1,
+   "phase": "Day 1",
+   "name": "Life and damage jewels",
+   "pick": false,
+   "by": [
+    {
+     "name": "Belton",
+     "url": "https://www.pathofexile.com/forum/view-thread/1836300"
+    }
+   ],
+   "base": "ilvl 75+ Crimson, Viridian or Cobalt Jewel",
+   "cost": "Under 1 div for a stack",
+   "sale": "10c to 3 div for 3 to 4 good mods",
+   "risk": "Low",
+   "route": "Alteration spam",
+   "steps": [
+    "Orbs of Alteration until % max life (or % ES on Cobalt) plus a matching damage mod",
+    "Regal for a third mod",
+    "Exalt only on jewels with three good mods"
+   ],
+   "targets": "% life or ES plus crit multi, damage over time multi or attack speed",
+   "buyers": "Every build, all league",
+   "note": "Belton's long-running jewel crafting guide argues jewels scale well into late game, which keeps demand steady.",
+   "estimate": {
+    "per": "per jewel",
+    "qty": {
+     "alt": 30,
+     "aug": 10,
+     "regal": 1
+    }
+   },
+   "materials": [
+    [
+     "Currency",
+     "alt"
+    ],
+    [
+     "Currency",
+     "regal"
+    ],
+    [
+     "Currency",
+     "exalted"
+    ]
+   ],
+   "alts": [
+    {
+     "name": "Chaos reforge",
+     "why": "Faster, and good for 4-mod jackpots, but you hit the right pair less often.",
+     "steps": [
+      "Chaos Orbs on rare jewels",
+      "Keep anything with life plus two good mods"
+     ],
+     "estimate": {
+      "per": "per ~25 rerolls",
+      "qty": {
+       "chaos": 25
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "chaos"
+      ]
+     ]
+    },
+    {
+     "name": "Buy magic 2-mod jewels",
+     "why": "On days 2 to 4 trade is full of magic jewels that only need a regal.",
+     "steps": [
+      "Buy magic jewels with life plus a good damage mod",
+      "Regal, then exalt if the third mod is good"
+     ],
+     "estimate": {
+      "per": "per jewel, jewel not included",
+      "qty": {
+       "regal": 1,
+       "exalted": 1
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "regal"
+      ],
+      [
+       "Currency",
+       "exalted"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "vaal",
+   "phase": "Day 1",
+   "name": "Vaal gem corruptions",
+   "pick": false,
+   "base": "20% quality gems people actually play",
+   "cost": "1 Vaal Orb per try",
+   "sale": "Varies a lot by gem",
+   "risk": "Medium",
+   "steps": [
+    "Open the Gem Vaal & levelling tab",
+    "Vaal only the gems it marks as positive EV",
+    "Sell 21/20s quickly while the skill is popular"
+   ],
+   "targets": "21/20 or 20/23",
+   "buyers": "Players buying perfect gems for their main skill",
+   "materials": [
+    [
+     "Currency",
+     "vaal"
+    ],
+    [
+     "Currency",
+     "gcp"
+    ]
+   ],
+   "estimate": {
+    "per": "per try, gem not included",
+    "qty": {
+     "vaal": 1
+    }
+   },
+   "tier": 1
+  },
+  {
+   "id": "rog",
+   "phase": "Week 1",
+   "name": "Rog crafting (Expedition)",
+   "pick": true,
+   "base": "ilvl 84+ rings, belts and evasion helmets (best). Evasion boots and evasion/armour gloves next",
+   "cost": "Your Expedition loot",
+   "sale": "30c to several div",
+   "risk": "Low",
+   "steps": [
+    "Fill suffixes with Rog's adding option, leaving a prefix open for bench-crafted life",
+    "Reroll the side you're targeting and always take tier upgrades",
+    "Use Divine near the end, once the item looks good",
+    "Bench craft the missing life, or annul a bad mod to make room",
+    "Don't skip options without thinking: skipping raises the artifact cost and can force an option that bricks the item"
+   ],
+   "targets": "Life, resistances and attributes on jewellery; spell suppression with resistances or life on helmets, boots and gloves",
+   "buyers": "Everyone rounding out resistances and suppression",
+   "note": "Run logbooks at ilvl 75+ with 65%+ quantity, and spend explosives on artifact chests first. Rog needs character level 90 to offer ilvl 86+ bases.",
+   "materials": [
+    [
+     "Currency",
+     "eldritch-orb-of-annulment"
+    ]
+   ],
+   "estimate": {
+    "per": "per item, plus artifacts",
+    "qty": {
+     "eldritch-orb-of-annulment": 0.25
+    }
+   },
+   "tier": 2
+  },
+  {
+   "id": "clusters",
+   "phase": "Week 1",
+   "name": "Medium cluster jewels",
+   "pick": true,
+   "base": "Medium Cluster Jewels at the item level the notables need",
+   "cost": "About 70c each, 5 div for a batch of 30",
+   "sale": "1 to 5+ div on hits",
+   "risk": "Medium",
+   "steps": [
+    "Check poe.ninja Builds on day 2 or 3 for the notables the top skills use",
+    "Alteration until you hit a wanted notable",
+    "Regal, then exalt for the second notable",
+    "Price check anything with 2 used notables"
+   ],
+   "targets": "2 notables a popular build uses (for the Cold DoT archetype, cold and DoT clusters)",
+   "buyers": "Builds that have already found their feet",
+   "note": "A 3.29 test crafted 30 jewels at about 70c each and sold them for about 8,600c, a profit of roughly 6,000c.",
+   "materials": [
+    [
+     "Currency",
+     "alt"
+    ],
+    [
+     "Currency",
+     "regal"
+    ],
+    [
+     "Currency",
+     "exalted"
+    ]
+   ],
+   "estimate": {
+    "per": "per jewel, base not included",
+    "qty": {
+     "alt": 40,
+     "aug": 20,
+     "regal": 1,
+     "exalted": 1
+    }
+   },
+   "tier": 2,
+   "by": [
+    {
+     "name": "JJ546",
+     "url": "https://buymeacoffee.com/poeautocraft/strategy-re-test-does-guide-kill-profit-poe-3-29"
+    },
+    {
+     "name": "SaVeQ",
+     "url": "https://www.poebuilds.cc/poe1/author/saveq"
+    }
+   ],
+   "route": "Alt, regal, exalt",
+   "alts": [
+    {
+     "name": "Buy 1-notable magic jewels",
+     "why": "Lets you skip the alteration grind. Best once lots of magic mediums are listed.",
+     "steps": [
+      "Buy magic mediums with one wanted notable and an open affix",
+      "Orb of Augmentation for the second notable, or Regal if it already has two mods",
+      "Exalt only if both notables landed"
+     ],
+     "estimate": {
+      "per": "per jewel, jewel not included",
+      "qty": {
+       "aug": 3,
+       "regal": 1,
+       "exalted": 1
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "regal"
+      ],
+      [
+       "Currency",
+       "exalted"
+      ]
+     ]
+    },
+    {
+     "name": "Harvest reforge",
+     "why": "If Harvest reforges are still on offer in 3.30, a reforge with the jewel's keyword skips the magic stage.",
+     "steps": [
+      "Check the Harvest station on day 1, since Harvest now spawns in maps instead of the Grove",
+      "Reforge with the keyword that matches the notables (for example Critical or Elemental)",
+      "Stop when two wanted notables land and sell"
+     ],
+     "estimate": null,
+     "note": "Harvest prices are set at the station in lifeforce. Watch Vivid and Primal lifeforce prices on the Market tab.",
+     "materials": [
+      [
+       "Currency",
+       "vivid-lifeforce"
+      ],
+      [
+       "Currency",
+       "primal-lifeforce"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "large-clusters",
+   "tier": 2,
+   "phase": "Week 1",
+   "name": "Large cluster jewels (3 notables)",
+   "pick": true,
+   "by": [
+    {
+     "name": "POEGuy",
+     "url": "https://www.poebuilds.cc/poe1/author/poeguy?league=allflame"
+    },
+    {
+     "name": "Raychich",
+     "url": "https://www.poebuilds.cc/poe1/crafting/new"
+    },
+    {
+     "name": "SaVeQ",
+     "url": "https://www.poebuilds.cc/poe1/author/saveq"
+    }
+   ],
+   "base": "High ilvl Large Cluster, 8 passives, popular enchant (minion, spell, elemental, attack)",
+   "cost": "3 to 10 div bankroll",
+   "sale": "1 to 30+ div for the meta 3-notable combos",
+   "risk": "Medium",
+   "route": "Alt and regal",
+   "steps": [
+    "Orbs of Alteration until two wanted notables",
+    "Regal for the third mod",
+    "Exalt if a slot is open and the first three are right"
+   ],
+   "targets": "The 3 notables the meta builds use, 8 passives so they cost 7 points",
+   "buyers": "Minion, spell and DoT builds from week 1",
+   "note": "8 passives with 3 notables is the most popular large cluster setup. Check poe.ninja builds for which notables top players run.",
+   "estimate": {
+    "per": "per jewel, base not included",
+    "qty": {
+     "alt": 50,
+     "aug": 25,
+     "regal": 1,
+     "exalted": 1
+    }
+   },
+   "materials": [
+    [
+     "Currency",
+     "alt"
+    ],
+    [
+     "Currency",
+     "aug"
+    ],
+    [
+     "Currency",
+     "regal"
+    ],
+    [
+     "Currency",
+     "exalted"
+    ]
+   ],
+   "alts": [
+    {
+     "name": "Harvest reforge",
+     "why": "A 3.29 planner put the right Harvest reforge at about 14% per try for a 3-notable minion jewel.",
+     "steps": [
+      "Reforge with the matching keyword (for example Critical)",
+      "Keep it when two notables land, fill the open prefix",
+      "Only if Harvest reforges still exist in 3.30, so check on day 1"
+     ],
+     "estimate": null,
+     "materials": [
+      [
+       "Currency",
+       "vivid-lifeforce"
+      ],
+      [
+       "Currency",
+       "primal-lifeforce"
+      ]
+     ]
+    },
+    {
+     "name": "Chaos reforge rares",
+     "why": "Good for enchants with only a few notables, where the odds are high.",
+     "steps": [
+      "Chaos Orbs on rare large clusters",
+      "Stop on any 2 or 3 notable combo you know sells"
+     ],
+     "estimate": {
+      "per": "per ~40 rerolls",
+      "qty": {
+       "chaos": 40
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "chaos"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "wands",
+   "phase": "Week 1",
+   "name": "+1/+2 caster wands",
+   "pick": false,
+   "base": "Opal or Convoking wands",
+   "cost": "5 to 10 div bankroll",
+   "sale": "1 to 10+ div",
+   "risk": "Medium",
+   "steps": [
+    "Alteration for +1 cold spell gems or DoT multiplier",
+    "Regal",
+    "Bench finish (4-second trigger craft or spell damage)"
+   ],
+   "targets": "+1/+2 cold spell gems, DoT multiplier, spell damage",
+   "buyers": "Every cold DoT and spell build, including yours",
+   "materials": [
+    [
+     "Currency",
+     "alt"
+    ],
+    [
+     "Currency",
+     "aug"
+    ],
+    [
+     "Currency",
+     "regal"
+    ]
+   ],
+   "estimate": {
+    "per": "per wand, base not included",
+    "qty": {
+     "alt": 60,
+     "aug": 30,
+     "regal": 1
+    }
+   },
+   "tier": 2,
+   "route": "Alt and regal",
+   "alts": [
+    {
+     "name": "Buy magic +1 wands",
+     "why": "Lower risk. You pay a little more per base but never miss the +1.",
+     "steps": [
+      "Buy magic wands with +1 to spell skill gems and an open suffix",
+      "Regal for a third mod",
+      "Bench craft cast speed or spell damage in the open slot"
+     ],
+     "estimate": {
+      "per": "per wand, wand not included",
+      "qty": {
+       "regal": 1,
+       "aug": 1
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "regal"
+      ]
+     ]
+    },
+    {
+     "name": "Chaos reforge rares",
+     "why": "Use this for +2 targets on high ilvl bases when you have spare Chaos Orbs.",
+     "steps": [
+      "Chaos Orbs on ilvl 84+ wands until +1 gems plus spell damage",
+      "Bench craft the missing mod",
+      "Sell 2-mod hits cheap and 3-mod hits high"
+     ],
+     "estimate": {
+      "per": "per ~40 rerolls",
+      "qty": {
+       "chaos": 40
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "chaos"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "rf",
+   "phase": "Week 1",
+   "name": "RF gloves and boots",
+   "pick": false,
+   "base": "ilvl 85 gloves with high base percentile",
+   "cost": "10 to 20 div bankroll",
+   "sale": "50c to 1 div, a few big hits",
+   "risk": "Medium, depends on demand",
+   "steps": [
+    "Essence spam",
+    "Fill the open slots with exalts",
+    "Annul bad mods",
+    "Bench Fire and Chaos resistance",
+    "Batch the prefixes across a stack of gloves"
+   ],
+   "targets": "High life, life regeneration, Dexterity",
+   "buyers": "Righteous Fire players (RF Chieftain is S-tier on 3.30 league-start lists)",
+   "note": "bLut's 3.29 method, at 40 to 50 gloves an hour. These figures come from a video summary and are approximate.",
+   "materials": [
+    [
+     "Currency",
+     "exalted"
+    ],
+    [
+     "Currency",
+     "annul"
+    ]
+   ],
+   "estimate": {
+    "per": "per pair, base and essences not included",
+    "qty": {
+     "exalted": 3,
+     "annul": 1
+    }
+   },
+   "tier": 2,
+   "by": [
+    {
+     "name": "bLut",
+     "url": "https://www.poebuilds.cc/poe1/author/blut/top"
+    }
+   ],
+   "route": "Exalt and annul",
+   "alts": [
+    {
+     "name": "Essence of Greed base",
+     "why": "Guarantees life on every roll, so you only chase the resistances.",
+     "steps": [
+      "Essence of Greed on ilvl 84+ armour or ES gloves and boots",
+      "Keep anything with life plus two resistances",
+      "Exalt or bench craft the last res, annul only on two-res bases"
+     ],
+     "estimate": {
+      "per": "per pair, base not included",
+      "qty": {
+       "Essence|deafening-essence-of-greed": 3,
+       "exalted": 1
+      }
+     },
+     "materials": [
+      [
+       "Essence",
+       "deafening-essence-of-greed"
+      ],
+      [
+       "Currency",
+       "exalted"
+      ]
+     ]
+    },
+    {
+     "name": "Recombinator halves",
+     "why": "bLut's 3.29 approach. Build life+res halves cheaply, then merge them for the 4 to 5 mod hits.",
+     "steps": [
+      "Make two pairs with the same affix pattern, one with your best prefixes and one with your best suffixes",
+      "Recombine in predictable mode",
+      "In 3.30 the result keeps the item level of the base you pick, and corrupted items can't go in"
+     ],
+     "estimate": null,
+     "materials": [
+      [
+       "Currency",
+       "exalted"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "regalia",
+   "tier": 3,
+   "phase": "Week 2",
+   "name": "Max-resistance ES body armour",
+   "pick": true,
+   "base": "High item level Twilight Regalia (about 20c for the base)",
+   "cost": "About 12 div per finished chest at 3.29 prices",
+   "sale": "20 to 60+ div for +2% max res with high ES",
+   "risk": "Medium",
+   "steps": [
+    "Roll energy shield prefixes first (essences or a Dense Fossil), keeping a good ES base",
+    "Use Grand Eldritch Embers until the +% to all maximum Resistances implicit lands",
+    "Finish the open slots with Exalted Orbs or bench crafts"
+   ],
+   "targets": "+1 to +2% to all maximum resistances implicit, high ES, physical taken as chaos",
+   "buyers": "Every ES build, including the Cold DoT Occultist",
+   "note": "A 3.29 planner craft of this chest came to about 11.7 div all in. The Ember count depends on luck.",
+   "estimate": {
+    "per": "per 20 Ember rolls",
+    "qty": {
+     "grand-eldritch-ember": 20
+    }
+   },
+   "materials": [
+    [
+     "Currency",
+     "grand-eldritch-ember"
+    ],
+    [
+     "Currency",
+     "exalted"
+    ]
+   ],
+   "by": [
+    {
+     "name": "Geezerguest",
+     "url": "https://www.poebuilds.cc/poe1/author/geezerguest/top"
+    }
+   ],
+   "route": "Grand Ember spam",
+   "alts": [
+    {
+     "name": "Dense Fossil base first",
+     "why": "Gives a higher ES roll before the Ember spam, so each hit sells for more.",
+     "steps": [
+      "Dense Fossil in a Primitive Chaotic Resonator until a high %ES prefix",
+      "Bench craft the open suffix",
+      "Grand Eldritch Embers until max resistances lands"
+     ],
+     "estimate": {
+      "per": "per 5 fossil rolls plus 20 Embers",
+      "qty": {
+       "Fossil|dense-fossil": 5,
+       "Resonator|primitive-chaotic-resonator": 5,
+       "grand-eldritch-ember": 20
+      }
+     },
+     "materials": [
+      [
+       "Fossil",
+       "dense-fossil"
+      ],
+      [
+       "Resonator",
+       "primitive-chaotic-resonator"
+      ],
+      [
+       "Currency",
+       "grand-eldritch-ember"
+      ]
+     ]
+    },
+    {
+     "name": "Essence of Woe base",
+     "why": "Cheapest way to a high flat ES roll on the chest.",
+     "steps": [
+      "Essence of Woe until the flat ES roll is high",
+      "Exalt or bench craft the rest",
+      "Grand Eldritch Embers for the max resistances implicit"
+     ],
+     "estimate": {
+      "per": "per 5 Woe plus 20 Embers",
+      "qty": {
+       "Essence|deafening-essence-of-woe": 5,
+       "grand-eldritch-ember": 20
+      }
+     },
+     "materials": [
+      [
+       "Essence",
+       "deafening-essence-of-woe"
+      ],
+      [
+       "Currency",
+       "grand-eldritch-ember"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "es-helmets",
+   "tier": 3,
+   "phase": "Week 2",
+   "name": "Energy shield helmets",
+   "pick": false,
+   "by": [
+    {
+     "name": "Geezerguest",
+     "url": "https://www.poebuilds.cc/poe1/author/geezerguest/top"
+    }
+   ],
+   "base": "ilvl 84+ top ES helmet base",
+   "cost": "10 to 30 div bankroll",
+   "sale": "5 to 40 div",
+   "risk": "Medium",
+   "route": "Essence of Woe",
+   "steps": [
+    "Essence of Woe for a guaranteed high flat ES",
+    "Keep any roll with %ES or a second ES prefix alongside",
+    "Bench craft the last mod, then Eldritch implicits"
+   ],
+   "targets": "Flat ES, %ES, resistances, then a good Eldritch implicit",
+   "buyers": "CI and ES stacker builds",
+   "note": "Essence of Woe is the cheapest way to a high flat ES roll. A top %ES roll is roughly a 1 in 40 hit.",
+   "estimate": {
+    "per": "per 10 rolls",
+    "qty": {
+     "Essence|deafening-essence-of-woe": 10
+    }
+   },
+   "materials": [
+    [
+     "Essence",
+     "deafening-essence-of-woe"
+    ],
+    [
+     "Currency",
+     "greater-eldritch-ember"
+    ]
+   ],
+   "alts": [
+    {
+     "name": "Dense Fossil",
+     "why": "More expensive per roll but hits %ES and flat ES together more often.",
+     "steps": [
+      "Dense Fossil in a Primitive Chaotic Resonator",
+      "Keep double ES rolls",
+      "Bench craft, then implicits"
+     ],
+     "estimate": {
+      "per": "per 10 rolls",
+      "qty": {
+       "Fossil|dense-fossil": 10,
+       "Resonator|primitive-chaotic-resonator": 10
+      }
+     },
+     "materials": [
+      [
+       "Fossil",
+       "dense-fossil"
+      ],
+      [
+       "Resonator",
+       "primitive-chaotic-resonator"
+      ]
+     ]
+    },
+    {
+     "name": "Implicit flip",
+     "why": "Buy finished ES helmets and only add Eldritch implicits.",
+     "steps": [
+      "Buy helmets with good ES and resistances but no implicits",
+      "Greater Embers and Ichors until a usable implicit pair",
+      "Relist with the implicits shown"
+     ],
+     "estimate": {
+      "per": "per Ember + Ichor roll",
+      "qty": {
+       "greater-eldritch-ember": 1,
+       "greater-eldritch-ichor": 1
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "greater-eldritch-ember"
+      ],
+      [
+       "Currency",
+       "greater-eldritch-ichor"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "shields",
+   "tier": 3,
+   "phase": "Week 2",
+   "name": "Fossil ES spirit shields",
+   "pick": false,
+   "base": "ilvl 86+ Titanium Spirit Shield",
+   "cost": "20 to 40 div bankroll",
+   "sale": "5 to 30 div",
+   "risk": "Medium",
+   "steps": [
+    "Put Dense Fossils in Primitive Chaotic Resonators and reroll the shield",
+    "Stop when you hit 2 to 3 energy shield prefixes",
+    "Bench craft the missing ES prefix or quality, then finish suffixes with resistances"
+   ],
+   "targets": "2 to 3 high ES prefixes, spell block, resistances",
+   "buyers": "Caster and ES builds that use a shield",
+   "estimate": {
+    "per": "per reroll",
+    "qty": {
+     "Fossil|dense-fossil": 1,
+     "Resonator|primitive-chaotic-resonator": 1
+    }
+   },
+   "materials": [
+    [
+     "Fossil",
+     "dense-fossil"
+    ],
+    [
+     "Resonator",
+     "primitive-chaotic-resonator"
+    ]
+   ],
+   "route": "Dense Fossil spam",
+   "alts": [
+    {
+     "name": "Essence of Woe",
+     "why": "Guarantees flat ES, which is half of what spirit shield buyers want.",
+     "steps": [
+      "Essence of Woe on ilvl 84+ spirit shields",
+      "Keep rolls with %ES or spell damage alongside",
+      "Bench craft or exalt the rest"
+     ],
+     "estimate": {
+      "per": "per 5 rolls",
+      "qty": {
+       "Essence|deafening-essence-of-woe": 5
+      }
+     },
+     "materials": [
+      [
+       "Essence",
+       "deafening-essence-of-woe"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "abyss",
+   "tier": 3,
+   "phase": "Week 2",
+   "name": "Abyssal socket gear",
+   "pick": false,
+   "base": "High item level helmets, gloves or boots for Intelligence stackers",
+   "cost": "30 to 100 div bankroll",
+   "sale": "10 to 100+ div",
+   "risk": "High",
+   "steps": [
+    "Reroll the base with a Hollow Fossil to get an abyssal socket",
+    "Keep items that also roll the stat you're after (Intelligence, ES, resistances)",
+    "Finish with exalts or bench crafts"
+   ],
+   "targets": "Abyssal socket plus Intelligence and energy shield",
+   "buyers": "Intelligence stackers and abyss jewel builds",
+   "estimate": {
+    "per": "per reroll",
+    "qty": {
+     "Fossil|hollow-fossil": 1,
+     "Resonator|primitive-chaotic-resonator": 1
+    }
+   },
+   "materials": [
+    [
+     "Fossil",
+     "hollow-fossil"
+    ],
+    [
+     "Resonator",
+     "primitive-chaotic-resonator"
+    ]
+   ],
+   "by": [
+    {
+     "name": "Lokati",
+     "url": "https://www.poebuilds.cc/poe1/crafting"
+    }
+   ],
+   "route": "Hollow Fossil",
+   "alts": [
+    {
+     "name": "Hollow plus Dense",
+     "why": "Lokati-style best-in-slot pieces: the abyssal socket and high ES together.",
+     "steps": [
+      "Hollow and Dense Fossils in a Potent Chaotic Resonator",
+      "Keep the socket plus high ES",
+      "Finish with a bench craft and an Eldritch implicit"
+     ],
+     "estimate": {
+      "per": "per reroll",
+      "qty": {
+       "Fossil|hollow-fossil": 1,
+       "Fossil|dense-fossil": 1,
+       "Resonator|potent-chaotic-resonator": 1
+      }
+     },
+     "materials": [
+      [
+       "Fossil",
+       "hollow-fossil"
+      ],
+      [
+       "Fossil",
+       "dense-fossil"
+      ],
+      [
+       "Resonator",
+       "potent-chaotic-resonator"
+      ]
+     ]
+    },
+    {
+     "name": "Buy a socketed base",
+     "why": "Cheaper on day 3+ when lots of abyssal socket rares are listed.",
+     "steps": [
+      "Buy a rare with the abyssal socket and one open side",
+      "Exalt or bench craft the open side",
+      "Add an Eldritch implicit before you sell"
+     ],
+     "estimate": {
+      "per": "per item, base not included",
+      "qty": {
+       "exalted": 1,
+       "greater-eldritch-ember": 1
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "exalted"
+      ],
+      [
+       "Currency",
+       "greater-eldritch-ember"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "double-corrupt",
+   "tier": 3,
+   "phase": "Week 2",
+   "name": "Twice-corruption gambles",
+   "pick": false,
+   "by": [
+    {
+     "name": "TheGAM3Report",
+     "url": "https://www.poebuilds.cc/poe1/crafting/new"
+    },
+    {
+     "name": "Peppino",
+     "url": "https://www.poebuilds.cc/poe1/author/peppino/new"
+    }
+   ],
+   "base": "20/20 or 21/20 gems, and cheap uniques that become valuable with a second corruption",
+   "cost": "20 to 100 div bankroll",
+   "sale": "Big swings, a few hits pay for many bricks",
+   "risk": "Very high",
+   "route": "Gems with a Lapidary Lens",
+   "steps": [
+    "Vaal Orb a 20/20 gem first",
+    "Lapidary Lens can now corrupt it a second time, but it can also destroy the gem",
+    "Sell 21/23 and 22/20 results, write off the rest"
+   ],
+   "targets": "+2 levels or 23% quality on meta gems",
+   "buyers": "Rich players min-maxing meta skills",
+   "note": "New in 3.30: the Altar of Corruption and the Lapidary Lens can corrupt an already corrupted item or gem again. Corrupted items can't go in the Recombinator anymore.",
+   "estimate": {
+    "per": "per first corruption",
+    "qty": {
+     "vaal": 1
+    }
+   },
+   "materials": [
+    [
+     "Currency",
+     "vaal"
+    ],
+    [
+     "Currency",
+     "gcp"
+    ]
+   ],
+   "alts": [
+    {
+     "name": "Uniques at the Altar of Corruption",
+     "why": "Peppino-style unique gambling, now with a second corruption on the Temple altar.",
+     "steps": [
+      "Buy a stack of a cheap unique with strong corrupted implicits",
+      "Corrupt at the Altar of Corruption",
+      "Corrupt the good ones a second time and sell the hits"
+     ],
+     "estimate": null,
+     "materials": [
+      [
+       "Currency",
+       "vaal"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "influence",
+   "tier": 4,
+   "phase": "Week 2 to 4",
+   "name": "Double-influence gear (Awakener's Orb)",
+   "pick": false,
+   "base": "A donor with a single influence mod and a receiver of another influence, ilvl 86+",
+   "cost": "100 to 300 div bankroll",
+   "sale": "50 to several hundred div",
+   "risk": "High",
+   "steps": [
+    "Prepare a donor with exactly one influence mod, and a receiver of a different influence with the mod you want",
+    "Use the Awakener's Orb on the donor (it's destroyed), then apply it to the receiver",
+    "The receiver keeps one random influence mod from each item, so set up reset points first",
+    "Optional: use an Orb of Dominance to elevate one influence mod. It removes another at random"
+   ],
+   "targets": "Classic pairs: Hunter spell crit with Redeemer aura effect on Vaal Regalia, or elevated resistances with elevated attack crit on armour",
+   "buyers": "Rich players chasing best-in-slot bases",
+   "note": "Awakener's Orbs only drop from Sirus, so supply is thin. A donor with more than one influence mod makes the carried mod random.",
+   "estimate": {
+    "per": "per attempt, bases not included",
+    "qty": {
+     "awakeners-orb": 1
+    }
+   },
+   "materials": [
+    [
+     "Currency",
+     "awakeners-orb"
+    ],
+    [
+     "Currency",
+     "mavens-orb"
+    ],
+    [
+     "Currency",
+     "hunters-exalted-orb"
+    ],
+    [
+     "Currency",
+     "redeemers-exalted-orb"
+    ]
+   ]
+  },
+  {
+   "id": "focused-amulet",
+   "tier": 4,
+   "phase": "Week 2 to 4",
+   "name": "+4 Focused amulets",
+   "pick": true,
+   "by": [
+    {
+     "name": "Master T",
+     "url": "https://www.poebuilds.cc/poe1/build/6Bik7cuGCgU"
+    },
+    {
+     "name": "bLut",
+     "url": "https://www.poebuilds.cc/poe1/author/blut/top"
+    },
+    {
+     "name": "TheGAM3Report",
+     "url": "https://www.poebuilds.cc/poe1/crafting/new"
+    }
+   ],
+   "base": "Focused Amulet from Heist curio displays: 2 prefixes, 1 suffix, explicit mods doubled",
+   "cost": "50 to 200 div bankroll",
+   "sale": "50 to 300+ div for meta skill types",
+   "risk": "High",
+   "route": "Alt, regal, single lock",
+   "steps": [
+    "Orbs of Alteration until a +gem level mod lands (it shows doubled on this base)",
+    "Regal, then lock that mod with the new 1 div single-mod bench craft",
+    "Reroll the rest for the second +gem level mod, then finish the suffix"
+   ],
+   "targets": "Two +gem level mods for one skill type (+4 total), good suffix",
+   "buyers": "Gem-level builds: minions, spells, DoT",
+   "note": "The 3.29 videos used Allflame strands, which aren't in 3.30. This route uses the new bench locks instead, at 1 div per locked mod.",
+   "estimate": {
+    "per": "per finish, base not included",
+    "qty": {
+     "alt": 80,
+     "aug": 40,
+     "regal": 1,
+     "divine": 3
+    }
+   },
+   "materials": [
+    [
+     "Currency",
+     "alt"
+    ],
+    [
+     "Currency",
+     "regal"
+    ],
+    [
+     "Currency",
+     "divine"
+    ]
+   ],
+   "alts": [
+    {
+     "name": "Recombine two +2s",
+     "why": "Make two amulets with one +2 each, which is easy, then merge them.",
+     "steps": [
+      "Craft two Focused Amulets with one +gem level mod each, same affix pattern",
+      "Recombine in predictable mode",
+      "Pick the base with the higher item level, since the result keeps it in 3.30"
+     ],
+     "estimate": {
+      "per": "per pair of halves",
+      "qty": {
+       "alt": 120,
+       "aug": 60,
+       "regal": 2
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "alt"
+      ],
+      [
+       "Currency",
+       "regal"
+      ]
+     ]
+    },
+    {
+     "name": "Buy a +2 and finish",
+     "why": "Fastest. You pay the seller's margin but skip the alteration grind.",
+     "steps": [
+      "Buy a +2 Focused Amulet with an open prefix",
+      "Lock the +2 for 1 div and reroll for the second"
+     ],
+     "estimate": {
+      "per": "per finish, amulet not included",
+      "qty": {
+       "divine": 2
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "divine"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "fracture",
+   "tier": 4,
+   "phase": "Week 2",
+   "name": "Fractured crafting bases",
+   "pick": false,
+   "by": [
+    {
+     "name": "Peppino",
+     "url": "https://www.poebuilds.cc/poe1/author/peppino/new"
+    }
+   ],
+   "base": "4-mod rares with one top-tier mod crafters want (rings, boots, gloves, amulets)",
+   "cost": "100 to 300 div bankroll",
+   "sale": "10 to 100+ div per good fracture",
+   "risk": "High",
+   "route": "Fracturing Orbs",
+   "steps": [
+    "Buy cheap 4-mod rares that carry one T1 mod and three junk mods",
+    "Fracturing Orb locks one of the four at random",
+    "If the T1 mod fractures, sell it as a base. If not, sell it on cheap or scrap it"
+   ],
+   "targets": "Fractured T1 life, movement speed, ES or +gem level mods",
+   "buyers": "Crafters building endgame items",
+   "note": "Fractured bases are harder to get in 3.30, which raises their value. Tier 5 magic items can now drop fractured, though, so pick those up early.",
+   "estimate": {
+    "per": "per attempt, base not included",
+    "qty": {
+     "fracturing-orb": 1
+    }
+   },
+   "materials": [
+    [
+     "Currency",
+     "fracturing-orb"
+    ],
+    [
+     "Currency",
+     "fracturing-shard"
+    ]
+   ],
+   "alts": [
+    {
+     "name": "Fractured ground drops",
+     "why": "Tier 5 magic items can now drop fractured. Pick them up and finish them yourself.",
+     "steps": [
+      "Loot-filter Tier 5 magic items in the slots crafters want",
+      "Keep the ones with a strong fractured mod",
+      "Regal and essence or exalt the rest, or sell as a fractured base"
+     ],
+     "estimate": {
+      "per": "per item",
+      "qty": {
+       "regal": 1,
+       "exalted": 1
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "regal"
+      ],
+      [
+       "Currency",
+       "exalted"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "eldritch",
+   "tier": 4,
+   "phase": "Week 2 to 4",
+   "name": "Exceptional Eldritch implicits",
+   "pick": false,
+   "base": "Already-good rare helmets, gloves and boots on popular bases",
+   "cost": "100+ div bankroll",
+   "sale": "Often doubles an item's value",
+   "risk": "High",
+   "steps": [
+    "Buy finished rares with good explicit mods but weak implicits",
+    "Use Exceptional Eldritch Embers and Ichors to roll top implicits",
+    "Resell, or keep the item for your own build"
+   ],
+   "targets": "Top-tier Exarch and Eater implicits that suit the item's build",
+   "buyers": "Players finishing their endgame gear",
+   "estimate": {
+    "per": "per Ember + Ichor roll",
+    "qty": {
+     "exceptional-eldritch-ember": 1,
+     "exceptional-eldritch-ichor": 1
+    }
+   },
+   "materials": [
+    [
+     "Currency",
+     "exceptional-eldritch-ember"
+    ],
+    [
+     "Currency",
+     "exceptional-eldritch-ichor"
+    ]
+   ],
+   "route": "Exceptional Ember and Ichor",
+   "alts": [
+    {
+     "name": "Grand Embers and Ichors",
+     "why": "Much cheaper per roll for mid-tier buyers who don't need the top implicit.",
+     "steps": [
+      "Grand Eldritch Ember and Ichor until both sides hit a usable tier",
+      "Stop at decent rolls, then sell",
+      "Save Exceptionals for items already worth 50+ div"
+     ],
+     "estimate": {
+      "per": "per Ember + Ichor roll",
+      "qty": {
+       "grand-eldritch-ember": 1,
+       "grand-eldritch-ichor": 1
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "grand-eldritch-ember"
+      ],
+      [
+       "Currency",
+       "grand-eldritch-ichor"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "recomb",
+   "tier": 4,
+   "phase": "Week 2 to 4",
+   "name": "Recombinator 5-mod items",
+   "pick": false,
+   "by": [
+    {
+     "name": "Doth",
+     "url": "https://www.poebuilds.cc/poe1/crafting"
+    }
+   ],
+   "base": "Two items of the same base type with matching affix patterns",
+   "cost": "140 to 225 div per 5-mod result in 3.29",
+   "sale": "Hundreds of div for meta slots",
+   "risk": "High",
+   "route": "Predictable mode",
+   "steps": [
+    "Build halves cheaply: one with your best prefixes, one with your best suffixes",
+    "Match the affix pattern (2 prefix + 1 suffix with 2 prefix + 1 suffix)",
+    "Recombine in predictable mode, then bench craft the last slot"
+   ],
+   "targets": "Five or six tier 1 mods on a meta base",
+   "buyers": "Players at the top of the economy",
+   "note": "In 3.30 the result always keeps the item level of the base you choose, and corrupted items can't be recombined.",
+   "estimate": null,
+   "materials": [
+    [
+     "Currency",
+     "divine"
+    ],
+    [
+     "Currency",
+     "exalted"
+    ]
+   ],
+   "alts": [
+    {
+     "name": "Unpredictable mode",
+     "why": "Higher ceiling for a jackpot, but a total miss is possible.",
+     "steps": [
+      "Only use it on cheap halves",
+      "Keep a spare half ready to try again"
+     ],
+     "estimate": null,
+     "materials": []
+    },
+    {
+     "name": "Sell the halves",
+     "why": "Recomb crafters buy good halves all league. Less risk, smaller profit.",
+     "steps": [
+      "Craft clean 2+1 halves of meta bases",
+      "List them as recomb material"
+     ],
+     "estimate": null,
+     "materials": []
+    }
+   ]
+  },
+  {
+   "id": "mirror",
+   "tier": 5,
+   "phase": "Week 3+",
+   "name": "Mirror-tier items and mirror services",
+   "pick": false,
+   "base": "A double-elevated or otherwise near-perfect base",
+   "cost": "500+ div",
+   "sale": "Mirrors, or a fee per copy as a mirror service",
+   "risk": "Very high",
+   "steps": [
+    "Start from a top base (two elevated influence mods or the best fracture you can buy)",
+    "Finish the open mods with bench locks (1 div per side in 3.30) and exalts, aiming for 6 top-tier mods",
+    "Add Exceptional Eldritch implicits",
+    "Mirror it once and list the copy, or offer it as a mirror service and charge a fee per copy"
+   ],
+   "targets": "Six top-tier mods plus top implicits for a meta build",
+   "buyers": "The richest players in the league",
+   "note": "Not a week 1 project. Plan for it once you have 500+ div and know which builds will be meta late in the league.",
+   "estimate": {
+    "per": "bench locks for one finish",
+    "qty": {
+     "divine": 4
+    }
+   },
+   "materials": [
+    [
+     "Currency",
+     "divine"
+    ],
+    [
+     "Currency",
+     "mirror"
+    ],
+    [
+     "Currency",
+     "exceptional-eldritch-ember"
+    ]
+   ],
+   "route": "Bench locks",
+   "alts": [
+    {
+     "name": "Recombinator finish",
+     "why": "Merge two strong halves instead of paying for locks on every attempt.",
+     "steps": [
+      "Make one item with perfect prefixes and one with perfect suffixes, same base",
+      "Recombine in predictable mode",
+      "Corrupted items can't go in, so corrupt only after you're done"
+     ],
+     "estimate": null,
+     "materials": [
+      [
+       "Currency",
+       "divine"
+      ]
+     ]
+    }
+   ]
+  }
+ ],
+ "avoid": [
+  [
+   "3.29 strand and Ducat methods",
+   "Allflame crafting isn't in 3.30, so skip any video step that uses strands or Ducats."
+  ],
+  [
+   "Orb of Chance unique gambling",
+   "Chance Orbs are much rarer now and can't be bought from vendors, so this gets expensive fast."
+  ],
+  [
+   "Unveil and Veiled Chaos crafts",
+   "Veiled mods now only come from Betrayal, so supply is thin early on."
+  ],
+  [
+   "Metacraft finishes on cheap items",
+   "Prefix or suffix locks cost 1 div each now. Only use them on items worth 10+ div."
+  ],
+  [
+   "Mercenary gear",
+   "Mercenaries were nerfed, and demand for their claws, chests and shields will drop."
+  ],
+  [
+   "Generic 3-mod rares after day 5",
+   "Tiered drops make decent rares much more common. Craft specific combinations instead."
+  ],
+  [
+   "Big Eldritch and recombinator projects on day 1",
+   "Expensive and thin at the start. Wait until prices settle around day 4 or 5."
   ]
+ ],
+ "selling": [
+  [
+   "Price off live listings",
+   "Look up the cheapest 5 to 10 comparable items and list just under them."
+  ],
+  [
+   "Sell fast in week 1",
+   "Prices on almost everything fall as supply grows, so take today's price."
+  ],
+  [
+   "Use buy orders for materials",
+   "Set them and wait 30 to 60 minutes for better rates on essences and exalts."
+  ],
+  [
+   "Track your costs",
+   "Log each batch on the Portfolio tab so you can see which craft earns the most per hour."
+  ],
+  [
+   "Drop a craft when its margin goes",
+   "If a stack hasn't sold within a few hours, cut the price and move on."
+  ]
+ ],
+ "sources": [
+  {
+   "title": "Maxroll: League start Rog profit crafting guide",
+   "url": "https://maxroll.gg/poe/currency/leaguestart-rog-profit-crafting-guide"
+  },
+  {
+   "title": "bLut: Big money crafting RF gloves, 3.29 (summary)",
+   "url": "https://youtubesummary.com/summary/_Mw3YXIFmdk"
+  },
+  {
+   "title": "bLut's crafting videos",
+   "url": "https://www.poebuilds.cc/poe1/author/blut/top"
+  },
+  {
+   "title": "Cluster jewel profit re-test, 3.29",
+   "url": "https://buymeacoffee.com/poeautocraft/strategy-re-test-does-guide-kill-profit-poe-3-29"
+  },
+  {
+   "title": "PoE Vault: Campaign upgrading and vendor recipes",
+   "url": "https://dev.poe-vault.com/guides/the-campaign"
+  },
+  {
+   "title": "PoE Vault: How to make currency",
+   "url": "https://www.poe-vault.com/guides/how-to-make-currency"
+  },
+  {
+   "title": "3.30 loot rework: tiered rares and rarity",
+   "url": "https://www.vhpg.com/?p=433"
+  },
+  {
+   "title": "3.30 patch notes summary: bench, recombinator, vendor recipes",
+   "url": "https://www.poebuilds.net/post/path-of-exile-3-30-patch-notes"
+  },
+  {
+   "title": "3.30 patch notes: twice corruption and bench lock prices",
+   "url": "https://thequestbrief.com/en/gaming/updates-patches/poe1-3-30-patch-notes-meta/"
+  },
+  {
+   "title": "Allflame crafting is not going core in 3.30",
+   "url": "https://outputlag.com/news/path-of-exile-3-30-removes-the-15-year-old-rule-that-cut-boss-currency-drops-by-80/"
+  },
+  {
+   "title": "3.30 loot: fractured Tier 5 drops, Gwennen crafting",
+   "url": "https://accountshark.net/blog/path-of-exile-3-30-covens-of-umbra-launch-time-fates-wickerman-threads-of-creation-scarabs-loot-rework"
+  },
+  {
+   "title": "PoE 1 crafting videos by creator (bLut, Master T, POEGuy, Raychich, SaVeQ, Lokati)",
+   "url": "https://www.poebuilds.cc/poe1/crafting/new"
+  },
+  {
+   "title": "Belton: The PoEconomist, jewel crafting for profit",
+   "url": "https://www.pathofexile.com/forum/view-thread/1836300"
+  },
+  {
+   "title": "Geezerguest: Twilight Regalia and ES helmet crafts",
+   "url": "https://www.poebuilds.cc/poe1/author/geezerguest/top"
+  },
+  {
+   "title": "Peppino: fracturing and double corruption videos",
+   "url": "https://www.poebuilds.cc/poe1/author/peppino/new"
+  },
+  {
+   "title": "Large cluster Harvest reforge plan (3.29)",
+   "url": "https://pobarchives.com/craft/poe/YkFdnGrD"
+  },
+  {
+   "title": "Twilight Regalia Grand Ember plan (3.29)",
+   "url": "https://pobarchives.com/craft/poe/UmNaNGcy"
+  },
+  {
+   "title": "Recombinator guide for 3.29",
+   "url": "https://www.aoeah.com/news/4757--poe-329-recombinator-guide-modes-odds-unpredictable--predictable-recomb-tips"
+  },
+  {
+   "title": "Focused Amulet base (PoE Wiki)",
+   "url": "https://poewiki.net/wiki/Focused_Amulet"
+  },
+  {
+   "title": "XTheFarmerX: cheap league-start gear (PoE2)",
+   "url": "https://www.poebuilds.cc/poe2/author/xthefarmerx/new"
+  }
+ ],
+ "estimateNote": "Estimates use average currency per finished item at live prices. Your luck will vary.",
+ "tiers": [
+  {
+   "n": 1,
+   "name": "Starter",
+   "bankroll": "Under 1 div",
+   "when": "Day 1 and 2",
+   "blurb": "Cheap crafts for players who are leveling and starting maps."
+  },
+  {
+   "n": 2,
+   "name": "Budget",
+   "bankroll": "1 to 20 div",
+   "when": "Days 2 to 10",
+   "blurb": "Repeatable batch crafts with steady demand."
+  },
+  {
+   "n": 3,
+   "name": "Mid",
+   "bankroll": "20 to 100 div",
+   "when": "Week 2 onward",
+   "blurb": "Fossils and Eldritch implicits on proper endgame bases."
+  },
+  {
+   "n": 4,
+   "name": "High-end",
+   "bankroll": "100 to 500 div",
+   "when": "Week 2 to 4",
+   "blurb": "Influence combinations and top Eldritch implicits for wealthy buyers."
+  },
+  {
+   "n": 5,
+   "name": "Mirror tier",
+   "bankroll": "500+ div",
+   "when": "Week 3 onward",
+   "blurb": "Near-perfect items you mirror-service or sell for mirrors."
+  }
+ ],
+ "routesNote": "Routes are our summary of each method. Creators' exact steps may differ, so check their videos before a big batch."
 }
