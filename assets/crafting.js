@@ -1,12 +1,14 @@
-import { $, $$, esc, fmt, pct, cls, state, items, exchange, price, sparkline, toDiv } from './app.js';
+import { $, $$, esc, fmt, pct, cls, state, items, exchange, price, sparkline, toDiv, loadCategory, secondaryUnit } from './app.js';
 
 const tabs = {
+  profit: 'Profit crafts',
   gems: 'Gem Vaal & levelling',
   beasts: 'Beasts',
   clusters: 'Cluster jewels',
   bases: 'Bases',
 };
-let tab = 'gems';
+let tab = 'profit';
+let phase = 'All';
 const gemOpt = { q: '', minList: 5, p21: 12.5, pDown: 12.5, sort: 'vaalOwn', dir: -1 };
 
 export async function render(view, { token }) {
@@ -35,13 +37,81 @@ async function draw(view, token) {
   const body = $('#cbody', view);
   body.innerHTML = '<div class="loading">Loading…</div>';
   try {
-    if (tab === 'gems') await gems(body, token);
+    if (tab === 'profit') await profit(body, token, view);
+    else if (tab === 'gems') await gems(body, token);
     else if (tab === 'beasts') await simple(body, token, 'Beast', 'Beasts are captured with Einhar and used in Bestiary crafts. Last league, Fenumal Plagued Arachnid went from 8c on day 3 to 220c by day 14.');
     else if (tab === 'clusters') await simple(body, token, 'ClusterJewel', 'Cluster jewels for the popular builds sell at a big premium in week 1. Variant shows the passive count; level is the item level.');
     else await simple(body, token, 'BaseType', 'Influenced and high item level bases. Bases that meta crafters want climb in week 1; most others are worth the most on day 1 to 3.');
   } catch (e) {
     body.innerHTML = `<div class="empty-state">${esc(e.message)}</div>`;
   }
+}
+
+const RISK = { Low: 'good', Medium: '' };
+
+async function profit(body, token) {
+  const c = await fetch('/data/crafts.json').then((r) => r.json());
+  if (!token()) return;
+  const types = [...new Set(c.crafts.flatMap((x) => x.materials.map((m) => m[0])))];
+  const live = {};
+  await Promise.all(types.map(async (t) => {
+    try {
+      const d = await loadCategory('poe1', state.league, t);
+      for (const r of d.rows) live[`${t}|${r.id}`] = r;
+    } catch {}
+  }));
+  if (!token()) return;
+  const sec = secondaryUnit();
+  const mat = ([t, id]) => {
+    const r = live[`${t}|${id}`];
+    if (!r) return '';
+    return `<span class="mat" title="${esc(r.name)}">${r.icon ? `<img src="${esc(r.icon)}" alt="">` : ''}<span>${esc(r.name)}</span><b>${price(sec === 'chaos' ? r.chaos : r.exalted, sec)}</b></span>`;
+  };
+  const phases = ['All', 'Day 1', 'Week 1'];
+  const card = (x) => `
+    <article class="craft-card ${x.pick ? 'pick' : ''}" data-phase="${esc(x.phase)}">
+      <div class="row spread"><h4>${esc(x.name)}</h4><span class="row" style="gap:6px">${x.pick ? '<span class="tag gold">Top pick</span>' : ''}<span class="tag">${esc(x.phase)}</span></span></div>
+      <div class="craft-meta">
+        <div><span>Base</span>${esc(x.base)}</div>
+        <div><span>Target</span>${esc(x.targets)}</div>
+        <div><span>Sells to</span>${esc(x.buyers)}</div>
+      </div>
+      <ol class="craft-steps">${x.steps.map((s) => `<li>${esc(s)}</li>`).join('')}</ol>
+      ${x.note ? `<p class="muted small craft-note">${esc(x.note)}</p>` : ''}
+      <div class="craft-stats">
+        <div><span>Cost</span><b>${esc(x.cost)}</b></div>
+        <div><span>Typical sale</span><b>${esc(x.sale)}</b></div>
+        <div><span>Risk</span><b class="${RISK[x.risk] ? 'pos' : ''}">${esc(x.risk)}</b></div>
+      </div>
+      ${x.materials.length ? `<div class="mats">${x.materials.map(mat).join('')}</div>` : ''}
+    </article>`;
+  body.innerHTML = `
+    <section class="craft-hero">
+      <div>
+        <span class="eyebrow">${esc(c.subtitle)}</span>
+        <p class="hero-sub" style="margin-top:6px">${esc(c.summary)}</p>
+        <p class="small"><a href="${esc(c.guideUrl)}" target="_blank" rel="noopener">Open the full write-up →</a> <span class="muted">· material prices are live from ${esc(state.league)}</span></p>
+      </div>
+    </section>
+    <div class="phase-strip">${c.phases.map((p, i) => `<div class="phase"><span class="phase-n">${i + 1}</span><div><b>${esc(p.when)}</b><div class="muted small">${esc(p.bankroll)} · ${esc(p.crafts)}</div><div class="small">${esc(p.why)}</div></div></div>`).join('')}</div>
+    <h3 class="section-title">What 3.30 changes for crafters</h3>
+    <div class="brief-grid">${c.changes.map((x) => `<article class="brief-card tone-${x.tone}"><h4>${esc(x.title)}</h4><p>${esc(x.body)}</p></article>`).join('')}</div>
+    <div class="row spread" style="margin-top:18px"><h3 class="section-title" style="margin:0">The crafts</h3><div class="pills" id="phase">${phases.map((p) => `<button class="pill ${p === phase ? 'active' : ''}" data-p="${p}">${p}</button>`).join('')}</div></div>
+    <div class="craft-grid" id="cgrid">${c.crafts.map(card).join('')}</div>
+    <div class="grid2" style="margin-top:18px">
+      <section class="panel"><h3>Avoid or wait on</h3><ul class="plain-list">${c.avoid.map(([a, b]) => `<li><b>${esc(a)}.</b> <span class="muted">${esc(b)}</span></li>`).join('')}</ul></section>
+      <section class="panel"><h3>How to sell</h3><ul class="plain-list">${c.selling.map(([a, b]) => `<li><b>${esc(a)}.</b> <span class="muted">${esc(b)}</span></li>`).join('')}</ul></section>
+    </div>
+    <section class="panel sources"><h3>Sources</h3><ul>${c.sources.map((s) => `<li><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a></li>`).join('')}</ul></section>`;
+  const filter = () => $$('#cgrid .craft-card', body).forEach((el) => { el.style.display = phase === 'All' || el.dataset.phase === phase ? '' : 'none'; });
+  $('#phase', body).onclick = (e) => {
+    const p = e.target.closest('[data-p]')?.dataset.p;
+    if (!p) return;
+    phase = p;
+    $$('#phase .pill', body).forEach((b) => b.classList.toggle('active', b.dataset.p === p));
+    filter();
+  };
+  filter();
 }
 
 async function gems(body, token) {

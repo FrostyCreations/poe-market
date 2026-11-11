@@ -152,3 +152,28 @@ input.masked { -webkit-text-security: disc; text-security: disc; }
 .sources ul { margin: 8px 0 0; padding-left: 18px; columns: 2; }
 .sources li { margin: 4px 0; font-size: 13px; }
 @media (max-width: 900px) { .hero-title { font-size: 32px; } .cd-cell { min-width: 62px; } .cd-cell b { font-size: 24px; } .sources ul { columns: 1; } }
+
+/* Profit crafts */
+.craft-hero { padding: 16px 18px; border-radius: 12px; margin: 12px 0; background: radial-gradient(circle at 90% -20%, rgba(201,164,92,.18), transparent 55%), var(--panel2); border: 1px solid #3a3020; }
+.phase-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; margin-bottom: 6px; }
+.phase { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border-radius: 10px; background: var(--panel); border: 1px solid var(--line); }
+.phase-n { flex: none; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font-family: Cinzel, Georgia, serif; color: #1a140b; background: linear-gradient(#e2c27e, #a8843f); font-weight: 700; }
+.craft-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 12px; margin-top: 10px; }
+.craft-card { display: flex; flex-direction: column; gap: 10px; padding: 14px 16px; border-radius: 12px; background: var(--panel); border: 1px solid var(--line); transition: transform .15s, border-color .15s; }
+.craft-card:hover { transform: translateY(-2px); border-color: #5a4626; }
+.craft-card.pick { border-color: #6b5427; box-shadow: 0 0 0 1px rgba(201,164,92,.15), 0 8px 24px rgba(201,164,92,.08); }
+.craft-card h4 { margin: 0; font-family: Cinzel, Georgia, serif; color: var(--gold2); font-size: 16px; }
+.craft-meta { display: grid; gap: 4px; font-size: 13px; }
+.craft-meta span, .craft-stats span { display: inline-block; min-width: 64px; color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .06em; margin-right: 6px; }
+.craft-steps { margin: 0; padding-left: 20px; font-size: 13px; color: var(--text); }
+.craft-steps li { margin: 2px 0; }
+.craft-note { margin: 0; border-left: 2px solid #5a4626; padding-left: 8px; }
+.craft-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 8px 10px; border-radius: 8px; background: var(--panel2); border: 1px solid #2a2419; }
+.craft-stats div { display: flex; flex-direction: column; }
+.craft-stats b { font-size: 13px; }
+.mats { display: flex; flex-wrap: wrap; gap: 6px; }
+.mat { display: inline-flex; align-items: center; gap: 6px; padding: 3px 8px 3px 4px; border-radius: 999px; background: rgba(0,0,0,.3); border: 1px solid #2a2419; font-size: 12px; }
+.mat img { width: 20px; height: 20px; object-fit: contain; }
+.mat b { color: var(--gold2); font-weight: 600; }
+.plain-list { margin: 8px 0 0; padding-left: 18px; font-size: 13px; }
+.plain-list li { margin: 6px 0; }
