@@ -177,3 +177,18 @@ input.masked { -webkit-text-security: disc; text-security: disc; }
 .mat b { color: var(--gold2); font-weight: 600; }
 .plain-list { margin: 8px 0 0; padding-left: 18px; font-size: 13px; }
 .plain-list li { margin: 6px 0; }
+
+.cur-link { display: inline-flex; align-items: center; gap: 3px; padding: 0 5px 0 2px; margin: 0 1px; border-radius: 6px; background: rgba(201,164,92,.08); border: 1px solid #3a3020; color: var(--gold2); text-decoration: none; white-space: nowrap; vertical-align: middle; line-height: 1.5; }
+.cur-link:hover { border-color: var(--gold); background: rgba(201,164,92,.16); }
+.cur-link img { width: 18px; height: 18px; object-fit: contain; }
+.cur-link b { margin-left: 4px; color: var(--text); font-weight: 600; }
+.mats .cur-link { padding: 3px 8px 3px 4px; border-radius: 999px; background: rgba(0,0,0,.3); font-size: 12px; }
+.mats .cur-link img { width: 20px; height: 20px; }
+.craft-est { padding: 10px 12px; border-radius: 8px; background: linear-gradient(rgba(201,164,92,.10), rgba(201,164,92,.03)); border: 1px solid #4a3c22; }
+.est-label { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--gold); }
+.est-label .muted { text-transform: none; letter-spacing: 0; }
+.est-total { font-size: 15px; }
+.craft-est details { margin-top: 6px; font-size: 12px; }
+.craft-est summary { cursor: pointer; color: var(--muted); }
+.est-parts { list-style: none; margin: 6px 0 0; padding: 0; }
+.est-parts li { display: flex; justify-content: space-between; align-items: center; padding: 2px 0; }

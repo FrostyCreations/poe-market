@@ -173,8 +173,8 @@ export async function historyInDiv(game, league, row) {
   return out.sort((a, b) => a[0] - b[0]);
 }
 
-async function showHistory(row) {
-  openModal(`<div class="row"><img class="icon" src="${esc(row.icon)}"><h2>${esc(row.name)}</h2></div><div id="hist" class="loading">Loading history…</div>`);
+export async function showHistory(row) {
+  openModal(`<div class="row spread"><div class="row"><img class="icon" src="${esc(row.icon)}"><h2>${esc(row.name)}</h2></div>${row.ninjaUrl ? `<a class="small" href="${esc(row.ninjaUrl)}" target="_blank" rel="noopener">View on poe.ninja ↗</a>` : ''}</div>${row.priceHtml ? `<div class="muted small" style="margin-top:4px">Now ${row.priceHtml}</div>` : ''}<div id="hist" class="loading">Loading history…</div>`);
   try {
     const pts = await historyInDiv(state.game, state.league, row);
     const box = document.getElementById('hist');

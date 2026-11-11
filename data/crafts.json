@@ -5,115 +5,415 @@
   "guideUrl": "https://claude.ai/artifact/EqqSimX4nBnNHeN5rd93Hm",
   "summary": "On day 1, craft cheap things that levelers and new mappers need right away: flasks, movement-speed boots, and resistance rings and belts. Sell them fast while prices are high. From day 2 or 3, with 5 to 20 div, switch to repeatable batch crafts: Rog items from your Expedition farm, medium cluster jewels, caster wands and RF gear.",
   "phases": [
-    { "when": "Day 1 (first 24 to 48 hours)", "bankroll": "Under 1 div", "crafts": "Flasks, MS boots, resistance jewellery, Vaal gem corruptions", "why": "Everyone is leveling and gear is scarce" },
-    { "when": "Days 2 to 4", "bankroll": "1 to 5 div", "crafts": "Rog crafts from Expedition, essence boots and belts", "why": "Your atlas already farms the materials" },
-    { "when": "Days 3 to 10", "bankroll": "5 to 20 div", "crafts": "Medium cluster jewels, +1/+2 caster wands, RF gloves and boots", "why": "Steady demand from builds that are already working" }
+    {
+      "when": "Day 1 (first 24 to 48 hours)",
+      "bankroll": "Under 1 div",
+      "crafts": "Flasks, MS boots, resistance jewellery, Vaal gem corruptions",
+      "why": "Everyone is leveling and gear is scarce"
+    },
+    {
+      "when": "Days 2 to 4",
+      "bankroll": "1 to 5 div",
+      "crafts": "Rog crafts from Expedition, essence boots and belts",
+      "why": "Your atlas already farms the materials"
+    },
+    {
+      "when": "Days 3 to 10",
+      "bankroll": "5 to 20 div",
+      "crafts": "Medium cluster jewels, +1/+2 caster wands, RF gloves and boots",
+      "why": "Steady demand from builds that are already working"
+    }
   ],
   "changes": [
-    { "tone": "neutral", "title": "More good drops", "body": "Endgame rares now drop unidentified with a tier, and rarity improves every type of drop. Plain 3-mod rares lose value faster, so craft items that drops can't easily replace." },
-    { "tone": "bad", "title": "Bench locks cost divines", "body": "Locking prefixes or suffixes costs 1 div per side, and locking everything costs 4 div plus a Sacred, Blessed or Exalted. Only metacraft items that sell for many divines." },
-    { "tone": "bad", "title": "Fewer fractured and veiled items", "body": "Most league sources of fractured items are gone, and veiled mods now only come from Betrayal. Avoid crafts that depend on them in week 1." },
-    { "tone": "good", "title": "Cheaper Vaal Orbs", "body": "The Vaal Orb recipe now needs only 5 Vaal gems, so corruption gambling should get better value." }
+    {
+      "tone": "neutral",
+      "title": "More good drops",
+      "body": "Endgame rares now drop unidentified with a tier, and rarity improves every type of drop. Plain 3-mod rares lose value faster, so craft items that drops can't easily replace."
+    },
+    {
+      "tone": "bad",
+      "title": "Bench locks cost divines",
+      "body": "Locking prefixes or suffixes costs 1 div per side, and locking everything costs 4 div plus a Sacred, Blessed or Exalted. Only metacraft items that sell for many divines."
+    },
+    {
+      "tone": "bad",
+      "title": "Fewer fractured and veiled items",
+      "body": "Most league sources of fractured items are gone, and veiled mods now only come from Betrayal. Avoid crafts that depend on them in week 1."
+    },
+    {
+      "tone": "good",
+      "title": "Cheaper Vaal Orbs",
+      "body": "The Vaal Orb recipe now needs only 5 Vaal gems, so corruption gambling should get better value."
+    }
   ],
   "crafts": [
     {
-      "id": "flasks", "phase": "Day 1", "name": "Utility flasks", "pick": false,
+      "id": "flasks",
+      "phase": "Day 1",
+      "name": "Utility flasks",
+      "pick": false,
       "base": "Quicksilver, Silver, Jade, Granite, Diamond",
-      "cost": "A few chaos", "sale": "5c to 1 div early on", "risk": "Low",
-      "steps": ["Transmute, then alteration and augment spam until you hit a useful suffix", "Add quality with Glassblower's Baubles", "Bench craft the finish"],
+      "cost": "A few chaos",
+      "sale": "5c to 1 div early on",
+      "risk": "Low",
+      "steps": [
+        "Transmute, then alteration and augment spam until you hit a useful suffix",
+        "Add quality with Glassblower's Baubles",
+        "Bench craft the finish"
+      ],
       "targets": "A useful suffix (movement speed on Quicksilver, Onslaught on Silver, bleed or freeze immunity) plus a duration or effect prefix, at 20% quality",
       "buyers": "Everyone mapping on days 1 to 3",
-      "materials": [["Currency", "transmute"], ["Currency", "alt"], ["Currency", "aug"], ["Currency", "bauble"]]
+      "materials": [
+        [
+          "Currency",
+          "transmute"
+        ],
+        [
+          "Currency",
+          "alt"
+        ],
+        [
+          "Currency",
+          "aug"
+        ],
+        [
+          "Currency",
+          "bauble"
+        ]
+      ],
+      "estimate": {
+        "per": "per flask",
+        "qty": {
+          "transmute": 1,
+          "alt": 15,
+          "aug": 8,
+          "bauble": 10
+        }
+      }
     },
     {
-      "id": "boots", "phase": "Day 1", "name": "Movement-speed boots", "pick": false,
+      "id": "boots",
+      "phase": "Day 1",
+      "name": "Movement-speed boots",
+      "pick": false,
       "base": "Any boots with life or ES",
-      "cost": "Under 10c", "sale": "10c to 1 div", "risk": "Low",
-      "steps": ["Vendor recipe: magic boots + Quicksilver Flask + Orb of Augmentation adds movement speed", "Essence or bench craft resistances", "Bench craft life if a prefix is open"],
+      "cost": "Under 10c",
+      "sale": "10c to 1 div",
+      "risk": "Low",
+      "steps": [
+        "Vendor recipe: magic boots + Quicksilver Flask + Orb of Augmentation adds movement speed",
+        "Essence or bench craft resistances",
+        "Bench craft life if a prefix is open"
+      ],
       "targets": "20%+ movement speed, life or ES, 2 resistances",
       "buyers": "Levelers and first mappers",
-      "materials": [["Currency", "aug"], ["Currency", "transmute"]]
+      "materials": [
+        [
+          "Currency",
+          "aug"
+        ],
+        [
+          "Currency",
+          "transmute"
+        ]
+      ],
+      "estimate": {
+        "per": "per pair",
+        "qty": {
+          "transmute": 1,
+          "aug": 2
+        }
+      }
     },
     {
-      "id": "jewellery", "phase": "Day 1", "name": "Resistance rings and belts", "pick": false,
+      "id": "jewellery",
+      "phase": "Day 1",
+      "name": "Resistance rings and belts",
+      "pick": false,
       "base": "Amethyst rings, Leather or Heavy belts",
-      "cost": "3 to 20c each", "sale": "10c to 1 div", "risk": "Low",
-      "steps": ["Chaos reforge, or use the bench craft that rerolls 3 mods for 3 Chaos", "Bench craft the missing resistance"],
+      "cost": "3 to 20c each",
+      "sale": "10c to 1 div",
+      "risk": "Low",
+      "steps": [
+        "Chaos reforge, or use the bench craft that rerolls 3 mods for 3 Chaos Orbs",
+        "Bench craft the missing resistance"
+      ],
       "targets": "Life plus 2 to 3 resistances",
       "buyers": "Anyone fixing resistances after Kitava",
-      "materials": [["Currency", "chaos"]]
+      "materials": [
+        [
+          "Currency",
+          "chaos"
+        ]
+      ],
+      "estimate": {
+        "per": "per item",
+        "qty": {
+          "chaos": 5
+        }
+      }
     },
     {
-      "id": "vaal", "phase": "Day 1", "name": "Vaal gem corruptions", "pick": false,
+      "id": "vaal",
+      "phase": "Day 1",
+      "name": "Vaal gem corruptions",
+      "pick": false,
       "base": "20% quality gems people actually play",
-      "cost": "1 Vaal Orb per try", "sale": "Varies a lot by gem", "risk": "Medium",
-      "steps": ["Open the Gem Vaal & levelling tab", "Vaal only the gems it marks as positive EV", "Sell 21/20s quickly while the skill is popular"],
+      "cost": "1 Vaal Orb per try",
+      "sale": "Varies a lot by gem",
+      "risk": "Medium",
+      "steps": [
+        "Open the Gem Vaal & levelling tab",
+        "Vaal only the gems it marks as positive EV",
+        "Sell 21/20s quickly while the skill is popular"
+      ],
       "targets": "21/20 or 20/23",
       "buyers": "Players buying perfect gems for their main skill",
-      "materials": [["Currency", "vaal"], ["Currency", "gcp"]]
+      "materials": [
+        [
+          "Currency",
+          "vaal"
+        ],
+        [
+          "Currency",
+          "gcp"
+        ]
+      ],
+      "estimate": {
+        "per": "per try, gem not included",
+        "qty": {
+          "vaal": 1
+        }
+      }
     },
     {
-      "id": "rog", "phase": "Week 1", "name": "Rog crafting (Expedition)", "pick": true,
+      "id": "rog",
+      "phase": "Week 1",
+      "name": "Rog crafting (Expedition)",
+      "pick": true,
       "base": "ilvl 84+ rings, belts and evasion helmets (best). Evasion boots and evasion/armour gloves next",
-      "cost": "Your Expedition loot", "sale": "30c to several div", "risk": "Low",
-      "steps": ["Fill suffixes with Rog's adding option, leaving a prefix open for bench-crafted life", "Reroll the side you're targeting and always take tier upgrades", "Use Divine near the end, once the item looks good", "Bench craft the missing life, or annul a bad mod to make room", "Don't skip options without thinking: skipping raises the artifact cost and can force an option that bricks the item"],
+      "cost": "Your Expedition loot",
+      "sale": "30c to several div",
+      "risk": "Low",
+      "steps": [
+        "Fill suffixes with Rog's adding option, leaving a prefix open for bench-crafted life",
+        "Reroll the side you're targeting and always take tier upgrades",
+        "Use Divine near the end, once the item looks good",
+        "Bench craft the missing life, or annul a bad mod to make room",
+        "Don't skip options without thinking: skipping raises the artifact cost and can force an option that bricks the item"
+      ],
       "targets": "Life, resistances and attributes on jewellery; spell suppression with resistances or life on helmets, boots and gloves",
       "buyers": "Everyone rounding out resistances and suppression",
       "note": "Run logbooks at ilvl 75+ with 65%+ quantity, and spend explosives on artifact chests first. Rog needs character level 90 to offer ilvl 86+ bases.",
-      "materials": [["Currency", "eldritch-orb-of-annulment"]]
+      "materials": [
+        [
+          "Currency",
+          "eldritch-orb-of-annulment"
+        ]
+      ],
+      "estimate": {
+        "per": "per item, plus artifacts",
+        "qty": {
+          "eldritch-orb-of-annulment": 0.25
+        }
+      }
     },
     {
-      "id": "clusters", "phase": "Week 1", "name": "Medium cluster jewels", "pick": true,
+      "id": "clusters",
+      "phase": "Week 1",
+      "name": "Medium cluster jewels",
+      "pick": true,
       "base": "Medium Cluster Jewels at the item level the notables need",
-      "cost": "About 70c each, 5 div for a batch of 30", "sale": "1 to 5+ div on hits", "risk": "Medium",
-      "steps": ["Check poe.ninja Builds on day 2 or 3 for the notables the top skills use", "Alteration until you hit a wanted notable", "Regal, then exalt for the second notable", "Price check anything with 2 used notables"],
+      "cost": "About 70c each, 5 div for a batch of 30",
+      "sale": "1 to 5+ div on hits",
+      "risk": "Medium",
+      "steps": [
+        "Check poe.ninja Builds on day 2 or 3 for the notables the top skills use",
+        "Alteration until you hit a wanted notable",
+        "Regal, then exalt for the second notable",
+        "Price check anything with 2 used notables"
+      ],
       "targets": "2 notables a popular build uses (for the Cold DoT archetype, cold and DoT clusters)",
       "buyers": "Builds that have already found their feet",
       "note": "A 3.29 test crafted 30 jewels at about 70c each and sold them for about 8,600c, a profit of roughly 6,000c.",
-      "materials": [["Currency", "alt"], ["Currency", "regal"], ["Currency", "exalted"]]
+      "materials": [
+        [
+          "Currency",
+          "alt"
+        ],
+        [
+          "Currency",
+          "regal"
+        ],
+        [
+          "Currency",
+          "exalted"
+        ]
+      ],
+      "estimate": {
+        "per": "per jewel, base not included",
+        "qty": {
+          "alt": 40,
+          "aug": 20,
+          "regal": 1,
+          "exalted": 1
+        }
+      }
     },
     {
-      "id": "wands", "phase": "Week 1", "name": "+1/+2 caster wands", "pick": false,
+      "id": "wands",
+      "phase": "Week 1",
+      "name": "+1/+2 caster wands",
+      "pick": false,
       "base": "Opal or Convoking wands",
-      "cost": "5 to 10 div bankroll", "sale": "1 to 10+ div", "risk": "Medium",
-      "steps": ["Alteration for +1 cold spell gems or DoT multiplier", "Regal", "Bench finish (4-second trigger craft or spell damage)"],
+      "cost": "5 to 10 div bankroll",
+      "sale": "1 to 10+ div",
+      "risk": "Medium",
+      "steps": [
+        "Alteration for +1 cold spell gems or DoT multiplier",
+        "Regal",
+        "Bench finish (4-second trigger craft or spell damage)"
+      ],
       "targets": "+1/+2 cold spell gems, DoT multiplier, spell damage",
       "buyers": "Every cold DoT and spell build, including yours",
-      "materials": [["Currency", "alt"], ["Currency", "aug"], ["Currency", "regal"]]
+      "materials": [
+        [
+          "Currency",
+          "alt"
+        ],
+        [
+          "Currency",
+          "aug"
+        ],
+        [
+          "Currency",
+          "regal"
+        ]
+      ],
+      "estimate": {
+        "per": "per wand, base not included",
+        "qty": {
+          "alt": 60,
+          "aug": 30,
+          "regal": 1
+        }
+      }
     },
     {
-      "id": "rf", "phase": "Week 1", "name": "RF gloves and boots", "pick": false,
+      "id": "rf",
+      "phase": "Week 1",
+      "name": "RF gloves and boots",
+      "pick": false,
       "base": "ilvl 85 gloves with high base percentile",
-      "cost": "10 to 20 div bankroll", "sale": "50c to 1 div, a few big hits", "risk": "Medium, depends on demand",
-      "steps": ["Essence spam", "Fill the open slots with exalts", "Annul bad mods", "Bench Fire and Chaos resistance", "Batch the prefixes across a stack of gloves"],
+      "cost": "10 to 20 div bankroll",
+      "sale": "50c to 1 div, a few big hits",
+      "risk": "Medium, depends on demand",
+      "steps": [
+        "Essence spam",
+        "Fill the open slots with exalts",
+        "Annul bad mods",
+        "Bench Fire and Chaos resistance",
+        "Batch the prefixes across a stack of gloves"
+      ],
       "targets": "High life, life regeneration, Dexterity",
       "buyers": "Righteous Fire players (RF Chieftain is S-tier on 3.30 league-start lists)",
       "note": "bLut's 3.29 method, at 40 to 50 gloves an hour. These figures come from a video summary and are approximate.",
-      "materials": [["Currency", "exalted"], ["Currency", "annul"]]
+      "materials": [
+        [
+          "Currency",
+          "exalted"
+        ],
+        [
+          "Currency",
+          "annul"
+        ]
+      ],
+      "estimate": {
+        "per": "per pair, base and essences not included",
+        "qty": {
+          "exalted": 3,
+          "annul": 1
+        }
+      }
     }
   ],
   "avoid": [
-    ["Anything that needs fractured bases", "Most league sources are gone, so the bases cost more than the crafts return in week 1."],
-    ["Unveil and Veiled Chaos crafts", "Veiled mods now only come from Betrayal, so supply is thin early on."],
-    ["Metacraft finishes on cheap items", "Prefix or suffix locks cost 1 div each now. Only use them on items worth 10+ div."],
-    ["Mercenary gear", "Mercenaries were nerfed, and demand for their claws, chests and shields will drop."],
-    ["Generic 3-mod rares after day 5", "Tiered drops make decent rares much more common. Craft specific combinations instead."],
-    ["Big Eldritch and recombinator projects on day 1", "Expensive and thin at the start. Wait until prices settle around day 4 or 5."]
+    [
+      "Anything that needs fractured bases",
+      "Most league sources are gone, so the bases cost more than the crafts return in week 1."
+    ],
+    [
+      "Unveil and Veiled Chaos crafts",
+      "Veiled mods now only come from Betrayal, so supply is thin early on."
+    ],
+    [
+      "Metacraft finishes on cheap items",
+      "Prefix or suffix locks cost 1 div each now. Only use them on items worth 10+ div."
+    ],
+    [
+      "Mercenary gear",
+      "Mercenaries were nerfed, and demand for their claws, chests and shields will drop."
+    ],
+    [
+      "Generic 3-mod rares after day 5",
+      "Tiered drops make decent rares much more common. Craft specific combinations instead."
+    ],
+    [
+      "Big Eldritch and recombinator projects on day 1",
+      "Expensive and thin at the start. Wait until prices settle around day 4 or 5."
+    ]
   ],
   "selling": [
-    ["Price off live listings", "Look up the cheapest 5 to 10 comparable items and list just under them."],
-    ["Sell fast in week 1", "Prices on almost everything fall as supply grows, so take today's price."],
-    ["Use buy orders for materials", "Set them and wait 30 to 60 minutes for better rates on essences and exalts."],
-    ["Track your costs", "Log each batch on the Portfolio tab so you can see which craft earns the most per hour."],
-    ["Drop a craft when its margin goes", "If a stack hasn't sold within a few hours, cut the price and move on."]
+    [
+      "Price off live listings",
+      "Look up the cheapest 5 to 10 comparable items and list just under them."
+    ],
+    [
+      "Sell fast in week 1",
+      "Prices on almost everything fall as supply grows, so take today's price."
+    ],
+    [
+      "Use buy orders for materials",
+      "Set them and wait 30 to 60 minutes for better rates on essences and exalts."
+    ],
+    [
+      "Track your costs",
+      "Log each batch on the Portfolio tab so you can see which craft earns the most per hour."
+    ],
+    [
+      "Drop a craft when its margin goes",
+      "If a stack hasn't sold within a few hours, cut the price and move on."
+    ]
   ],
   "sources": [
-    { "title": "Maxroll: League start Rog profit crafting guide", "url": "https://maxroll.gg/poe/currency/leaguestart-rog-profit-crafting-guide" },
-    { "title": "bLut: Big money crafting RF gloves, 3.29 (summary)", "url": "https://youtubesummary.com/summary/_Mw3YXIFmdk" },
-    { "title": "bLut's crafting videos", "url": "https://www.poebuilds.cc/poe1/author/blut/top" },
-    { "title": "Cluster jewel profit re-test, 3.29", "url": "https://buymeacoffee.com/poeautocraft/strategy-re-test-does-guide-kill-profit-poe-3-29" },
-    { "title": "PoE Vault: Campaign upgrading and vendor recipes", "url": "https://dev.poe-vault.com/guides/the-campaign" },
-    { "title": "PoE Vault: How to make currency", "url": "https://www.poe-vault.com/guides/how-to-make-currency" },
-    { "title": "3.30 loot rework: tiered rares and rarity", "url": "https://www.vhpg.com/?p=433" }
-  ]
+    {
+      "title": "Maxroll: League start Rog profit crafting guide",
+      "url": "https://maxroll.gg/poe/currency/leaguestart-rog-profit-crafting-guide"
+    },
+    {
+      "title": "bLut: Big money crafting RF gloves, 3.29 (summary)",
+      "url": "https://youtubesummary.com/summary/_Mw3YXIFmdk"
+    },
+    {
+      "title": "bLut's crafting videos",
+      "url": "https://www.poebuilds.cc/poe1/author/blut/top"
+    },
+    {
+      "title": "Cluster jewel profit re-test, 3.29",
+      "url": "https://buymeacoffee.com/poeautocraft/strategy-re-test-does-guide-kill-profit-poe-3-29"
+    },
+    {
+      "title": "PoE Vault: Campaign upgrading and vendor recipes",
+      "url": "https://dev.poe-vault.com/guides/the-campaign"
+    },
+    {
+      "title": "PoE Vault: How to make currency",
+      "url": "https://www.poe-vault.com/guides/how-to-make-currency"
+    },
+    {
+      "title": "3.30 loot rework: tiered rares and rarity",
+      "url": "https://www.vhpg.com/?p=433"
+    }
+  ],
+  "estimateNote": "Estimates use average currency per finished item at live prices. Your luck will vary."
 }

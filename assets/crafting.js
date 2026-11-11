@@ -1,4 +1,5 @@
 import { $, $$, esc, fmt, pct, cls, state, items, exchange, price, sparkline, toDiv, loadCategory, secondaryUnit } from './app.js';
+import { showHistory } from './market.js';
 
 const tabs = {
   profit: 'Profit crafts',
@@ -48,11 +49,42 @@ async function draw(view, token) {
 }
 
 const RISK = { Low: 'good', Medium: '' };
+const NINJA_PATH = { Currency: 'currency', Artifact: 'artifacts', Essence: 'essences', Fossil: 'fossils', Resonator: 'resonators' };
+// Currency words in the step text, mapped to poe.ninja exchange ids. Longest first.
+const ALIASES = [
+  ["Glassblower's Baubles?", 'Currency|bauble'],
+  ['Orbs? of Transmutation', 'Currency|transmute'],
+  ['Orbs? of Augmentation', 'Currency|aug'],
+  ['Orbs? of Alteration', 'Currency|alt'],
+  ['Orbs? of Annulment', 'Currency|annul'],
+  ['Eldritch Orbs? of Annulment', 'Currency|eldritch-orb-of-annulment'],
+  ['Vaal Orbs?', 'Currency|vaal'],
+  ['Transmute', 'Currency|transmute'],
+  ['alterations?', 'Currency|alt'],
+  ['augments?', 'Currency|aug'],
+  ['Regal', 'Currency|regal'],
+  ['exalts?', 'Currency|exalted'],
+  ['annul', 'Currency|annul'],
+  ['Chaos reforge', 'Currency|chaos'],
+  ['Chaos Orbs?', 'Currency|chaos'],
+];
+const ALIAS_RE = new RegExp(`\\b(${ALIASES.map(([a]) => a).join('|')})\\b`, 'gi');
+const aliasKey = (word) => ALIASES.find(([a]) => new RegExp(`^${a}$`, 'i').test(word))?.[1];
+
+function leagueSlug() {
+  return state.leagues.poe1.find((l) => l.name === state.league)?.url || state.league.toLowerCase().replace(/[^a-z0-9]/g, '');
+}
+function ninjaUrl(r) {
+  const cat = NINJA_PATH[r.type];
+  return cat && r.detailsId ? `https://poe.ninja/poe1/economy/${leagueSlug()}/${cat}/${r.detailsId}` : 'https://poe.ninja/poe1/economy';
+}
 
 async function profit(body, token) {
   const c = await fetch('/data/crafts.json').then((r) => r.json());
   if (!token()) return;
-  const types = [...new Set(c.crafts.flatMap((x) => x.materials.map((m) => m[0])))];
+  const keys = new Set([...c.crafts.flatMap((x) => x.materials.map((m) => m.join('|'))), ...ALIASES.map((a) => a[1]),
+    ...c.crafts.flatMap((x) => Object.keys(x.estimate?.qty || {}).map((id) => `Currency|${id}`))]);
+  const types = [...new Set([...keys].map((k) => k.split('|')[0]))];
   const live = {};
   await Promise.all(types.map(async (t) => {
     try {
@@ -62,13 +94,42 @@ async function profit(body, token) {
   }));
   if (!token()) return;
   const sec = secondaryUnit();
-  const mat = ([t, id]) => {
-    const r = live[`${t}|${id}`];
-    if (!r) return '';
-    return `<span class="mat" title="${esc(r.name)}">${r.icon ? `<img src="${esc(r.icon)}" alt="">` : ''}<span>${esc(r.name)}</span><b>${price(sec === 'chaos' ? r.chaos : r.exalted, sec)}</b></span>`;
+  const divChaos = live['Currency|divine']?.chaos;
+  const both = (chaos) => `${price(chaos, 'chaos')}${divChaos ? ` <span class="muted">· ${price(chaos / divChaos, 'divine')}</span>` : ''}`;
+
+  // An inline currency link: icon + name, opens the price history (poe.ninja on middle click).
+  const chip = (key, label, withPrice) => {
+    const r = live[key];
+    if (!r) return esc(label);
+    const p = sec === 'chaos' ? r.chaos : r.exalted;
+    return `<a class="cur-link" href="${esc(ninjaUrl(r))}" target="_blank" rel="noopener" data-cur="${esc(key)}" title="${esc(r.name)}: ${esc(fmt(p))} ${sec}. Click for price history.">${r.icon ? `<img src="${esc(r.icon)}" alt="">` : ''}<span>${esc(label)}</span>${withPrice ? `<b>${price(p, sec)}</b>` : ''}</a>`;
   };
+  const linkify = (text) => {
+    let out = '', last = 0;
+    for (const m of text.matchAll(ALIAS_RE)) {
+      out += esc(text.slice(last, m.index));
+      const key = aliasKey(m[0]);
+      out += key ? chip(key, m[0], false) : esc(m[0]);
+      last = m.index + m[0].length;
+    }
+    return out + esc(text.slice(last));
+  };
+  const estimate = (x) => {
+    const q = x.estimate?.qty || {};
+    let total = 0, missing = false;
+    const parts = Object.entries(q).map(([id, n]) => {
+      const r = live[`Currency|${id}`];
+      if (!r?.chaos) { missing = true; return ''; }
+      total += n * r.chaos;
+      return `<li>${chip(`Currency|${id}`, `${n} × ${r.name}`, false)}<span>${price(n * r.chaos, 'chaos')}</span></li>`;
+    }).join('');
+    return { total, missing, parts };
+  };
+
   const phases = ['All', 'Day 1', 'Week 1'];
-  const card = (x) => `
+  const card = (x) => {
+    const e = estimate(x);
+    return `
     <article class="craft-card ${x.pick ? 'pick' : ''}" data-phase="${esc(x.phase)}">
       <div class="row spread"><h4>${esc(x.name)}</h4><span class="row" style="gap:6px">${x.pick ? '<span class="tag gold">Top pick</span>' : ''}<span class="tag">${esc(x.phase)}</span></span></div>
       <div class="craft-meta">
@@ -76,15 +137,20 @@ async function profit(body, token) {
         <div><span>Target</span>${esc(x.targets)}</div>
         <div><span>Sells to</span>${esc(x.buyers)}</div>
       </div>
-      <ol class="craft-steps">${x.steps.map((s) => `<li>${esc(s)}</li>`).join('')}</ol>
-      ${x.note ? `<p class="muted small craft-note">${esc(x.note)}</p>` : ''}
+      <ol class="craft-steps">${x.steps.map((s) => `<li>${linkify(s)}</li>`).join('')}</ol>
+      ${x.note ? `<p class="muted small craft-note">${linkify(x.note)}</p>` : ''}
+      <div class="craft-est">
+        <div class="row spread"><span class="est-label">Estimated cost <span class="muted">${esc(x.estimate?.per || '')}</span></span><b class="est-total">${e.total ? both(e.total) : '–'}</b></div>
+        <details><summary>How it's worked out</summary><ul class="est-parts">${e.parts}</ul><p class="muted small">${esc(c.estimateNote)}${e.missing ? ' Some prices are missing in this league.' : ''}</p></details>
+      </div>
       <div class="craft-stats">
-        <div><span>Cost</span><b>${esc(x.cost)}</b></div>
+        <div><span>Bankroll</span><b>${esc(x.cost)}</b></div>
         <div><span>Typical sale</span><b>${esc(x.sale)}</b></div>
         <div><span>Risk</span><b class="${RISK[x.risk] ? 'pos' : ''}">${esc(x.risk)}</b></div>
       </div>
-      ${x.materials.length ? `<div class="mats">${x.materials.map(mat).join('')}</div>` : ''}
+      ${x.materials.length ? `<div class="mats">${x.materials.map((m) => chip(m.join('|'), live[m.join('|')]?.name || m[1], true)).join('')}</div>` : ''}
     </article>`;
+  };
   body.innerHTML = `
     <section class="craft-hero">
       <div>
@@ -112,6 +178,15 @@ async function profit(body, token) {
     filter();
   };
   filter();
+  body.addEventListener('click', (e) => {
+    const a = e.target.closest('.cur-link');
+    if (!a || e.ctrlKey || e.metaKey || e.shiftKey || e.button !== 0) return;
+    const r = live[a.dataset.cur];
+    if (!r) return;
+    e.preventDefault();
+    const sec = secondaryUnit();
+    showHistory({ ...r, ninjaUrl: a.href, priceHtml: `${price(sec === 'chaos' ? r.chaos : r.exalted, sec)} · ${price(r.div, 'divine')}` });
+  });
 }
 
 async function gems(body, token) {
