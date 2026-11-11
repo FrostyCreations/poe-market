@@ -9,7 +9,7 @@ const tabs = {
   bases: 'Bases',
 };
 let tab = 'profit';
-let phase = 'All';
+let tierSel = 0;
 const gemOpt = { q: '', minList: 5, p21: 12.5, pDown: 12.5, sort: 'vaalOwn', dir: -1 };
 
 export async function render(view, { token }) {
@@ -48,7 +48,7 @@ async function draw(view, token) {
   }
 }
 
-const RISK = { Low: 'good', Medium: '' };
+const RISK = { Low: 'pos', Medium: '', High: 'neg', 'Very high': 'neg' };
 const NINJA_PATH = { Currency: 'currency', Artifact: 'artifacts', Essence: 'essences', Fossil: 'fossils', Resonator: 'resonators' };
 // Currency words in the step text, mapped to poe.ninja exchange ids. Longest first.
 const ALIASES = [
@@ -79,11 +79,13 @@ function ninjaUrl(r) {
   return cat && r.detailsId ? `https://poe.ninja/poe1/economy/${leagueSlug()}/${cat}/${r.detailsId}` : 'https://poe.ninja/poe1/economy';
 }
 
+const qkey = (id) => (id.includes('|') ? id : `Currency|${id}`);
+
 async function profit(body, token) {
   const c = await fetch('/data/crafts.json').then((r) => r.json());
   if (!token()) return;
   const keys = new Set([...c.crafts.flatMap((x) => x.materials.map((m) => m.join('|'))), ...ALIASES.map((a) => a[1]),
-    ...c.crafts.flatMap((x) => Object.keys(x.estimate?.qty || {}).map((id) => `Currency|${id}`))]);
+    ...c.crafts.flatMap((x) => Object.keys(x.estimate?.qty || {}).map(qkey))]);
   const types = [...new Set([...keys].map((k) => k.split('|')[0]))];
   const live = {};
   await Promise.all(types.map(async (t) => {
@@ -118,19 +120,18 @@ async function profit(body, token) {
     const q = x.estimate?.qty || {};
     let total = 0, missing = false;
     const parts = Object.entries(q).map(([id, n]) => {
-      const r = live[`Currency|${id}`];
+      const r = live[qkey(id)];
       if (!r?.chaos) { missing = true; return ''; }
       total += n * r.chaos;
-      return `<li>${chip(`Currency|${id}`, `${n} × ${r.name}`, false)}<span>${price(n * r.chaos, 'chaos')}</span></li>`;
+      return `<li>${chip(qkey(id), `${n} × ${r.name}`, false)}<span>${price(n * r.chaos, 'chaos')}</span></li>`;
     }).join('');
     return { total, missing, parts };
   };
 
-  const phases = ['All', 'Day 1', 'Week 1'];
   const card = (x) => {
     const e = estimate(x);
     return `
-    <article class="craft-card ${x.pick ? 'pick' : ''}" data-phase="${esc(x.phase)}">
+    <article class="craft-card tier-${x.tier} ${x.pick ? 'pick' : ''}" data-tier="${x.tier}">
       <div class="row spread"><h4>${esc(x.name)}</h4><span class="row" style="gap:6px">${x.pick ? '<span class="tag gold">Top pick</span>' : ''}<span class="tag">${esc(x.phase)}</span></span></div>
       <div class="craft-meta">
         <div><span>Base</span>${esc(x.base)}</div>
@@ -146,7 +147,7 @@ async function profit(body, token) {
       <div class="craft-stats">
         <div><span>Bankroll</span><b>${esc(x.cost)}</b></div>
         <div><span>Typical sale</span><b>${esc(x.sale)}</b></div>
-        <div><span>Risk</span><b class="${RISK[x.risk] ? 'pos' : ''}">${esc(x.risk)}</b></div>
+        <div><span>Risk</span><b class="${RISK[x.risk] || ''}">${esc(x.risk)}</b></div>
       </div>
       ${x.materials.length ? `<div class="mats">${x.materials.map((m) => chip(m.join('|'), live[m.join('|')]?.name || m[1], true)).join('')}</div>` : ''}
     </article>`;
@@ -159,24 +160,31 @@ async function profit(body, token) {
         <p class="small"><a href="${esc(c.guideUrl)}" target="_blank" rel="noopener">Open the full write-up →</a> <span class="muted">· material prices are live from ${esc(state.league)}</span></p>
       </div>
     </section>
-    <div class="phase-strip">${c.phases.map((p, i) => `<div class="phase"><span class="phase-n">${i + 1}</span><div><b>${esc(p.when)}</b><div class="muted small">${esc(p.bankroll)} · ${esc(p.crafts)}</div><div class="small">${esc(p.why)}</div></div></div>`).join('')}</div>
     <h3 class="section-title">What 3.30 changes for crafters</h3>
     <div class="brief-grid">${c.changes.map((x) => `<article class="brief-card tone-${x.tone}"><h4>${esc(x.title)}</h4><p>${esc(x.body)}</p></article>`).join('')}</div>
-    <div class="row spread" style="margin-top:18px"><h3 class="section-title" style="margin:0">The crafts</h3><div class="pills" id="phase">${phases.map((p) => `<button class="pill ${p === phase ? 'active' : ''}" data-p="${p}">${p}</button>`).join('')}</div></div>
-    <div class="craft-grid" id="cgrid">${c.crafts.map(card).join('')}</div>
+    <div class="row spread" style="margin-top:18px"><h3 class="section-title" style="margin:0">Crafting tiers</h3><div class="pills" id="tiersel"><button class="pill ${tierSel ? '' : 'active'}" data-n="0">All tiers</button>${c.tiers.map((t) => `<button class="pill ${tierSel === t.n ? 'active' : ''}" data-n="${t.n}">T${t.n} ${esc(t.name)}</button>`).join('')}</div></div>
+    <div class="tier-ladder">${c.tiers.map((t) => `<button class="rung rung-${t.n}" data-n="${t.n}"><span class="rung-n">T${t.n}</span><b>${esc(t.name)}</b><span class="rung-b">${esc(t.bankroll)}</span><span class="muted small">${esc(t.when)}</span></button>`).join('')}</div>
+    <div id="tiers">${c.tiers.map((t) => `<section class="tier-block" data-n="${t.n}">
+      <div class="tier-head"><span class="rung-n">T${t.n}</span><div><h3>${esc(t.name)} <span class="muted small">· ${esc(t.bankroll)} · ${esc(t.when)}</span></h3><div class="muted small">${esc(t.blurb)}</div></div></div>
+      <div class="craft-grid">${c.crafts.filter((x) => x.tier === t.n).map(card).join('')}</div></section>`).join('')}</div>
     <div class="grid2" style="margin-top:18px">
       <section class="panel"><h3>Avoid or wait on</h3><ul class="plain-list">${c.avoid.map(([a, b]) => `<li><b>${esc(a)}.</b> <span class="muted">${esc(b)}</span></li>`).join('')}</ul></section>
       <section class="panel"><h3>How to sell</h3><ul class="plain-list">${c.selling.map(([a, b]) => `<li><b>${esc(a)}.</b> <span class="muted">${esc(b)}</span></li>`).join('')}</ul></section>
     </div>
     <section class="panel sources"><h3>Sources</h3><ul>${c.sources.map((s) => `<li><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a></li>`).join('')}</ul></section>`;
-  const filter = () => $$('#cgrid .craft-card', body).forEach((el) => { el.style.display = phase === 'All' || el.dataset.phase === phase ? '' : 'none'; });
-  $('#phase', body).onclick = (e) => {
-    const p = e.target.closest('[data-p]')?.dataset.p;
-    if (!p) return;
-    phase = p;
-    $$('#phase .pill', body).forEach((b) => b.classList.toggle('active', b.dataset.p === p));
+  const filter = () => {
+    $$('#tiers .tier-block', body).forEach((el) => { el.style.display = !tierSel || +el.dataset.n === tierSel ? '' : 'none'; });
+    $$('#tiersel .pill', body).forEach((b) => b.classList.toggle('active', +b.dataset.n === tierSel));
+    $$('.tier-ladder .rung', body).forEach((b) => b.classList.toggle('active', +b.dataset.n === tierSel));
+  };
+  const pickTier = (e) => {
+    const n = e.target.closest('[data-n]')?.dataset.n;
+    if (n == null) return;
+    tierSel = +n === tierSel && e.currentTarget.classList.contains('tier-ladder') ? 0 : +n;
     filter();
   };
+  $('#tiersel', body).onclick = pickTier;
+  $('.tier-ladder', body).onclick = pickTier;
   filter();
   body.addEventListener('click', (e) => {
     const a = e.target.closest('.cur-link');

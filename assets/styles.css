@@ -192,3 +192,22 @@ input.masked { -webkit-text-security: disc; text-security: disc; }
 .craft-est summary { cursor: pointer; color: var(--muted); }
 .est-parts { list-style: none; margin: 6px 0 0; padding: 0; }
 .est-parts li { display: flex; justify-content: space-between; align-items: center; padding: 2px 0; }
+
+/* Crafting tiers */
+.tier-ladder { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin: 12px 0 6px; }
+.rung { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; padding: 10px 12px; border-radius: 10px; cursor: pointer; text-align: left; color: var(--text); font: inherit; background: var(--panel); border: 1px solid var(--line); border-bottom: 3px solid var(--tier); transition: transform .15s, border-color .15s, background .15s; }
+.rung:hover, .rung.active { transform: translateY(-2px); background: var(--panel2); border-color: var(--tier); }
+.rung b { font-family: Cinzel, Georgia, serif; color: var(--gold2); }
+.rung-b { font-size: 13px; color: var(--tier); font-weight: 600; }
+.rung-n { display: inline-grid; place-items: center; min-width: 30px; height: 22px; padding: 0 6px; border-radius: 6px; font-size: 11px; font-weight: 700; letter-spacing: .05em; color: #120e08; background: var(--tier); }
+.rung-1, .tier-block[data-n="1"], .craft-card.tier-1 { --tier: #8fa3b8; }
+.rung-2, .tier-block[data-n="2"], .craft-card.tier-2 { --tier: #6fbf73; }
+.rung-3, .tier-block[data-n="3"], .craft-card.tier-3 { --tier: #5aa2e0; }
+.rung-4, .tier-block[data-n="4"], .craft-card.tier-4 { --tier: #b07de0; }
+.rung-5, .tier-block[data-n="5"], .craft-card.tier-5 { --tier: #e8c06a; }
+.tier-block { margin-top: 18px; }
+.tier-head { display: flex; gap: 12px; align-items: center; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+.tier-head h3 { margin: 0; }
+.craft-card { border-top: 3px solid var(--tier, var(--line)); }
+.tier-block[data-n="5"] .craft-card { background: radial-gradient(circle at 100% 0, rgba(232,192,106,.12), transparent 50%), var(--panel); }
+@media (max-width: 900px) { .tier-ladder { grid-template-columns: repeat(2, 1fr); } }
