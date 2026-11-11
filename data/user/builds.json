@@ -1,9 +1,9 @@
 {
-  "goal": "PoE1 3.30 Covens of Umbra, softcore trade. Make multiple mirrors through farming, crafting and investing.\n3.30 changes that matter for the build: you invoke Fates on area bosses (campaign and maps) to make them harder for better loot and Viscera, Mirage is core and can cover a whole map, scarabs are gone (Threads of Creation + Atlas regions instead), and balance changes are expected to be mild.\nSo: a starter that clears fast AND kills Fate-empowered bosses safely, cheap on day 1, scaling to mirror-tier gear.",
+  "goal": "PoE1 3.30 Covens of Umbra, softcore trade. Make multiple mirrors through farming, crafting and investing.\nWanted: 5 for mapping AND 5 for bossing.\nWhat the 3.30 patch changed for build choice: item rarity now decides drop pools, so killing rares, uniques and Fate-empowered bosses pays more than raw pack clear. Winter Orb was nerfed hard (2 projectiles, 70% effectiveness, about 15% less base damage). Golems and mercenaries were nerfed. Pathfinder, Trickster and Warden were buffed. Energy Shield uniques got buffs.",
   "weights": {
-    "start": 30,
+    "start": 25,
     "mapping": 25,
-    "bossing": 20,
+    "bossing": 25,
     "farmFit": 10,
     "scaling": 15
   },
@@ -14,17 +14,17 @@
       "name": "Winter Orb Occultist",
       "skill": "Winter Orb",
       "class": "Occultist",
-      "status": "Chosen",
+      "status": "Dropped",
       "start": 4,
-      "mapping": 5,
-      "bossing": 5,
+      "mapping": 4,
+      "bossing": 3,
       "farmFit": 5,
-      "scaling": 5,
+      "scaling": 3,
       "source": "Tuadh / Lexyu (poe-vault)",
       "guide": "https://www.poe-vault.com/guides/winter-orb-occultist-build-guide",
-      "tags": "5/5 mapping + bossing, energy shield, league starter to endgame",
+      "tags": "nerfed in 3.30",
       "notes": "Most played Winter Orb version in Allflame (4.5%, #2 overall). Starts cheap (Tuadh's Exarch & Eater league start run was ~3 div) and scales very high: a 3.30 PoB shows ~117M DPS with 162k EHP on ~120 div. The 5/5 scores are for the invested version (roughly 50-120 div); expect about 4/4 in the first days.",
-      "patch": "PICK for 3.30. Same skill as the Elementalist, but Occultist's energy shield and curses make it the one that does both mapping and Fate/pinnacle bossing at the top end."
+      "patch": "NERFED in 3.30: Winter Orb now fires 2 projectiles at every level (was 2-3), 70% added damage effectiveness (was 80%), 307-460 base cold at level 20 (was 360-539). Still a cheap starter, but no longer 5/5."
     },
     {
       "uid": "b-trpf",
@@ -42,7 +42,7 @@
       "guide": "https://www.poebuilds.cc/poe1/author/path-of-evening?league=allflame",
       "tags": "league starter, DoT, cheap",
       "notes": "Called 'The Fastest League Start Build in Allflame League'. Very forgiving on day 1, flasks keep it safe.",
-      "patch": "Safest campaign. Fine with Fates. Lower ceiling than Winter Orb."
+      "patch": "Pathfinder was buffed in 3.30 (Master Alchemist removes all ailments on flask use; Master Distiller gives 30% penetration and +100% crit multi). Safe starter, but bossing still trails the DoT and brand picks."
     },
     {
       "uid": "b-lade",
@@ -53,14 +53,14 @@
       "status": "Candidate",
       "start": 4,
       "mapping": 5,
-      "bossing": 2,
+      "bossing": 3,
       "farmFit": 5,
       "scaling": 4,
       "source": "Fubgun",
       "guide": "https://www.poebuilds.cc/poe1/author/fubgun?league=allflame",
       "tags": "league starter, map blaster",
       "notes": "Fubgun's go-to league starter. Fastest clear for farming strategies; weak bosser until geared. Mirror-tier gear makes it absurd.",
-      "patch": "Best pure clear, which matters more now that Mirage can cover a whole map. Weakest at Fate-empowered bosses until geared, so invoke fewer Fates early. Good second character."
+      "patch": "Pathfinder/Deadeye bows unchanged. Best pure clear, but the new rarity rules reward killing strong monsters more than fast clear. Bossing is its weak point."
     },
     {
       "uid": "b-woe",
@@ -68,17 +68,17 @@
       "name": "Winter Orb Elementalist",
       "skill": "Winter Orb",
       "class": "Elementalist",
-      "status": "Candidate",
+      "status": "Dropped",
       "start": 4,
       "mapping": 4,
-      "bossing": 4,
+      "bossing": 3,
       "farmFit": 4,
-      "scaling": 4,
+      "scaling": 3,
       "source": "Fubgun",
       "guide": "https://www.poebuilds.cc/poe1/author/fubgun?league=allflame",
-      "tags": "league starter, all-rounder",
+      "tags": "nerfed in 3.30",
       "notes": "Fubgun's Allflame starter (most viewed guide). Winter Orb Occultist and Elementalist were the #2 and #3 builds on poe.ninja at league end.",
-      "patch": "Easier day 1 than the Occultist version, but lower ceiling. Fine backup if Occultist feels slow early."
+      "patch": "NERFED in 3.30 (same Winter Orb nerf). Elementalist golem nodes were also weakened by the golem nerf."
     },
     {
       "uid": "b-kbnecro",
@@ -96,25 +96,25 @@
       "guide": "https://www.poebuilds.cc/poe1/author/redviles/new",
       "tags": "league starter, map blaster",
       "notes": "Fast wand clear. Its 21/20 gem sold for 387c on day 3 last league, so its gems are worth levelling if it is popular again.",
-      "patch": "Fast clear, weak bossing; Fate bosses make it riskier in week 1."
+      "patch": "Unchanged, but weak bossing matters more now that strong monsters drop the valuable currency."
     },
     {
       "uid": "b-colddot",
       "game": "poe1",
-      "name": "Cold Dot Occultist",
+      "name": "Cold DoT Occultist",
       "skill": "Vortex",
       "class": "Occultist",
-      "status": "Candidate",
-      "start": 4,
-      "mapping": 3,
+      "status": "Chosen",
+      "start": 5,
+      "mapping": 5,
       "bossing": 5,
-      "farmFit": 3,
-      "scaling": 4,
+      "farmFit": 5,
+      "scaling": 5,
       "source": "bLut",
       "guide": "https://www.poebuilds.cc/poe1/author/blut/new",
-      "tags": "league starter, bosser",
-      "notes": "bLut reported up to 18M DPS by day 3. Best bosser of the starters; slower mapper. Check the main skill in his guide (set to Vortex here).",
-      "patch": "Best bosser for stacking Fates and Grim Fates later. Slower mapper. Good pivot if Fates turn out to be the main money."
+      "tags": "5/5 mapping + bossing, DoT, energy shield, untouched by 3.30 nerfs",
+      "notes": "bLut posted a 3.30 '100 Div Endgame' version (Creeping Frost + Vortex) two days ago. One-button mapper that scales into strong bossing, fast campaign. Post-patch tier lists rate it 5 league start, 5 endgame, 5 mapping.",
+      "patch": "PICK for 3.30. Not touched by any nerf (only Winter Orb and golems were hit in the Witch tree). DoT ticks while you dodge Fate mechanics, and bossing reaches 5 with investment (tier lists give 4 on a budget)."
     },
     {
       "uid": "b-rf",
@@ -132,7 +132,7 @@
       "guide": "",
       "tags": "tanky, juiced maps",
       "notes": "Most played build in Allflame at league end (4.6%). Very tanky for heavily juiced maps; needs life and regen gear first.",
-      "patch": "Tanky for Fates and harder Threads stacks, but slow clear and needs life gear first."
+      "patch": "Unchanged. Survives anything but kills Fate bosses slowly; tier lists give it 2/5 for Fate bossing."
     },
     {
       "uid": "b-cyclone",
@@ -150,7 +150,7 @@
       "guide": "https://www.poebuilds.cc/poe1/author/big-ducks/new",
       "tags": "melee, league starter",
       "notes": "Melee map blaster. Cyclone of Tumult and Void Shockwave Slayers were both top 10 at league end.",
-      "patch": "Melee option. New Sword of Ages unique (Temporal Mirage on movement attacks) may add melee options; wait for patch notes."
+      "patch": "Unchanged. Cyclone of Tumult Slayer rated 4 for bossing and 5 for mapping on post-patch lists."
     },
     {
       "uid": "b-luminary",
@@ -168,7 +168,79 @@
       "guide": "",
       "tags": "mercenary",
       "notes": "Top 4 in Allflame. Luminary was introduced with Allflame; check if it stays in 3.30.",
-      "patch": "Luminary came with Allflame; likely not available in 3.30 unless patch notes say otherwise."
+      "patch": "Luminary still exists in 3.30, but mercenaries were nerfed hard (-60% resistances in maps, less damage). Avoid."
+    },
+    {
+      "uid": "b-penance",
+      "game": "poe1",
+      "name": "Penance Brand Elementalist",
+      "skill": "Penance Brand",
+      "status": "Candidate",
+      "start": 4,
+      "mapping": 5,
+      "bossing": 5,
+      "farmFit": 4,
+      "scaling": 5,
+      "source": "Community",
+      "guide": "",
+      "tags": "5/5 mapping + bossing, brands",
+      "notes": "Rated 5 for Fate bossing and 5 for mapping on post-patch tier lists, with top boss damage and defences; brands keep hitting while you move. Was #6 most played in Allflame (2.3%).",
+      "patch": "Mostly unchanged, but check whether the guide relies on golems with Liege of the Primordial: golem buffs were cut about 20-25% in 3.30.",
+      "class": "Elementalist"
+    },
+    {
+      "uid": "b-bvass",
+      "game": "poe1",
+      "name": "Bifurcating Crit Blade Vortex Assassin",
+      "skill": "Blade Vortex",
+      "status": "Candidate",
+      "start": 3,
+      "mapping": 5,
+      "bossing": 5,
+      "farmFit": 4,
+      "scaling": 5,
+      "source": "Community",
+      "guide": "",
+      "tags": "5/5 at endgame, expensive start",
+      "notes": "Rated 5 endgame, 5 Fate bossing, 5 mapping, but only 3 for league start: needs gear before it shines.",
+      "patch": "Unchanged in 3.30. Best as a second character once the Cold DoT Occultist is farming.",
+      "class": "Assassin"
+    },
+    {
+      "uid": "b-earthshatter",
+      "game": "poe1",
+      "name": "Earthshatter Berserker",
+      "skill": "Earthshatter",
+      "status": "Candidate",
+      "start": 5,
+      "mapping": 4,
+      "bossing": 4,
+      "farmFit": 4,
+      "scaling": 5,
+      "source": "Ben / ImExile",
+      "guide": "",
+      "tags": "safest starter, melee",
+      "notes": "Tier lists call it the safest 3.30 starter; racers took it to level 99 in SSF by day three last league.",
+      "patch": "Unchanged. Great all-rounder, but 4/4 rather than 5/5.",
+      "class": "Berserker"
+    },
+    {
+      "uid": "b-eaballista",
+      "game": "poe1",
+      "name": "Explosive Arrow Ballista Hierophant",
+      "skill": "Explosive Arrow",
+      "status": "Candidate",
+      "start": 4,
+      "mapping": 4,
+      "bossing": 4,
+      "farmFit": 4,
+      "scaling": 4,
+      "source": "POEGuy",
+      "guide": "https://www.poebuilds.cc/poe1?league=covens",
+      "tags": "most watched 3.30 plan",
+      "notes": "The most watched 3.30 league start plan so far (POEGuy, about 60k views).",
+      "patch": "New Artillery Quiver implicit (+1 maximum totems for attack skills) helps ballista builds.",
+      "class": "Hierophant"
     }
   ]
 }

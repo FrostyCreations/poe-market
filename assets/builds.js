@@ -23,7 +23,8 @@ export async function render(view, { token }) {
   if (!token()) return;
   const weights = { ...DEFAULT_WEIGHTS, ...(file.weights || {}) };
   const builds = (file.builds || []).filter((b) => (b.game || 'poe1') === state.game);
-  const metaLeagues = (idx.leagueBuilds || []).filter((l) => l.statistics?.length);
+  // Public leagues only (private leagues show up as "Name (PL12345)").
+  const metaLeagues = (idx.leagueBuilds || []).filter((l) => l.statistics?.length && !/\(PL\d+\)/.test(l.leagueName));
   const metaSel = localStorage.getItem(`meta-${state.game}`);
   const metaLeague = metaLeagues.find((l) => l.leagueUrl === metaSel) || metaLeagues[0];
   const popularity = Object.fromEntries((metaLeague?.statistics || []).map((s) => [`${s.class}|${s.skill || ''}`.toLowerCase(), s.percentage]));

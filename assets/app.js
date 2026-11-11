@@ -252,8 +252,12 @@ async function fillLeagueSelect() {
   const sel = $('#league');
   const leagues = await loadLeagues(state.game);
   const saved = localStorage.getItem(`league-${state.game}`);
-  const def = leagues.find((l) => !l.old && !/hardcore|hc|standard/i.test(l.name)) || leagues[0];
-  state.league = leagues.some((l) => l.name === saved) ? saved : def?.name;
+  const challenge = leagues.find((l) => !l.old && !/hardcore|\bhc\b|standard|ruthless|ssf/i.test(l.name));
+  const def = challenge || leagues[0];
+  const savedEntry = leagues.find((l) => l.name === saved);
+  // A remembered league that has since ended gives way to the new challenge league.
+  state.league = savedEntry && !(savedEntry.old && challenge) ? saved : def?.name;
+  state.liveChallenge = Boolean(challenge);
   sel.innerHTML = [
     `<optgroup label="Current">${leagues.filter((l) => !l.old).map((l) => `<option>${esc(l.name)}</option>`).join('')}</optgroup>`,
     `<optgroup label="Past leagues">${leagues.filter((l) => l.old).map((l) => `<option>${esc(l.name)}</option>`).join('')}</optgroup>`,
@@ -314,6 +318,7 @@ $('#adminBtn').addEventListener('click', () => {
 
 // ---------- routing ----------
 const views = {
+  brief: () => import('./brief.js'),
   market: () => import('./market.js'),
   playbook: () => import('./playbook.js'),
   portfolio: () => import('./portfolio.js'),
@@ -322,8 +327,8 @@ const views = {
 };
 let renderToken = 0;
 export async function render() {
-  const tab = (location.hash || '#market').slice(1).split('/')[0];
-  const name = views[tab] ? tab : 'market';
+  const tab = (location.hash || '#brief').slice(1).split('/')[0];
+  const name = views[tab] ? tab : 'brief';
   $$('#tabs a').forEach((a) => a.classList.toggle('active', a.dataset.tab === name));
   const view = $('#view');
   const token = ++renderToken;

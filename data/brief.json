@@ -1,0 +1,221 @@
+{
+  "league": "Covens of Umbra",
+  "version": "3.30",
+  "launch": "2026-11-13T19:00:00Z",
+  "patchDate": "11 Nov 2026",
+  "headline": "Skill balance barely moved. Loot, the Atlas and crafting costs moved a lot.",
+  "changes": [
+    {
+      "tone": "neutral",
+      "title": "Threads replace Scarabs",
+      "body": "Ten Thread types (Abyss, Bestiary, Betrayal, Blight, Breach, Expedition, Incursion, Legion, Ritual, Ultimatum), up to 8 per map. These mechanics no longer spawn on their own. Shaped Regions give free Threads, so early juicing is cheaper."
+    },
+    {
+      "tone": "good",
+      "title": "Rarity now picks the drop pool",
+      "body": "High-rarity monsters drop fewer junk scrolls and more valuable currency. Killing rares, uniques and Fate bosses pays more than raw pack clear. Bossing matters more than ever."
+    },
+    {
+      "tone": "good",
+      "title": "Tiered ground loot",
+      "body": "From Act 6, magic and rare items drop with tiers 2-5. Tier 5 can roll +1 item level. Price-check every T4/T5 Simplex Amulet, Cord Belt and fractured base."
+    },
+    {
+      "tone": "neutral",
+      "title": "Atziri moves into the Temple",
+      "body": "Items can be corrupted a second time. Mortal Fragments become Royal Visages; Sacrifice Fragments now do nothing. Coins become Soul Cores. Vaal Orb recipe needs only 5 Vaal gems."
+    },
+    {
+      "tone": "bad",
+      "title": "Bench locks cost Divines",
+      "body": "Lock one prefix or suffix for 1 Divine, two for 2. Lock all costs 4 Divines plus a Sacred Orb (weapons), 4 Blessed (armour) or 8 Exalted (jewellery)."
+    },
+    {
+      "tone": "bad",
+      "title": "Nerfs: Winter Orb, golems, mercenaries",
+      "body": "Winter Orb: 2 projectiles, 70% effectiveness, about 15% less base damage. Golem buffs cut 20-25%. Mercenaries take -60% resistances in maps and up to 20% less damage."
+    },
+    {
+      "tone": "good",
+      "title": "Buffs: Pathfinder, Trickster, Warden, ES",
+      "body": "Master Distiller gives 30% penetration and +100% crit multi; Heartstopper takes 75% off DoT; five Warden buffs. Malachai's Loop gets more Energy Shield."
+    },
+    {
+      "tone": "bad",
+      "title": "Rarity farming nerfed",
+      "body": "Maven's Chisel of Procurement 25% (was 40%), Nightmare and Originator rarity mods down 40-50%, Eldritch Altar rarity lower, quantity altars removed."
+    }
+  ],
+  "market": [
+    {
+      "name": "Fracturing Orb",
+      "type": "Currency",
+      "id": "fracturing-orb",
+      "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvRnJhY3R1cmluZ09yYkNvbWJpbmVkIiwic2NhbGUiOjF9XQ/3fb18e8a5b/FracturingOrbCombined.png",
+      "dir": "up",
+      "why": "Fractured items lose most league sources, so demand for making them goes up. Rose 2x in both past leagues."
+    },
+    {
+      "name": "Veiled Chaos Orb",
+      "type": "Currency",
+      "id": "veiled-chaos-orb",
+      "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvVmVpbGVkQ2hhb3NPcmIiLCJzY2FsZSI6MX1d/fd913b89d0/VeiledChaosOrb.png",
+      "dir": "up",
+      "why": "Veiled items only come from Betrayal now. Rose 4.7x and 7.9x by day 14 in past leagues."
+    },
+    {
+      "name": "Sacred Orb",
+      "type": "Currency",
+      "id": "sacred-orb",
+      "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvU2FjcmVkT3JiIiwic2NhbGUiOjF9XQ/0380fd0dba/SacredOrb.png",
+      "dir": "up",
+      "why": "Needed to lock all mods on weapons. Drops more often now, but rose 2-3x in both past leagues."
+    },
+    {
+      "name": "Volatile Vaal Orb",
+      "type": "Currency",
+      "id": "tainted-divine-orb",
+      "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvVm9sYXRpbGVWYWFsT3JiIiwic2NhbGUiOjF9XQ/9bcdda2c63/VolatileVaalOrb.png",
+      "dir": "up",
+      "why": "Double corruption is back, so corruption currency gets more use."
+    },
+    {
+      "name": "Orb of Chance",
+      "type": "Currency",
+      "id": "chance",
+      "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lVcGdyYWRlUmFuZG9tbHkiLCJzY2FsZSI6MX1d/a3f9bf0917/CurrencyUpgradeRandomly.png",
+      "dir": "up",
+      "why": "Much rarer, much better at uniques, no longer sold by vendors. A patch bet: it crashed in past leagues."
+    },
+    {
+      "name": "Exalted Orb",
+      "type": "Currency",
+      "id": "exalted",
+      "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lBZGRNb2RUb1JhcmUiLCJzY2FsZSI6MX1d/33f2656aea/CurrencyAddModToRare.png",
+      "dir": "up",
+      "why": "8 per lock-all on jewellery. A patch bet: it fell in past leagues."
+    },
+    {
+      "name": "Blessed Orb",
+      "type": "Currency",
+      "id": "blessed",
+      "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lJbXBsaWNpdE1vZCIsInNjYWxlIjoxfV0/48e700cc20/CurrencyImplicitMod.png",
+      "dir": "up",
+      "why": "4 per lock-all on armour. A patch bet: it fell hard in past leagues."
+    },
+    {
+      "name": "Vaal Orb",
+      "type": "Currency",
+      "id": "vaal",
+      "icon": "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lWYWFsIiwic2NhbGUiOjF9XQ/593fe2e22e/CurrencyVaal.png",
+      "dir": "down",
+      "why": "Recipe now needs 5 Vaal gems instead of 7 plus a Sacrifice Fragment, so more supply."
+    },
+    {
+      "name": "Threads (all 10 types)",
+      "type": "",
+      "id": "",
+      "icon": "",
+      "dir": "new",
+      "why": "Every juiced map needs them. Expect wild prices in the first hours; buy the cheap types of whatever mechanic turns meta."
+    },
+    {
+      "name": "Frayed Thread",
+      "type": "",
+      "id": "",
+      "icon": "",
+      "dir": "new",
+      "why": "New currency: use or vendor for a random Thread. Likely cheap filler."
+    },
+    {
+      "name": "Royal Visage",
+      "type": "",
+      "id": "",
+      "icon": "",
+      "dir": "new",
+      "why": "From Atziri in 81+ Temples; makes Temporal Incursions Alluring. Sell early ones."
+    },
+    {
+      "name": "Soul Cores",
+      "type": "",
+      "id": "",
+      "icon": "",
+      "dir": "new",
+      "why": "Rethemed Coins from Atziri; add a support effect to a gem. New, price unknown."
+    },
+    {
+      "name": "Viscera",
+      "type": "",
+      "id": "",
+      "icon": "",
+      "dir": "new",
+      "why": "Wickerman parts from Fate bosses. Greater and Pinnacle Viscera will be the chase items."
+    },
+    {
+      "name": "Scarabs, Orbs of Binding, Mortal Fragments",
+      "type": "",
+      "id": "",
+      "icon": "",
+      "dir": "gone",
+      "why": "Removed or converted. Sacrifice Fragments still exist but do nothing."
+    }
+  ],
+  "builds": [
+    {
+      "name": "Cold DoT Occultist",
+      "verdict": "Pick",
+      "change": "Unchanged",
+      "note": "5 mapping, 5 bossing with investment. bLut posted a 3.30 100-div endgame version."
+    },
+    {
+      "name": "Penance Brand Elementalist",
+      "verdict": "Alternative",
+      "change": "Mostly unchanged",
+      "note": "5/5 on tier lists. Check the guide for golems (nerfed)."
+    },
+    {
+      "name": "Bifurcating Crit Blade Vortex Assassin",
+      "verdict": "Second character",
+      "change": "Unchanged",
+      "note": "5/5 once geared, weak league start."
+    },
+    {
+      "name": "Earthshatter Berserker",
+      "verdict": "Safest starter",
+      "change": "Unchanged",
+      "note": "4/4 all-rounder, proven by racers."
+    },
+    {
+      "name": "Winter Orb Occultist / Elementalist",
+      "verdict": "Avoid as main",
+      "change": "Nerfed",
+      "note": "Down to about 3 for bossing after the nerf."
+    }
+  ],
+  "sources": [
+    {
+      "title": "GGG: Content Update 3.30.0 patch notes",
+      "url": "https://www.pathofexile.com/forum/view-forum/patch-notes"
+    },
+    {
+      "title": "PoE 3.30 patch notes in short (poeleaguenews)",
+      "url": "https://poeleaguenews.com/3-30-patch-notes"
+    },
+    {
+      "title": "Full 3.30.0 notes mirror (patchbot)",
+      "url": "https://patchbot.io/games/path-of-exile/articles/2188-content-update-3300-path-of-exile-covens-of-umbra"
+    },
+    {
+      "title": "3.30 meta breakdown (The Quest Brief)",
+      "url": "https://thequestbrief.com/en/gaming/updates-patches/poe1-3-30-patch-notes-meta/"
+    },
+    {
+      "title": "AOEAH 3.30 build tier list",
+      "url": "https://www.aoeah.com/news/4886--poe-330-best-builds-for-league-starter--endgame-trade--ssf--poe-330-tier-list"
+    },
+    {
+      "title": "3.30 builds posted (poebuilds.cc)",
+      "url": "https://www.poebuilds.cc/poe1?league=covens"
+    }
+  ]
+}
