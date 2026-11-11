@@ -2,3 +2,9 @@
 name = "poe-market"
 compatibility_date = "2026-11-01"
 pages_build_output_dir = "dist"
+
+# Non-secret settings for the functions. ADMIN_PASSWORD and GITHUB_TOKEN are
+# encrypted secrets set in the Cloudflare dashboard.
+[vars]
+GITHUB_REPO = "FrostyCreations/poe-market"
+GITHUB_BRANCH = "main"
