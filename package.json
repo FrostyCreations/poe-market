@@ -6,7 +6,9 @@
   "description": "Personal Path of Exile market, launch playbook, portfolio, crafting and builds dashboard powered by poe.ninja",
   "scripts": {
     "dev": "node scripts/dev-server.mjs",
-    "playbook": "node scripts/build-playbook.mjs"
+    "playbook": "node scripts/build-playbook.mjs",
+    "build:cf": "bash scripts/build-cf.sh",
+    "dev:cf": "bash scripts/build-cf.sh && npx wrangler pages dev dist"
   },
   "engines": {
     "node": ">=18"
