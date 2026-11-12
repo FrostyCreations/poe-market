@@ -165,7 +165,36 @@
      "aug": 2
     }
    },
-   "tier": 1
+   "tier": 1,
+   "route": "Alt and regal",
+   "alts": [
+    {
+     "name": "Shuddering Fossil",
+     "why": "More speed mods, so movement speed shows up far more often.",
+     "steps": [
+      "Shuddering Fossil in a Primitive Chaotic Resonator",
+      "Keep movement speed plus life or a resistance",
+      "Bench craft the rest"
+     ],
+     "estimate": {
+      "per": "per 3 rolls",
+      "qty": {
+       "Fossil|shuddering-fossil": 3,
+       "Resonator|primitive-chaotic-resonator": 3
+      }
+     },
+     "materials": [
+      [
+       "Fossil",
+       "shuddering-fossil"
+      ],
+      [
+       "Resonator",
+       "primitive-chaotic-resonator"
+      ]
+     ]
+    }
+   ]
   },
   {
    "id": "jewellery",
@@ -439,7 +468,404 @@
      "vaal": 1
     }
    },
-   "tier": 1
+   "tier": 1,
+   "route": "Single Vaal Orb",
+   "alts": [
+    {
+     "name": "Buy and resell 21/20s",
+     "why": "Less risk: buy underpriced corrupted gems and relist them.",
+     "steps": [
+      "Watch poe.ninja for 21/20 gems listed under their usual price",
+      "Buy a few and relist at the normal price"
+     ],
+     "estimate": null,
+     "materials": [
+      [
+       "Currency",
+       "vaal"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gem-quality",
+   "tier": 1,
+   "phase": "Day 1",
+   "name": "20% quality gems",
+   "pick": false,
+   "base": "Level 20 gems with 0 to 10% quality, for skills meta builds use",
+   "cost": "A few chaos per gem",
+   "sale": "5c to 1 div over the raw gem",
+   "risk": "Low",
+   "route": "Gemcutter's Prisms",
+   "steps": [
+    "Buy level 20 gems with low quality from trade",
+    "Gemcutter's Prisms up to 20% quality",
+    "List as 20/20, or Vaal it if the gem is cheap (see the Vaal gems craft)"
+   ],
+   "targets": "20/20 versions of meta skills and supports",
+   "buyers": "Every player from early maps onward",
+   "estimate": {
+    "per": "per gem, gem not included",
+    "qty": {
+     "gcp": 15
+    }
+   },
+   "materials": [
+    [
+     "Currency",
+     "gcp"
+    ]
+   ],
+   "alts": [
+    {
+     "name": "Level your own gems",
+     "why": "Slower but free: put spare gems in your weapon swap and level them while you map.",
+     "steps": [
+      "Socket extra copies of meta gems in your weapon swap",
+      "Quality them once they hit 20",
+      "Sell 20/20 or keep them for Vaal attempts"
+     ],
+     "estimate": {
+      "per": "per gem",
+      "qty": {
+       "gcp": 20
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "gcp"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "small-clusters",
+   "tier": 1,
+   "phase": "Day 1",
+   "name": "Small cluster jewels",
+   "pick": false,
+   "base": "ilvl 75+ Small Cluster Jewels with life, resistance or attribute enchants",
+   "cost": "Under 1 div for a stack",
+   "sale": "10c to 2 div for the right notable",
+   "risk": "Low",
+   "route": "Alt and regal",
+   "steps": [
+    "Orbs of Alteration until the notable you want lands",
+    "Regal for a third mod",
+    "Exalt only if both the notable and the extra mods are good"
+   ],
+   "targets": "A strong life or resistance notable with an extra % life mod",
+   "buyers": "Builds that fill out their cluster wheels",
+   "estimate": {
+    "per": "per jewel",
+    "qty": {
+     "alt": 25,
+     "aug": 10,
+     "regal": 1
+    }
+   },
+   "materials": [
+    [
+     "Currency",
+     "alt"
+    ],
+    [
+     "Currency",
+     "aug"
+    ],
+    [
+     "Currency",
+     "regal"
+    ]
+   ],
+   "alts": [
+    {
+     "name": "Chaos reforge",
+     "why": "Faster when alterations are short. Fine because small clusters only roll one notable.",
+     "steps": [
+      "Chaos Orbs on rare small clusters until the notable lands",
+      "Sell straight away"
+     ],
+     "estimate": {
+      "per": "per ~20 rerolls",
+      "qty": {
+       "chaos": 20
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "chaos"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "leveling-weapons",
+   "tier": 1,
+   "phase": "Day 1",
+   "name": "Leveling weapons",
+   "pick": false,
+   "base": "ilvl 30 to 70 one-handers and bows, the type the popular league starters use",
+   "cost": "A few chaos each",
+   "sale": "5 to 30c each, sells all of day 1",
+   "risk": "Low",
+   "route": "Essence of Contempt",
+   "steps": [
+    "Essence of Contempt for guaranteed flat physical damage",
+    "Keep rolls with % physical damage or attack speed alongside",
+    "Bench craft a damage mod in any open slot"
+   ],
+   "targets": "Flat phys plus % phys or attack speed",
+   "buyers": "Players who rushed the campaign or rolled a second character",
+   "estimate": {
+    "per": "per weapon",
+    "qty": {
+     "Essence|shrieking-essence-of-contempt": 3
+    }
+   },
+   "materials": [
+    [
+     "Essence",
+     "shrieking-essence-of-contempt"
+    ]
+   ],
+   "alts": [
+    {
+     "name": "Alt and regal",
+     "why": "Cheap and fine for low-level bases.",
+     "steps": [
+      "Orbs of Alteration until % phys plus flat phys",
+      "Regal and bench craft"
+     ],
+     "estimate": {
+      "per": "per weapon",
+      "qty": {
+       "alt": 15,
+       "aug": 6,
+       "regal": 1
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "alt"
+      ],
+      [
+       "Currency",
+       "regal"
+      ]
+     ]
+    },
+    {
+     "name": "Caster version",
+     "why": "Same idea for spell starters: +1 wands and sceptres.",
+     "steps": [
+      "Alteration spam for +1 to fire, cold or lightning gems plus spell damage",
+      "Regal, then bench craft cast speed"
+     ],
+     "estimate": {
+      "per": "per weapon",
+      "qty": {
+       "alt": 20,
+       "aug": 8,
+       "regal": 1
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "alt"
+      ],
+      [
+       "Currency",
+       "regal"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "belts",
+   "tier": 1,
+   "phase": "Day 2",
+   "name": "Life and resistance belts",
+   "pick": false,
+   "base": "ilvl 75+ Leather Belt, Heavy Belt or Stygian Vise",
+   "cost": "Under 10c each",
+   "sale": "10c to 2 div",
+   "risk": "Low",
+   "route": "Essence of Greed",
+   "steps": [
+    "Essence of Greed for guaranteed life",
+    "Keep anything with two resistances or strength alongside",
+    "Bench craft the missing resistance"
+   ],
+   "targets": "High life, two resistances, strength or flask mods",
+   "buyers": "Every life build, and Stygian Vise for abyss jewel users",
+   "estimate": {
+    "per": "per belt",
+    "qty": {
+     "Essence|screaming-essence-of-greed": 4
+    }
+   },
+   "materials": [
+    [
+     "Essence",
+     "screaming-essence-of-greed"
+    ]
+   ],
+   "alts": [
+    {
+     "name": "Alt and regal",
+     "why": "Cheaper on day 1 when essences cost more.",
+     "steps": [
+      "Orbs of Alteration until life plus a resistance",
+      "Regal, then bench craft a resistance"
+     ],
+     "estimate": {
+      "per": "per belt",
+      "qty": {
+       "alt": 20,
+       "aug": 8,
+       "regal": 1
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "alt"
+      ],
+      [
+       "Currency",
+       "regal"
+      ]
+     ]
+    },
+    {
+     "name": "Chaos reforge Stygian Vises",
+     "why": "Vises sell higher, so the extra rerolls pay for themselves.",
+     "steps": [
+      "Chaos Orbs until life plus two resistances",
+      "Bench craft the last mod"
+     ],
+     "estimate": {
+      "per": "per ~15 rerolls",
+      "qty": {
+       "chaos": 15
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "chaos"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "vaal-uniques",
+   "tier": 1,
+   "phase": "Day 2",
+   "name": "Vaal Orb unique flips",
+   "pick": false,
+   "base": "Cheap uniques whose corrupted implicits make them much better (popular league-start uniques)",
+   "cost": "1 Vaal Orb per unique plus the unique",
+   "sale": "Big hits sell for 5 to 50 times the base",
+   "risk": "High",
+   "route": "One Vaal Orb each",
+   "steps": [
+    "Buy a stack of one cheap unique",
+    "Vaal Orb each one",
+    "Sell the good implicits and the extra-socket or extra-link hits, vendor or list the rest cheap"
+   ],
+   "targets": "Strong corrupted implicits or 6 links on meta uniques",
+   "buyers": "Players who want the corrupted version without the gamble",
+   "estimate": {
+    "per": "per attempt, unique not included",
+    "qty": {
+     "vaal": 1
+    }
+   },
+   "materials": [
+    [
+     "Currency",
+     "vaal"
+    ]
+   ],
+   "alts": [
+    {
+     "name": "Pick by poe.ninja",
+     "why": "Only gamble on uniques where the corrupted version is listed for far more than the plain one.",
+     "steps": [
+      "Compare corrupted and plain prices on poe.ninja",
+      "Choose uniques where 1 in 4 hits pays for the stack",
+      "Do batches of 10 to 20 so luck evens out"
+     ],
+     "estimate": {
+      "per": "per attempt",
+      "qty": {
+       "vaal": 1
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "vaal"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "tiered-drops",
+   "tier": 1,
+   "phase": "Day 1",
+   "name": "Sort tiered rare drops",
+   "pick": false,
+   "base": "Unidentified rares that show a high tier on the ground in 3.30",
+   "cost": "Free, just loot filter time",
+   "sale": "10c to several div per good drop",
+   "risk": "Low",
+   "route": "Filter and ID",
+   "steps": [
+    "Set your loot filter to show high-tier unidentified rares of popular base types",
+    "Identify them with Scrolls of Wisdom in town",
+    "Price-check anything with 3+ good mods and sell it, or use it as a crafting base"
+   ],
+   "targets": "Drops crafters and players want as they are",
+   "buyers": "Everyone",
+   "estimate": null,
+   "materials": [],
+   "alts": [
+    {
+     "name": "Use them as bases",
+     "why": "A good drop with an open affix is a cheap start for any craft on this page.",
+     "steps": [
+      "Keep tiered drops with 2 or 3 great mods and open slots",
+      "Finish them with an exalt or a bench craft"
+     ],
+     "estimate": {
+      "per": "per item",
+      "qty": {
+       "exalted": 1
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "exalted"
+      ]
+     ]
+    }
+   ],
+   "note": "This isn't crafting, but in 3.30 rarity now affects what drops, so good rares are worth picking up again."
   },
   {
    "id": "rog",
@@ -472,7 +898,30 @@
      "eldritch-orb-of-annulment": 0.25
     }
    },
-   "tier": 2
+   "tier": 2,
+   "route": "Rog bases",
+   "alts": [
+    {
+     "name": "Tujen and Gwennen",
+     "why": "Tujen sells currency and Gwennen now offers a crafting service in 3.30, so spread your logbook loot across them.",
+     "steps": [
+      "Spend some artifacts with Tujen on currency you craft with",
+      "Try Gwennen's new crafting service on day 1 to see if it pays",
+      "Keep Rog for ilvl 86 bases"
+     ],
+     "estimate": null,
+     "materials": [
+      [
+       "Artifact",
+       "exotic-coinage"
+      ],
+      [
+       "Artifact",
+       "scrap-metal"
+      ]
+     ]
+    }
+   ]
   },
   {
    "id": "clusters",
@@ -855,6 +1304,793 @@
      ]
     }
    ]
+  },
+  {
+   "id": "six-links",
+   "tier": 2,
+   "phase": "Day 2",
+   "name": "6-link chests",
+   "pick": false,
+   "base": "Good rare or unique body armours with 6 sockets but no links",
+   "cost": "1500 fusings for a bench 6-link",
+   "sale": "Usually 1 to 5 div over the unlinked item",
+   "risk": "Low",
+   "route": "Bench 6-link",
+   "steps": [
+    "Buy chests with 6 sockets but few links",
+    "Use the bench 6-link craft (1500 Orbs of Fusing)",
+    "Relist at the 6-link price"
+   ],
+   "targets": "Meta uniques and strong rares",
+   "buyers": "Players who want to skip the link gamble",
+   "estimate": {
+    "per": "per chest, chest not included",
+    "qty": {
+     "fusing": 1500
+    }
+   },
+   "materials": [
+    [
+     "Currency",
+     "fusing"
+    ]
+   ],
+   "alts": [
+    {
+     "name": "Spam fusings",
+     "why": "Cheaper on average than the bench, but you might go over 1500.",
+     "steps": [
+      "Orbs of Fusing one at a time",
+      "Stop once it links, then sell"
+     ],
+     "estimate": {
+      "per": "per ~1200 fusings on average",
+      "qty": {
+       "fusing": 1200
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "fusing"
+      ]
+     ]
+    },
+    {
+     "name": "Tainted Fusing on corrupted chests",
+     "why": "Corrupted chests can't use the bench, but Tainted Orbs of Fusing still work.",
+     "steps": [
+      "Buy corrupted chests with good implicits and 6 sockets",
+      "Tainted Orbs of Fusing until 6 links, though they can also remove a link",
+      "Sell the 6-link corrupted version"
+     ],
+     "estimate": {
+      "per": "per ~5 attempts",
+      "qty": {
+       "Currency|tainted-orb-of-fusing": 5
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "tainted-orb-of-fusing"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "catalyst-jewellery",
+   "tier": 2,
+   "phase": "Week 1",
+   "name": "Catalyst quality flips",
+   "pick": false,
+   "base": "Good rings, amulets and belts with no quality",
+   "cost": "5 to 20 div bankroll",
+   "sale": "Usually 10 to 30% more than the item paid",
+   "risk": "Low",
+   "route": "Matching Catalyst",
+   "steps": [
+    "Buy jewellery with strong mods and 0% quality",
+    "Use the Catalyst that matches its best mods up to 20% quality",
+    "Relist, since 20% quality boosts those mods by about a fifth"
+   ],
+   "targets": "Life, resistance or damage jewellery that the buyer will use straight away",
+   "buyers": "Min-maxers late in week 1",
+   "estimate": {
+    "per": "per item, to 20% quality",
+    "qty": {
+     "prismatic-catalyst": 20
+    }
+   },
+   "materials": [
+    [
+     "Currency",
+     "prismatic-catalyst"
+    ],
+    [
+     "Currency",
+     "fertile-catalyst"
+    ],
+    [
+     "Currency",
+     "imbued-catalyst"
+    ]
+   ],
+   "alts": [
+    {
+     "name": "Fertile for life",
+     "why": "Use on jewellery where life is the best mod.",
+     "steps": [
+      "Fertile Catalysts to 20%",
+      "Relist"
+     ],
+     "estimate": {
+      "per": "per item",
+      "qty": {
+       "fertile-catalyst": 20
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "fertile-catalyst"
+      ]
+     ]
+    },
+    {
+     "name": "Imbued for casters",
+     "why": "Use on caster amulets and rings with spell mods.",
+     "steps": [
+      "Imbued Catalysts to 20%",
+      "Relist"
+     ],
+     "estimate": {
+      "per": "per item",
+      "qty": {
+       "imbued-catalyst": 20
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "imbued-catalyst"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "abyss-jewels",
+   "tier": 2,
+   "phase": "Week 1",
+   "name": "Abyss jewels",
+   "pick": false,
+   "base": "ilvl 82+ Murderous, Searching, Hypnotic or Ghastly Eye Jewels",
+   "cost": "2 to 10 div bankroll",
+   "sale": "10c to 20+ div for 4 good mods",
+   "risk": "Medium",
+   "route": "Alt and regal",
+   "steps": [
+    "Orbs of Alteration until flat life plus a good damage mod",
+    "Regal for a third mod",
+    "Exalt only on jewels with three good mods"
+   ],
+   "targets": "Flat life plus 2 or 3 matching damage or minion mods",
+   "buyers": "Abyss socket users, minion builds and stackers",
+   "estimate": {
+    "per": "per jewel",
+    "qty": {
+     "alt": 30,
+     "aug": 12,
+     "regal": 1
+    }
+   },
+   "materials": [
+    [
+     "Currency",
+     "alt"
+    ],
+    [
+     "Currency",
+     "regal"
+    ],
+    [
+     "Currency",
+     "exalted"
+    ]
+   ],
+   "alts": [
+    {
+     "name": "Chaos reforge",
+     "why": "Better odds of a 4-mod jackpot, which is where the real money is.",
+     "steps": [
+      "Chaos Orbs until life plus two good mods",
+      "Exalt the open slot"
+     ],
+     "estimate": {
+      "per": "per ~30 rerolls",
+      "qty": {
+       "chaos": 30
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "chaos"
+      ]
+     ]
+    },
+    {
+     "name": "Buy magic 2-mod jewels",
+     "why": "Skip the alt grind on days 3+.",
+     "steps": [
+      "Buy magic jewels with life plus a good mod",
+      "Regal and exalt"
+     ],
+     "estimate": {
+      "per": "per jewel, jewel not included",
+      "qty": {
+       "regal": 1,
+       "exalted": 1
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "regal"
+      ],
+      [
+       "Currency",
+       "exalted"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "life-armour",
+   "tier": 2,
+   "phase": "Week 1",
+   "name": "Pristine Fossil life armour",
+   "pick": false,
+   "base": "ilvl 84+ armour or hybrid body armours and helmets",
+   "cost": "5 to 15 div bankroll",
+   "sale": "1 to 15 div",
+   "risk": "Medium",
+   "route": "Pristine Fossil",
+   "steps": [
+    "Pristine Fossil in a Primitive Chaotic Resonator for more life mods",
+    "Keep high life plus two resistances",
+    "Bench craft the last resistance"
+   ],
+   "targets": "T1 or T2 life plus resistances, then an Eldritch implicit",
+   "buyers": "Life-based meta builds",
+   "estimate": {
+    "per": "per 5 rolls",
+    "qty": {
+     "Fossil|pristine-fossil": 5,
+     "Resonator|primitive-chaotic-resonator": 5
+    }
+   },
+   "materials": [
+    [
+     "Fossil",
+     "pristine-fossil"
+    ],
+    [
+     "Resonator",
+     "primitive-chaotic-resonator"
+    ]
+   ],
+   "alts": [
+    {
+     "name": "Essence of Greed",
+     "why": "Guaranteed life every time. Cheaper per roll than fossils.",
+     "steps": [
+      "Essence of Greed until two resistances land alongside",
+      "Bench craft, then Eldritch implicits"
+     ],
+     "estimate": {
+      "per": "per 5 rolls",
+      "qty": {
+       "Essence|deafening-essence-of-greed": 5
+      }
+     },
+     "materials": [
+      [
+       "Essence",
+       "deafening-essence-of-greed"
+      ]
+     ]
+    },
+    {
+     "name": "Pristine plus element fossil",
+     "why": "Pair Pristine with Frigid, Scorched or Metallic to steer which resistance you get.",
+     "steps": [
+      "Pristine and Frigid Fossils in a Potent Chaotic Resonator",
+      "Keep life plus the matching resistance"
+     ],
+     "estimate": {
+      "per": "per 5 rolls",
+      "qty": {
+       "Fossil|pristine-fossil": 5,
+       "Fossil|frigid-fossil": 5,
+       "Resonator|potent-chaotic-resonator": 5
+      }
+     },
+     "materials": [
+      [
+       "Fossil",
+       "pristine-fossil"
+      ],
+      [
+       "Fossil",
+       "frigid-fossil"
+      ],
+      [
+       "Resonator",
+       "potent-chaotic-resonator"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "implicit-flips",
+   "tier": 2,
+   "phase": "Week 1",
+   "name": "Eldritch implicit flips",
+   "pick": false,
+   "base": "Good rare gloves, boots and helmets listed with no implicits",
+   "cost": "5 to 20 div bankroll",
+   "sale": "1 to 10 div more than you paid",
+   "risk": "Medium",
+   "route": "Greater Embers and Ichors",
+   "steps": [
+    "Buy strong rares that have no Eldritch implicits",
+    "Greater Eldritch Ember and Ichor until both sides are useful",
+    "Relist with the implicits, priced like similar items"
+   ],
+   "targets": "Implicits that match the item's build, for example life or damage",
+   "buyers": "Players upgrading their gear in week 1 and 2",
+   "estimate": {
+    "per": "per Ember + Ichor roll",
+    "qty": {
+     "greater-eldritch-ember": 1,
+     "greater-eldritch-ichor": 1
+    }
+   },
+   "materials": [
+    [
+     "Currency",
+     "greater-eldritch-ember"
+    ],
+    [
+     "Currency",
+     "greater-eldritch-ichor"
+    ]
+   ],
+   "alts": [
+    {
+     "name": "Lesser for budget items",
+     "why": "Cheap items only need a cheap implicit to sell faster.",
+     "steps": [
+      "Lesser Eldritch Ember and Ichor",
+      "Stop on anything usable"
+     ],
+     "estimate": {
+      "per": "per roll",
+      "qty": {
+       "lesser-eldritch-ember": 1,
+       "lesser-eldritch-ichor": 1
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "lesser-eldritch-ember"
+      ],
+      [
+       "Currency",
+       "lesser-eldritch-ichor"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "corrupted-jewels",
+   "tier": 2,
+   "phase": "Week 1",
+   "name": "Corrupted implicit jewels",
+   "pick": false,
+   "base": "Finished rare jewels with 3 or 4 good mods",
+   "cost": "1 Vaal Orb per jewel",
+   "sale": "A good implicit can double the price",
+   "risk": "Medium",
+   "route": "Vaal Orb",
+   "steps": [
+    "Take finished jewels you were going to sell anyway",
+    "Vaal Orb each one",
+    "Price the good implicits up (for example immunity to Corrupted Blood or Maim), sell the rest as normal"
+   ],
+   "targets": "Corrupted implicits that remove a passive point",
+   "buyers": "Min-maxers",
+   "estimate": {
+    "per": "per jewel",
+    "qty": {
+     "vaal": 1
+    }
+   },
+   "materials": [
+    [
+     "Currency",
+     "vaal"
+    ]
+   ],
+   "alts": [
+    {
+     "name": "Only corrupt mid jewels",
+     "why": "Don't Vaal your best jewels. A brick costs more than the implicit adds.",
+     "steps": [
+      "Corrupt only jewels worth under a few div",
+      "Sell your best jewels clean"
+     ],
+     "estimate": {
+      "per": "per jewel",
+      "qty": {
+       "vaal": 1
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "vaal"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "minion-wands",
+   "tier": 2,
+   "phase": "Week 1",
+   "name": "Minion wands",
+   "pick": false,
+   "base": "ilvl 84+ Convoking Wand",
+   "cost": "3 to 10 div bankroll",
+   "sale": "1 to 20 div",
+   "risk": "Medium",
+   "route": "Alt and regal",
+   "steps": [
+    "Orbs of Alteration until +1 to minion gems plus a minion damage mod",
+    "Regal for a third mod",
+    "Bench craft or exalt the rest"
+   ],
+   "targets": "+minion gem levels, minion damage and attack/cast speed",
+   "buyers": "Minion builds, usually some of the most played",
+   "estimate": {
+    "per": "per wand",
+    "qty": {
+     "alt": 60,
+     "aug": 30,
+     "regal": 1
+    }
+   },
+   "materials": [
+    [
+     "Currency",
+     "alt"
+    ],
+    [
+     "Currency",
+     "regal"
+    ],
+    [
+     "Currency",
+     "exalted"
+    ]
+   ],
+   "alts": [
+    {
+     "name": "Buy magic +1 wands",
+     "why": "Same trick as caster wands: pay for a sure +1 base.",
+     "steps": [
+      "Buy magic Convoking Wands with +1 and an open slot",
+      "Regal and bench craft"
+     ],
+     "estimate": {
+      "per": "per wand, wand not included",
+      "qty": {
+       "regal": 1,
+       "aug": 1
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "regal"
+      ]
+     ]
+    },
+    {
+     "name": "Chaos reforge",
+     "why": "Better for chasing +2 with high minion damage.",
+     "steps": [
+      "Chaos Orbs until +gem level plus minion damage",
+      "Bench craft the rest"
+     ],
+     "estimate": {
+      "per": "per ~40 rerolls",
+      "qty": {
+       "chaos": 40
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "chaos"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "suppression-gear",
+   "tier": 2,
+   "phase": "Week 1",
+   "name": "Spell suppression boots and gloves",
+   "pick": false,
+   "base": "ilvl 84+ evasion or evasion hybrid boots and gloves",
+   "cost": "3 to 10 div bankroll",
+   "sale": "1 to 10 div",
+   "risk": "Medium",
+   "route": "Alt and regal",
+   "steps": [
+    "Orbs of Alteration until spell suppression plus life",
+    "Regal for a third mod",
+    "Bench craft a resistance or movement speed"
+   ],
+   "targets": "Spell suppression, life, resistances and movement speed on boots",
+   "buyers": "Attack builds that cap suppression",
+   "estimate": {
+    "per": "per item",
+    "qty": {
+     "alt": 40,
+     "aug": 15,
+     "regal": 1
+    }
+   },
+   "materials": [
+    [
+     "Currency",
+     "alt"
+    ],
+    [
+     "Currency",
+     "regal"
+    ]
+   ],
+   "alts": [
+    {
+     "name": "Chaos reforge",
+     "why": "Faster for full rares with two resistances.",
+     "steps": [
+      "Chaos Orbs until suppression, life and a resistance",
+      "Bench craft the last mod"
+     ],
+     "estimate": {
+      "per": "per ~30 rerolls",
+      "qty": {
+       "chaos": 30
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "chaos"
+      ]
+     ]
+    },
+    {
+     "name": "Shuddering Fossil boots",
+     "why": "More speed mods, so you hit movement speed alongside more often.",
+     "steps": [
+      "Shuddering Fossil in a Primitive Chaotic Resonator",
+      "Keep movement speed plus suppression"
+     ],
+     "estimate": {
+      "per": "per 5 rolls",
+      "qty": {
+       "Fossil|shuddering-fossil": 5,
+       "Resonator|primitive-chaotic-resonator": 5
+      }
+     },
+     "materials": [
+      [
+       "Fossil",
+       "shuddering-fossil"
+      ],
+      [
+       "Resonator",
+       "primitive-chaotic-resonator"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "quivers",
+   "tier": 2,
+   "phase": "Week 1",
+   "name": "Bow quivers",
+   "pick": false,
+   "base": "ilvl 84+ meta quiver bases",
+   "cost": "2 to 8 div bankroll",
+   "sale": "1 to 10 div",
+   "risk": "Medium",
+   "route": "Alt and regal",
+   "steps": [
+    "Orbs of Alteration until life plus a bow damage mod",
+    "Regal, then bench craft crit or attack speed",
+    "Exalt the open prefix if the base is great"
+   ],
+   "targets": "Life, crit multiplier and bow damage",
+   "buyers": "Bow builds, which are usually common",
+   "estimate": {
+    "per": "per quiver",
+    "qty": {
+     "alt": 40,
+     "aug": 15,
+     "regal": 1
+    }
+   },
+   "materials": [
+    [
+     "Currency",
+     "alt"
+    ],
+    [
+     "Currency",
+     "regal"
+    ]
+   ],
+   "alts": [
+    {
+     "name": "Essence of Zeal",
+     "why": "Guarantees attack speed, which most bow builds want here.",
+     "steps": [
+      "Essence of Zeal until life or crit multi lands alongside",
+      "Bench craft the rest"
+     ],
+     "estimate": {
+      "per": "per 5 rolls",
+      "qty": {
+       "Essence|deafening-essence-of-zeal": 5
+      }
+     },
+     "materials": [
+      [
+       "Essence",
+       "deafening-essence-of-zeal"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "crit-amulets",
+   "tier": 2,
+   "phase": "Week 1",
+   "name": "Life and crit amulets",
+   "pick": false,
+   "base": "ilvl 84+ Onyx, Agate, Turquoise or Marble Amulets",
+   "cost": "3 to 10 div bankroll",
+   "sale": "1 to 15 div",
+   "risk": "Medium",
+   "route": "Essence of Greed",
+   "steps": [
+    "Essence of Greed for guaranteed life",
+    "Keep rolls with crit multiplier or two resistances alongside",
+    "Bench craft the last mod, then add a Catalyst"
+   ],
+   "targets": "Life, crit multi, resistances and a useful implicit",
+   "buyers": "Crit builds and life builds",
+   "estimate": {
+    "per": "per 5 rolls",
+    "qty": {
+     "Essence|deafening-essence-of-greed": 5
+    }
+   },
+   "materials": [
+    [
+     "Essence",
+     "deafening-essence-of-greed"
+    ]
+   ],
+   "alts": [
+    {
+     "name": "Alt and regal",
+     "why": "Cheaper. Aim for life plus crit multi on magic, then regal.",
+     "steps": [
+      "Orbs of Alteration until life plus crit multi",
+      "Regal and bench craft"
+     ],
+     "estimate": {
+      "per": "per amulet",
+      "qty": {
+       "alt": 40,
+       "aug": 15,
+       "regal": 1
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "alt"
+      ],
+      [
+       "Currency",
+       "regal"
+      ]
+     ]
+    },
+    {
+     "name": "Chaos reforge",
+     "why": "Better for full rares with resistances.",
+     "steps": [
+      "Chaos Orbs until three good mods",
+      "Bench craft the fourth"
+     ],
+     "estimate": {
+      "per": "per ~30 rerolls",
+      "qty": {
+       "chaos": 30
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "chaos"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lab-enchants",
+   "tier": 2,
+   "phase": "Week 1",
+   "name": "Labyrinth enchant flips",
+   "pick": false,
+   "base": "Strong rare helmets and boots with no enchant",
+   "cost": "Your lab run plus the item",
+   "sale": "1 to 10 div more with a meta enchant",
+   "risk": "Medium",
+   "route": "Eternal Labyrinth",
+   "steps": [
+    "Buy good unenchanted helmets for meta skills",
+    "Run the Eternal Labyrinth and enchant them",
+    "Relist with the meta skill enchant"
+   ],
+   "targets": "Helmet enchants for the top skills on poe.ninja",
+   "buyers": "Meta build players in week 1 and 2",
+   "estimate": null,
+   "materials": [],
+   "alts": [
+    {
+     "name": "Sell lab runs",
+     "why": "Offer the enchant as a service in trade chat instead of buying items.",
+     "steps": [
+      "Advertise enchant runs for buyers' own helmets",
+      "Charge a flat fee per run"
+     ],
+     "estimate": null,
+     "materials": []
+    }
+   ],
+   "note": "Check that the Labyrinth enchants still work the same once 3.30 is live."
   },
   {
    "id": "regalia",
@@ -1278,6 +2514,209 @@
    ]
   },
   {
+   "id": "phys-weapons",
+   "tier": 3,
+   "phase": "Week 2",
+   "name": "High pDPS attack weapons",
+   "pick": false,
+   "base": "ilvl 84+ meta attack weapons (claws, daggers, one-hand swords, bows)",
+   "cost": "20 to 60 div bankroll",
+   "sale": "5 to 80 div",
+   "risk": "High",
+   "route": "Essence of Contempt",
+   "steps": [
+    "Essence of Contempt for guaranteed high flat physical damage",
+    "Keep rolls with high % physical damage alongside",
+    "Bench craft attack speed or crit, then sell or exalt"
+   ],
+   "targets": "T1 % phys, high flat phys, attack speed, crit",
+   "buyers": "Physical attack builds",
+   "estimate": {
+    "per": "per 10 rolls",
+    "qty": {
+     "Essence|deafening-essence-of-contempt": 10
+    }
+   },
+   "materials": [
+    [
+     "Essence",
+     "deafening-essence-of-contempt"
+    ]
+   ],
+   "alts": [
+    {
+     "name": "Jagged Fossil",
+     "why": "More physical mods and no chaos mods, so the hits come in pairs.",
+     "steps": [
+      "Jagged Fossil in a Primitive Chaotic Resonator",
+      "Keep double phys prefixes",
+      "Bench craft the suffix"
+     ],
+     "estimate": {
+      "per": "per 10 rolls",
+      "qty": {
+       "Fossil|jagged-fossil": 10,
+       "Resonator|primitive-chaotic-resonator": 10
+      }
+     },
+     "materials": [
+      [
+       "Fossil",
+       "jagged-fossil"
+      ],
+      [
+       "Resonator",
+       "primitive-chaotic-resonator"
+      ]
+     ]
+    },
+    {
+     "name": "Lock and slam",
+     "why": "Once you have two great prefixes, lock them and reroll the suffixes.",
+     "steps": [
+      "Use the 2 div two-prefix lock",
+      "Reroll for attack speed and crit",
+      "Exalt any open slot"
+     ],
+     "estimate": {
+      "per": "per attempt",
+      "qty": {
+       "divine": 2,
+       "chaos": 1
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "divine"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gem-weapons",
+   "tier": 3,
+   "phase": "Week 2",
+   "name": "Gem-level bows and staves",
+   "pick": false,
+   "base": "ilvl 84+ meta bows and staves",
+   "cost": "20 to 80 div bankroll",
+   "sale": "10 to 100+ div for high gem levels",
+   "risk": "High",
+   "route": "Alt and regal",
+   "steps": [
+    "Orbs of Alteration until a +gem level mod for the right skill type",
+    "Regal, then lock the gem mod with the 1 div single lock",
+    "Reroll the rest for damage or a second +gem mod"
+   ],
+   "targets": "+levels to socketed or skill-type gems plus damage",
+   "buyers": "Bow and spell builds that scale gem levels",
+   "estimate": {
+    "per": "per finish",
+    "qty": {
+     "alt": 80,
+     "aug": 30,
+     "regal": 1,
+     "divine": 2
+    }
+   },
+   "materials": [
+    [
+     "Currency",
+     "alt"
+    ],
+    [
+     "Currency",
+     "regal"
+    ],
+    [
+     "Currency",
+     "divine"
+    ]
+   ],
+   "alts": [
+    {
+     "name": "Faceted Fossil",
+     "why": "More gem-level mods, which is exactly what these items want.",
+     "steps": [
+      "Faceted Fossil in a Primitive Chaotic Resonator",
+      "Keep two gem-level mods"
+     ],
+     "estimate": {
+      "per": "per 10 rolls",
+      "qty": {
+       "Fossil|faceted-fossil": 10,
+       "Resonator|primitive-chaotic-resonator": 10
+      }
+     },
+     "materials": [
+      [
+       "Fossil",
+       "faceted-fossil"
+      ],
+      [
+       "Resonator",
+       "primitive-chaotic-resonator"
+      ]
+     ]
+    },
+    {
+     "name": "Recombine",
+     "why": "Merge two items that each have one gem-level mod.",
+     "steps": [
+      "Make two bases with one gem-level mod each, same affix pattern",
+      "Recombine in predictable mode"
+     ],
+     "estimate": null,
+     "materials": []
+    }
+   ]
+  },
+  {
+   "id": "veiled-crafts",
+   "tier": 3,
+   "phase": "Week 2",
+   "name": "Veiled mod crafts",
+   "pick": false,
+   "base": "Rares with two great mods and space for a Betrayal veiled mod",
+   "cost": "20 to 60 div bankroll",
+   "sale": "5 to 50 div",
+   "risk": "High",
+   "route": "Veiled Chaos Orb",
+   "steps": [
+    "Veiled Chaos Orb rerolls the item and adds one veiled mod",
+    "Keep rolls with your target mods plus the veil",
+    "Unveil at the crafting bench and pick the best option"
+   ],
+   "targets": "Veiled hybrid mods buyers can't get any other way",
+   "buyers": "Endgame players with gaps a normal mod can't fill",
+   "estimate": {
+    "per": "per 5 rolls",
+    "qty": {
+     "veiled-chaos-orb": 5
+    }
+   },
+   "materials": [
+    [
+     "Currency",
+     "veiled-chaos-orb"
+    ]
+   ],
+   "alts": [
+    {
+     "name": "Run Betrayal for the veils",
+     "why": "Veiled mods only come from Betrayal in 3.30, so the safehouse items are your supply.",
+     "steps": [
+      "Run Betrayal and pick up veiled items",
+      "Unveil and keep the good ones as bases"
+     ],
+     "estimate": null,
+     "materials": []
+    }
+   ]
+  },
+  {
    "id": "influence",
    "tier": 4,
    "phase": "Week 2 to 4",
@@ -1319,6 +2758,42 @@
      "Currency",
      "redeemers-exalted-orb"
     ]
+   ],
+   "route": "Awakener's Orb",
+   "alts": [
+    {
+     "name": "Influenced Exalt slams",
+     "why": "Cheaper. Add one influence mod at a time instead of merging two items.",
+     "steps": [
+      "Start from a rare with an open slot",
+      "Use the influenced Exalted Orb for the mod you want",
+      "Lock and repeat for the next mod"
+     ],
+     "estimate": {
+      "per": "per slam",
+      "qty": {
+       "hunters-exalted-orb": 1
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "hunters-exalted-orb"
+      ],
+      [
+       "Currency",
+       "crusaders-exalted-orb"
+      ],
+      [
+       "Currency",
+       "warlords-exalted-orb"
+      ],
+      [
+       "Currency",
+       "redeemers-exalted-orb"
+      ]
+     ]
+    }
    ]
   },
   {
@@ -1621,6 +3096,64 @@
    ]
   },
   {
+   "id": "influence-boots",
+   "tier": 4,
+   "phase": "Week 2 to 4",
+   "name": "Influenced meta boots",
+   "pick": false,
+   "base": "ilvl 84+ boots with Hunter or Redeemer influence",
+   "cost": "100 to 300 div bankroll",
+   "sale": "30 to 200+ div",
+   "risk": "High",
+   "route": "Influenced Exalted Orb",
+   "steps": [
+    "Make a rare boot with movement speed, life and resistances",
+    "Add an influence mod buyers want, for example Tailwind or Elusive, with the matching influenced Exalted Orb",
+    "Finish with a bench craft and an Eldritch implicit"
+   ],
+   "targets": "Movement speed, life, resistances plus a premium influence mod",
+   "buyers": "Rich crit and attack players",
+   "estimate": {
+    "per": "per slam",
+    "qty": {
+     "hunters-exalted-orb": 1
+    }
+   },
+   "materials": [
+    [
+     "Currency",
+     "hunters-exalted-orb"
+    ],
+    [
+     "Currency",
+     "redeemers-exalted-orb"
+    ]
+   ],
+   "alts": [
+    {
+     "name": "Buy a one-influence base",
+     "why": "Start from boots that already have the influence mod and craft around it.",
+     "steps": [
+      "Buy boots with the influence mod and open slots",
+      "Lock it with the 1 div single lock and reroll the rest"
+     ],
+     "estimate": {
+      "per": "per attempt",
+      "qty": {
+       "divine": 1,
+       "chaos": 1
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "divine"
+      ]
+     ]
+    }
+   ]
+  },
+  {
    "id": "mirror",
    "tier": 5,
    "phase": "Week 3+",
@@ -1674,6 +3207,63 @@
       [
        "Currency",
        "divine"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mirror-jewels",
+   "tier": 5,
+   "phase": "Week 3+",
+   "name": "Mirror-tier jewels",
+   "pick": false,
+   "base": "Abyss, cluster or regular jewels with 3 near-perfect mods",
+   "cost": "200 to 500+ div",
+   "sale": "Mirrors, or a fee for each copy",
+   "risk": "Very high",
+   "route": "Recombine perfect halves",
+   "steps": [
+    "Make two jewels with two perfect mods each",
+    "Recombine for 4 perfect mods",
+    "Sell as a mirror service"
+   ],
+   "targets": "Four perfect mods for a meta build",
+   "buyers": "The richest players in the league",
+   "estimate": null,
+   "materials": [
+    [
+     "Currency",
+     "divine"
+    ],
+    [
+     "Currency",
+     "exalted"
+    ]
+   ],
+   "alts": [
+    {
+     "name": "Exalt and lock",
+     "why": "For jewels that already have 3 perfect mods.",
+     "steps": [
+      "Lock both sides you want to keep",
+      "Exalt for the last perfect mod"
+     ],
+     "estimate": {
+      "per": "per attempt",
+      "qty": {
+       "divine": 2,
+       "exalted": 1
+      }
+     },
+     "materials": [
+      [
+       "Currency",
+       "divine"
+      ],
+      [
+       "Currency",
+       "exalted"
       ]
      ]
     }
