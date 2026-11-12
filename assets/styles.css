@@ -321,3 +321,12 @@ svg.zoomed .at-labels text.minor { display: inline; }
 .fx-item img { width: 24px; height: 24px; object-fit: contain; }
 .fx-setup { margin-top: 14px; }
 .fx-name .tag { align-self: flex-start; margin: 2px 0; }
+
+/* ---------- goals (Builds tab) ---------- */
+.gl-cards { grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); }
+.gl-prices { background: #17130d; border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; display: flex; flex-direction: column; gap: 4px; }
+.gl-steps { list-style: none; margin: 2px 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.gl-steps label { display: flex; gap: 9px; align-items: flex-start; padding: 5px 6px; border-radius: 6px; font-size: 13px; cursor: pointer; transition: background .15s; }
+.gl-steps label:hover { background: #1d1811; }
+.gl-steps input { accent-color: var(--gold); margin-top: 2px; flex: none; }
+.gl-steps label.done span { color: var(--muted); text-decoration: line-through; text-decoration-color: #5a4626; }

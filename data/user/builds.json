@@ -259,6 +259,100 @@
       "tags": "highest ceiling, Mageblood required, not a starter",
       "notes": "Highest number on any 3.29 PoB (about 384M DPS) but locked behind Mageblood, Bottled Faith, The Gull, Blunderbore and Nimis. A flex build once you already have mirrors, not a way to make them.",
       "patch": "Check 3.30 notes for any change to shrine buffs before buying in. Gear-gated, so it only makes sense after the first few mirrors."
+    },
+    {
+      "uid": "b-isowarden",
+      "game": "poe1",
+      "name": "Ice Shot of Penetration Warden",
+      "skill": "Ice Shot of Penetration",
+      "class": "Warden",
+      "status": "Candidate",
+      "start": 4,
+      "mapping": 4,
+      "bossing": 4,
+      "farmFit": 4,
+      "scaling": 5,
+      "source": "SnooBAE85",
+      "guide": "https://mobalytics.gg/poe/builds/cold-convert-ice-shot-of-penetration-warden",
+      "tags": "bow, cold convert, Ephemeral Bolts tech, Warden buffed",
+      "notes": "Starter PoB (pobb.in/UZcCoQJdB7YD): about 33.7M DPS on roughly 7 div, but only 3.5k life, 20k EHP and a 7.2k max physical hit (100% suppression, 73% evade). Levels with Galvanic Arrow, then Ice Shot; early maps on Elemental Hit, then swap to Ice Shot of Penetration. Needs Ahuana's Bite, Fury Valve, Heatshiver and a 500+ pdps bow. With Reclaimed Malevolence giving Ephemeral Bolts, every split shard hits the same target at close range, which tier lists put at 20 to 60 times the single target damage. Bossing would jump to 5 and pass Cold DoT, but you have to stand within about 5 m of the boss on a squishy character.",
+      "patch": "Warden was buffed in 3.30 and bows went to S tier because of the Ephemeral Bolts interaction. The jewel tech can still be hotfixed (open bug report about Return ignoring the 5 m cap)."
+    }
+  ],
+  "targets": [
+    {
+      "uid": "g-ephemeral",
+      "title": "Get Ephemeral Bolts for Ice Shot",
+      "item": "Reclaimed Malevolence",
+      "type": "UniqueJewel",
+      "budget": 100,
+      "parts": [
+        "Baleful Dominion",
+        "Destructive Aspiration",
+        "Festering Vengeance",
+        "Extinguishing Grasp"
+      ],
+      "why": "Reclaimed Malevolence swaps one Ascendancy notable for an Abyss notable picked by the jewel's seed and your class. The Ephemeral Bolts roll turns Ice Shot of Penetration into a shotgun: every split shard hits the boss. It does nothing for Cold DoT, so this goal only matters if you play the Ice Shot Warden.",
+      "steps": [
+        {
+          "t": "Level the Ice Shot Warden into maps on SnooBAE85's PoB",
+          "done": false
+        },
+        {
+          "t": "Day 1: confirm Abyssal Depths still open from Abyss pits in level 78+ maps",
+          "done": false
+        },
+        {
+          "t": "After the first hotfixes: confirm Ephemeral Bolts plus Ice Shot still works",
+          "done": false
+        },
+        {
+          "t": "Save up to the budget and watch the live price above (track it in Portfolio)",
+          "done": false
+        },
+        {
+          "t": "Pick a route: buy the jewel, or craft it if the four Historic jewels cost less",
+          "done": false
+        },
+        {
+          "t": "Craft route: kill Ulaman (Eye of Malevolence) and Amanamu (Eye of Authority) in Abyssal Depths",
+          "done": false
+        },
+        {
+          "t": "Craft route: make Zorath's Eye and open the Lightless Hollow",
+          "done": false
+        },
+        {
+          "t": "Craft route: combine Baleful Dominion, Destructive Aspiration, Festering Vengeance and Extinguishing Grasp",
+          "done": false
+        },
+        {
+          "t": "Before paying: put the seed into PoB as a Warden and check it gives Ephemeral Bolts",
+          "done": false
+        },
+        {
+          "t": "Check which Ascendancy notable it replaces and that you can live without it",
+          "done": false
+        },
+        {
+          "t": "Socket it, fix the tree around the conquered path and test on a pinnacle boss",
+          "done": false
+        }
+      ],
+      "links": [
+        {
+          "name": "Ephemeral Bolts (wiki)",
+          "url": "https://www.poewiki.net/wiki/Ephemeral_Bolts"
+        },
+        {
+          "name": "Reclaimed Malevolence (wiki)",
+          "url": "https://www.poewiki.net/wiki/Reclaimed_Malevolence"
+        },
+        {
+          "name": "Ice Shot Warden PoB",
+          "url": "https://pobb.in/UZcCoQJdB7YD"
+        }
+      ]
     }
   ]
 }

@@ -1,4 +1,4 @@
-import { $, $$, esc, fmt, uid, state, ninja, loadData, saveData, toast } from './app.js';
+import { $, $$, esc, fmt, uid, state, ninja, loadData, saveData, toast, loadCategory } from './app.js';
 import { formModal } from './portfolio.js';
 
 const CRITERIA = [
@@ -52,6 +52,12 @@ export async function render(view, { token }) {
             <td class="${s.trend > 0 ? 'pos' : s.trend < 0 ? 'neg' : 'muted'}">${s.trend > 0 ? '▲' : s.trend < 0 ? '▼' : '•'}</td></tr>`).join('')}</tbody></table>`
           : '<div class="empty-state">No build data yet.</div>'}
       </div>
+    </div>
+
+    <div class="panel">
+      <div class="row spread"><div><h2>Goals</h2><div class="muted small">Big targets for the league. Tick steps off as you go; prices are live from poe.ninja.</div></div>
+        <button class="admin-only" id="addG">+ Add goal</button></div>
+      <div class="cards gl-cards" id="goals" style="margin-top:12px"></div>
     </div>
 
     <div class="panel">
@@ -124,6 +130,92 @@ export async function render(view, { token }) {
       });
     }
   };
+  // ---------- goals ----------
+  const targets = file.targets || [];
+  const saveTargets = (list, msg) => save({ ...file, weights, targets: list }, msg).then(() => (file.targets = list));
+  const priceCache = {};
+  const lookup = async (type, name) => {
+    if (!state.league) return null;
+    priceCache[type] ??= loadCategory(state.game, state.league, type).then((r) => r.rows).catch(() => []);
+    const rows = await priceCache[type];
+    return rows.filter((r) => r.name === name).sort((a, b) => (a.div ?? 1e9) - (b.div ?? 1e9))[0] || null;
+  };
+  const divTxt = (r) => (r?.div != null ? `${fmt(r.div)} div` : 'no price yet');
+  const drawGoals = () => {
+    $('#goals', view).innerHTML = targets.length
+      ? targets.map((g) => {
+          const steps = g.steps || [];
+          const done = steps.filter((s) => s.done).length;
+          const pctDone = steps.length ? (done / steps.length) * 100 : 0;
+          return `<div class="card gl ${done && done === steps.length ? 'chosen' : ''}" data-gid="${g.uid}">
+            <div class="row spread"><div><h3>${esc(g.title)}</h3>${g.item ? `<div class="muted small">${esc(g.item)}${g.budget ? ` · budget ${fmt(+g.budget)} div` : ''}</div>` : ''}</div>
+              <div class="fit" title="Steps done">${done}/${steps.length}</div></div>
+            <div class="bar"><div style="width:${pctDone}%"></div></div>
+            ${g.item ? `<div class="gl-prices small" data-gp="${g.uid}"><span class="muted">Checking live prices...</span></div>` : ''}
+            ${g.why ? `<div class="small">${esc(g.why)}</div>` : ''}
+            <ul class="gl-steps">${steps.map((s, i) => `<li><label class="${s.done ? 'done' : ''}"><input type="checkbox" data-step="${i}" ${s.done ? 'checked' : ''} ${state.admin ? '' : 'disabled'}><span>${esc(s.t)}</span></label></li>`).join('')}</ul>
+            <div class="row">${(g.links || []).map((l) => `<a class="small" href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.name)} ↗</a>`).join('')}
+              <span style="flex:1"></span><button class="admin-only small ghost" data-ga="edit">Edit</button><button class="admin-only small danger" data-ga="del">✕</button></div>
+          </div>`;
+        }).join('')
+      : '<div class="empty-state">No goals yet.</div>';
+    for (const g of targets.filter((x) => x.item)) {
+      Promise.all([lookup(g.type || 'UniqueJewel', g.item), ...(g.parts || []).map((n) => lookup(g.type || 'UniqueJewel', n))]).then(([main, ...parts]) => {
+        const el = $(`[data-gp="${g.uid}"]`, view);
+        if (!el) return;
+        const partSum = parts.every((p) => p?.div != null) ? parts.reduce((a, p) => a + p.div, 0) : null;
+        const left = main?.div != null && g.budget ? +g.budget - main.div : null;
+        el.innerHTML = `<div class="row spread"><span>Buy: <b>${divTxt(main)}</b>${main?.volume ? ` <span class="muted">(${fmt(main.volume, 0)} listed)</span>` : ''}</span>
+            ${left != null ? `<span class="tag ${left >= 0 ? 'good' : 'bad'}">${left >= 0 ? 'under budget' : `${fmt(-left)} div over budget`}</span>` : ''}</div>
+          ${parts.length ? `<div class="row spread"><span>Craft parts: <b>${partSum != null ? `${fmt(partSum)} div` : 'not all priced yet'}</b></span>
+            ${partSum != null && main?.div != null ? `<span class="tag ${partSum < main.div ? 'good' : ''}">${partSum < main.div ? 'crafting is cheaper' : 'buying is cheaper'}</span>` : ''}</div>
+          <div class="muted">${(g.parts || []).map((n, i) => `${esc(n)} ${divTxt(parts[i])}`).join(' · ')}</div>` : ''}
+          <div class="muted">Prices from ${esc(state.league || '')}. Roll and seed matter: the cheapest listing may not give the notable you want.</div>`;
+      });
+    }
+  };
+  drawGoals();
+  const gFields = [
+    { k: 'title', label: 'Goal' }, { k: 'item', label: 'Item to price (exact name, optional)' },
+    { k: 'budget', label: 'Budget (div)', type: 'number' }, { k: 'why', label: 'Why', type: 'textarea' },
+    { k: 'stepsText', label: 'Steps (one per line)', type: 'textarea' },
+  ];
+  const toGoal = (v, old = {}) => {
+    const prev = Object.fromEntries((old.steps || []).map((s) => [s.t, s.done]));
+    const { stepsText, ...rest } = v;
+    return { ...old, ...rest, steps: (stepsText || '').split('\n').map((t) => t.trim()).filter(Boolean).map((t) => ({ t, done: !!prev[t] })) };
+  };
+  const addG = $('#addG', view);
+  if (addG) addG.onclick = () => formModal('Add goal', gFields, {}, async (v) => {
+    await saveTargets([...targets, toGoal(v, { uid: uid() })], `Add goal ${v.title}`);
+    render(view, { token });
+  });
+  $('#goals', view).onchange = async (e) => {
+    const i = e.target.dataset.step;
+    const id = e.target.closest('[data-gid]')?.dataset.gid;
+    if (i == null || !id) return;
+    const list = targets.map((g) => (g.uid === id ? { ...g, steps: g.steps.map((s, j) => (j === +i ? { ...s, done: e.target.checked } : s)) } : g));
+    targets.splice(0, targets.length, ...list);
+    drawGoals();
+    await saveTargets(list, `Goal progress: ${list.find((g) => g.uid === id).title}`);
+  };
+  $('#goals', view).onclick = async (e) => {
+    const a = e.target.closest('[data-ga]')?.dataset.ga;
+    const id = e.target.closest('[data-gid]')?.dataset.gid;
+    if (!a || !id) return;
+    const g = targets.find((x) => x.uid === id);
+    if (a === 'del') {
+      if (!confirm(`Remove goal "${g.title}"?`)) return;
+      await saveTargets(targets.filter((x) => x.uid !== id), `Remove goal ${g.title}`);
+      render(view, { token });
+    } else {
+      formModal(`Edit: ${g.title}`, gFields, { ...g, stepsText: (g.steps || []).map((s) => s.t).join('\n') }, async (v) => {
+        await saveTargets(targets.map((x) => (x.uid === id ? toGoal(v, g) : x)), `Edit goal ${g.title}`);
+        render(view, { token });
+      });
+    }
+  };
+
   const eg = $('#editGoal', view);
   if (eg) eg.onclick = () => formModal('Your goal', [{ k: 'goal', label: 'Goal', type: 'textarea' }], file, async (v) => {
     await save({ ...file, weights, goal: v.goal }, 'Update build goal');
