@@ -8,9 +8,13 @@
     "dev": "node scripts/dev-server.mjs",
     "playbook": "node scripts/build-playbook.mjs",
     "build:cf": "bash scripts/build-cf.sh",
-    "dev:cf": "bash scripts/build-cf.sh && npx wrangler pages dev dist"
+    "dev:cf": "bash scripts/build-cf.sh && npx wrangler pages dev dist",
+    "wealthy": "node scripts/wealthy.mjs"
   },
   "engines": {
     "node": ">=18"
+  },
+  "bin": {
+    "wealthy": "scripts/wealthy.mjs"
   }
 }
