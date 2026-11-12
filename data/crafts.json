@@ -1,7 +1,7 @@
 {
  "title": "Profit crafting",
  "subtitle": "Crafts for every budget in 3.30, with more than one way to make each",
- "updated": "2026-11-11",
+ "updated": "2026-11-12",
  "guideUrl": "https://claude.ai/artifact/EqqSimX4nBnNHeN5rd93Hm",
  "summary": "Pick the tier that matches your bankroll and move up as it grows. On day 1, craft cheap things levelers need. From day 2 or 3, switch to batch crafts like Rog items and medium cluster jewels. In week 2, put real money into fossils and Eldritch implicits. Influence and mirror-tier crafts come later, once you have hundreds of divines.",
  "phases": [
@@ -33,12 +33,12 @@
   {
    "tone": "bad",
    "title": "Bench locks cost divines",
-   "body": "Protecting one prefix or suffix costs 1 div, or 2 div for two. A full lock costs 4 div plus a Sacred Orb (weapons), 4 Blessed Orbs (armour) or 8 Exalted Orbs (jewellery)."
+   "body": "Protecting one prefix or suffix costs 1 div, or 2 div for two. The single lock protects a random mod you can't see, so it only saves the mod you want when that mod is alone on its side. A full lock costs 4 div plus a Sacred Orb (weapons), 4 Blessed Orbs (armour) or 8 Exalted Orbs (jewellery)."
   },
   {
    "tone": "bad",
    "title": "No Allflame crafting",
-   "body": "Strands and Ducats aren't going core, so the 3.29 strand crafts in many videos won't work. The routes here use methods that still exist."
+   "body": "Strand crafting isn't going core, so the 3.29 strand crafts in many videos won't work. Merrick's Ducats now drop from a new source outside Allflame encounters. The routes here use methods that still exist."
   },
   {
    "tone": "good",
@@ -2572,9 +2572,9 @@
     },
     {
      "name": "Lock and slam",
-     "why": "Once you have two great prefixes, lock them and reroll the suffixes.",
+     "why": "Once an item has exactly two great prefixes and nothing else on that side, lock them and reroll the suffixes.",
      "steps": [
-      "Use the 2 div two-prefix lock",
+      "Make sure the item has only those two prefixes, then use the 2 div two-prefix lock",
       "Reroll for attack speed and crit",
       "Exalt any open slot"
      ],
@@ -2607,7 +2607,7 @@
    "route": "Alt and regal",
    "steps": [
     "Orbs of Alteration until a +gem level mod for the right skill type",
-    "Regal, then lock the gem mod with the 1 div single lock",
+    "Regal. If the gem mod isn't alone on its side, annul until it is (risky), then use the 1 div single lock",
     "Reroll the rest for damage or a second +gem mod"
    ],
    "targets": "+levels to socketed or skill-type gems plus damage",
@@ -2822,13 +2822,13 @@
    "risk": "High",
    "route": "Alt, regal, single lock",
    "steps": [
-    "Orbs of Alteration until a +gem level mod lands (it shows doubled on this base)",
-    "Regal, then lock that mod with the new 1 div single-mod bench craft",
-    "Reroll the rest for the second +gem level mod, then finish the suffix"
+    "Orbs of Alteration until a +gem level mod lands on its own (it shows doubled on this base)",
+    "Keep it magic with only that mod on its side, then Regal. The single lock protects a random mod, so the +gem mod must be the only one on its side",
+    "Lock it with the 1 div single lock and reroll the rest for the second +gem level mod, then finish the other side"
    ],
    "targets": "Two +gem level mods for one skill type (+4 total), good suffix",
    "buyers": "Gem-level builds: minions, spells, DoT",
-   "note": "The 3.29 videos used Allflame strands, which aren't in 3.30. This route uses the new bench locks instead, at 1 div per locked mod.",
+   "note": "The 3.29 videos used Allflame strands, which aren't in 3.30. This route uses the new bench locks instead, at 1 div per lock. GGG confirmed the single lock picks a random mod you can't see, so only lock when your mod is the only one on that side.",
    "estimate": {
     "per": "per finish, base not included",
     "qty": {
@@ -2885,7 +2885,7 @@
      "why": "Fastest. You pay the seller's margin but skip the alteration grind.",
      "steps": [
       "Buy a +2 Focused Amulet with an open prefix",
-      "Lock the +2 for 1 div and reroll for the second"
+      "If the +2 is the only mod on its side, lock it for 1 div and reroll for the second. If not, annul first or pick a different listing"
      ],
      "estimate": {
       "per": "per finish, amulet not included",
@@ -3132,10 +3132,10 @@
    "alts": [
     {
      "name": "Buy a one-influence base",
-     "why": "Start from boots that already have the influence mod and craft around it.",
+     "why": "Start from boots that already have the influence mod and craft around it. The single lock only works when that mod is alone on its side.",
      "steps": [
       "Buy boots with the influence mod and open slots",
-      "Lock it with the 1 div single lock and reroll the rest"
+      "Get the influence mod alone on its side, lock it with the 1 div single lock and reroll the rest"
      ],
      "estimate": {
       "per": "per attempt",
@@ -3246,7 +3246,7 @@
      "name": "Exalt and lock",
      "why": "For jewels that already have 3 perfect mods.",
      "steps": [
-      "Lock both sides you want to keep",
+      "Use the full lock (or the single lock when only one mod sits on a side) to protect the perfect mods",
       "Exalt for the last perfect mod"
      ],
      "estimate": {
@@ -3272,8 +3272,8 @@
  ],
  "avoid": [
   [
-   "3.29 strand and Ducat methods",
-   "Allflame crafting isn't in 3.30, so skip any video step that uses strands or Ducats."
+   "3.29 strand methods",
+   "Allflame strand crafting isn't in 3.30, so skip any video step that uses strands. Ducats still exist through a new source."
   ],
   [
    "Orb of Chance unique gambling",
@@ -3285,7 +3285,7 @@
   ],
   [
    "Metacraft finishes on cheap items",
-   "Prefix or suffix locks cost 1 div each now. Only use them on items worth 10+ div."
+   "Prefix or suffix locks cost 1 div each now, and the single lock picks a random mod on that side. Only use them on items worth 10+ div, with the mod you want alone on its side."
   ],
   [
    "Mercenary gear",
@@ -3402,6 +3402,10 @@
   {
    "title": "XTheFarmerX: cheap league-start gear (PoE2)",
    "url": "https://www.poebuilds.cc/poe2/author/xthefarmerx/new"
+  },
+  {
+   "title": "Covens of Umbra FAQ: single lock is random, Recombinator, Viscera",
+   "url": "https://www.pathofexile.com/forum/view-thread/4013527"
   }
  ],
  "estimateNote": "Estimates use average currency per finished item at live prices. Your luck will vary.",
