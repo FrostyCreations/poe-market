@@ -311,7 +311,7 @@
           "done": false
         },
         {
-          "t": "Pick a route: buy the jewel, or craft it if the four Historic jewels cost less",
+          "t": "Pick a route: buy the cheapest copy (any seed works, see below) or craft it if the four Historic jewels cost less",
           "done": false
         },
         {
@@ -327,15 +327,19 @@
           "done": false
         },
         {
-          "t": "Before paying: put the seed into PoB as a Warden and check it gives Ephemeral Bolts",
+          "t": "Socket it on the Warden and open the Ascendancy panel: hover the notable that changed and read its new name",
           "done": false
         },
         {
-          "t": "Check which Ascendancy notable it replaces and that you can live without it",
+          "t": "Not Ephemeral Bolts? Take it out, use a Divine Orb on it (rerolls the seed), socket it and check again",
           "done": false
         },
         {
-          "t": "Socket it, fix the tree around the conquered path and test on a pinnacle boss",
+          "t": "Keep rolling until it says Ephemeral Bolts AND the notable it took is not Enduring Suffusion or Seasoned Hunter (the PoB uses both)",
+          "done": false
+        },
+        {
+          "t": "Allocate the new notable, fix the tree around the conquered path and test on a pinnacle boss",
           "done": false
         }
       ],
@@ -351,6 +355,10 @@
         {
           "name": "Ice Shot Warden PoB",
           "url": "https://pobb.in/UZcCoQJdB7YD"
+        },
+        {
+          "name": "How the seed picks the notable (abyss-jewels)",
+          "url": "https://github.com/Parazeya/abyss-jewels"
         }
       ]
     }

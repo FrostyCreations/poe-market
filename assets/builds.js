@@ -170,7 +170,7 @@ export async function render(view, { token }) {
           ${parts.length ? `<div class="row spread"><span>Craft parts: <b>${partSum != null ? `${fmt(partSum)} div` : 'not all priced yet'}</b></span>
             ${partSum != null && main?.div != null ? `<span class="tag ${partSum < main.div ? 'good' : ''}">${partSum < main.div ? 'crafting is cheaper' : 'buying is cheaper'}</span>` : ''}</div>
           <div class="muted">${(g.parts || []).map((n, i) => `${esc(n)} ${divTxt(parts[i])}`).join(' · ')}</div>` : ''}
-          <div class="muted">Prices from ${esc(state.league || '')}. Roll and seed matter: the cheapest listing may not give the notable you want.</div>`;
+          <div class="muted">Prices from ${esc(state.league || '')}. Any copy works for buying: a Divine Orb rerolls the seed, so check the result on your own character.</div>`;
       });
     }
   };
