@@ -5,6 +5,7 @@ let treeData = null;
 let plans = null;
 let current = 0;
 let view = null; // viewBox [x, y, w, h]
+let upTo = null; // points shown on the progression slider (null = all)
 
 const KIND_R = [26, 44, 62];
 
@@ -51,8 +52,10 @@ function fit(svg, ids) {
   setView(svg, [(x0 + x1) / 2 - W / 2, (y0 + y1) / 2 - H / 2, W, H]);
 }
 
+const shown = (plan) => (plan.order && upTo != null ? plan.order.slice(0, upTo) : plan.hashes);
+
 function paint(svg, plan) {
-  const on = new Set([...plan.hashes.map(String), String(treeData.start)]);
+  const on = new Set([...shown(plan).map(String), String(treeData.start)]);
   svg.style.setProperty('--alloc', plan.color);
   $$('.at-nodes circle', svg).forEach((c) => c.classList.toggle('on', on.has(c.dataset.id)));
   $$('.at-edges path', svg).forEach((p) => p.classList.toggle('on', on.has(p.dataset.a) && on.has(p.dataset.b)));
@@ -61,7 +64,8 @@ function paint(svg, plan) {
 function sidePanel(plan) {
   const N = treeData.nodes;
   const by = {};
-  for (const h of plan.hashes) {
+  const hashes = shown(plan);
+  for (const h of hashes) {
     const n = N[h]; if (!n) continue;
     const m = n[5] || 'Paths';
     (by[m] ||= { pts: 0, notables: [] }).pts++;
@@ -77,6 +81,13 @@ function sidePanel(plan) {
       <button class="ghost small" id="atCopy">Copy link</button>
       <span class="tag gold">${plan.hashes.length} / ${treeData.points} points</span>
     </div>
+    ${plan.author !== 'Exile Ledger draft' ? `<p class="at-credit">By <b>${esc(plan.author)}</b> · <a href="${esc(plan.video)}" target="_blank" rel="noopener">Watch the video ↗</a><br><span class="muted small">${esc(plan.note || '')}</span></p>` : ''}
+    ${plan.order ? `<div class="at-prog">
+      <div class="row spread"><span class="at-h" style="margin:0">Pick order</span><b id="atUpTo">${hashes.length} points</b></div>
+      <input type="range" id="atRange" min="10" max="${plan.order.length}" value="${hashes.length}" step="1">
+      <div class="at-steps">${[40, 80, 115, plan.order.length].map((n) => `<button class="ghost small ${hashes.length === n ? 'on' : ''}" data-upto="${n}">${n === plan.order.length ? 'All' : n}</button>`).join('')}</div>
+      <p class="muted small" style="margin:4px 0 0">You only get ${treeData.points} atlas points with a finished atlas. Drag to see what to take first while you level it up.</p>
+    </div>` : ''}
     <h4 class="at-h">Why it should work</h4>
     <ul class="plain-list at-list">${plan.why.map((w) => `<li>${esc(w)}</li>`).join('')}</ul>
     <h4 class="at-h">Where the points go</h4>
@@ -89,10 +100,10 @@ function sidePanel(plan) {
     </div>
     ${plan.choices.length ? `<h4 class="at-h">Choice notables</h4>
     <table class="at-choices"><tbody>${plan.choices.map((c) => `<tr><td>${esc(c.node)}</td><td><b>${esc(c.pick)}</b><div class="muted small">${esc(c.why)}</div></td></tr>`).join('')}</tbody></table>` : ''}
-    <h4 class="at-h">How to run it</h4>
-    <ol class="craft-steps">${plan.run.map((r) => `<li>${esc(r)}</li>`).join('')}</ol>
-    <p class="muted small"><b>Threads:</b> ${esc(plan.threads)}</p>
-    <p class="muted small"><b>Risk:</b> ${esc(plan.risk)}</p>`;
+    ${plan.run.length ? `<h4 class="at-h">How to run it</h4>
+    <ol class="craft-steps">${plan.run.map((r) => `<li>${esc(r)}</li>`).join('')}</ol>` : ''}
+    ${plan.threads ? `<p class="muted small"><b>Threads:</b> ${esc(plan.threads)}</p>` : ''}
+    ${plan.risk ? `<p class="muted small"><b>Risk:</b> ${esc(plan.risk)}</p>` : ''}`;
 }
 
 export async function render(el) {
@@ -103,16 +114,19 @@ export async function render(el) {
     <section class="craft-hero">
       <div>
         <h2>3.30 Atlas trees</h2>
-        <p class="muted">Three drafted 150-point trees for Covens of Umbra, picked from the 3.30 atlas tree data. Drafts until the league is live, so tweak them once you see what drops.</p>
+        <p class="muted">Our three drafted trees for Covens of Umbra, plus Fuzzy Duckzy's three league start trees. Ours use all 150 points, so use the pick order slider while your atlas is still filling up.</p>
       </div>
     </section>
     ${reads.length ? `<div class="brief-grid at-reads">${reads.map((r) => `<article class="brief-card tone-${r.tone}"><h4>${esc(r.title)}</h4><p>${esc(r.body)}</p></article>`).join('')}</div>` : ''}
-    <div class="at-pick" role="tablist">${plans.trees.map((p, i) => `
-      <button class="at-card ${i === current ? 'active' : ''}" data-i="${i}" style="--c:${p.color}" role="tab">
-        <span class="at-stage">${esc(p.stage)}</span>
-        <b>${esc(p.name)}</b>
-        <small>${esc(p.tagline)}</small>
-      </button>`).join('')}</div>
+    ${[['Our drafts', (p) => p.author === 'Exile Ledger draft', ''],
+       ["Fuzzy Duckzy's league start trees", (p) => p.author === 'Fuzzy Duckzy Gaming', plans.trees.find((p) => p.video)?.video]].map(([title, test, link]) => `
+      <div class="row spread at-group"><h3 class="section-title" style="margin:0">${esc(title)}</h3>${link ? `<a class="small" href="${esc(link)}" target="_blank" rel="noopener">Watch his video ↗</a>` : ''}</div>
+      <div class="at-pick" role="tablist">${plans.trees.map((p, i) => (test(p) ? `
+        <button class="at-card ${i === current ? 'active' : ''}" data-i="${i}" style="--c:${p.color}" role="tab">
+          <span class="at-stage">${esc(p.stage)}</span>
+          <b>${esc(p.name)}</b>
+          <small>${esc(p.tagline)}</small>
+        </button>` : '')).join('')}</div>`).join('')}
     <div class="at-layout">
       <div class="at-viewer panel">
         <svg id="atSvg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">${svgMarkup(treeData)}</svg>
@@ -131,6 +145,7 @@ export async function render(el) {
 
   const svg = $('#atSvg', el); const tip = $('#atTip', el); const side = $('#atSide', el);
   const pick = (i, refit = true) => {
+    if (i !== current) upTo = null;
     current = i;
     const plan = plans.trees[i];
     $$('.at-card', el).forEach((b) => b.classList.toggle('active', +b.dataset.i === i));
@@ -140,11 +155,21 @@ export async function render(el) {
   };
   requestAnimationFrame(() => pick(current));
 
-  $('.at-pick', el).onclick = (e) => { const b = e.target.closest('.at-card'); if (b) pick(+b.dataset.i); };
+  $$('.at-pick', el).forEach((g) => (g.onclick = (e) => { const b = e.target.closest('.at-card'); if (b) pick(+b.dataset.i); }));
+  const setUpTo = (n, full) => {
+    const plan = plans.trees[current];
+    upTo = Math.min(n, plan.order.length);
+    if (full) { pick(current, false); return; }
+    paint(svg, plan); const l = $('#atUpTo', el); if (l) l.textContent = `${upTo} points`;
+  };
+  side.addEventListener('input', (e) => { if (e.target.id === 'atRange') setUpTo(+e.target.value); });
+  side.addEventListener('change', (e) => { if (e.target.id === 'atRange') setUpTo(+e.target.value, true); });
   side.addEventListener('click', async (e) => {
     if (e.target.id === 'atCopy') {
       try { await navigator.clipboard.writeText(plans.trees[current].poedb); toast('poedb link copied'); } catch { toast('Copy failed, use Open in poedb'); }
     }
+    const u = e.target.closest('[data-upto]');
+    if (u) { setUpTo(+u.dataset.upto, true); return; }
     const f = e.target.closest('[data-focus]');
     if (f) {
       const n = treeData.nodes[f.dataset.focus];

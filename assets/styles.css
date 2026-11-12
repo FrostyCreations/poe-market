@@ -290,3 +290,10 @@ svg.zoomed .at-labels text.minor { display: inline; }
 .at-choices td { padding: 6px 4px; border-bottom: 1px solid rgba(255,255,255,.05); vertical-align: top; }
 .at-choices td:first-child { color: var(--muted); width: 40%; }
 @media (min-width: 1000px) { .at-reads { grid-template-columns: repeat(3, 1fr); } }
+.at-group { margin-top: 16px; }
+.at-group + .at-pick { margin-top: 8px; }
+.at-credit { margin: 10px 0 0; padding: 8px 10px; border-radius: 8px; background: rgba(255,255,255,.03); border: 1px solid var(--line); font-size: 13px; }
+.at-prog { margin-top: 12px; padding: 10px 12px; border-radius: 10px; background: linear-gradient(rgba(201,164,92,.10), rgba(201,164,92,.03)); border: 1px solid #4a3c22; }
+.at-prog input[type=range] { width: 100%; margin: 8px 0 6px; }
+.at-steps { display: flex; gap: 6px; }
+.at-steps button.on { border-color: var(--gold); color: var(--gold2); background: rgba(201,164,92,.15); }
