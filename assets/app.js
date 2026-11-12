@@ -324,6 +324,7 @@ const views = {
   portfolio: () => import('./portfolio.js'),
   crafting: () => import('./crafting.js'),
   builds: () => import('./builds.js'),
+  atlas: () => import('./atlas.js'),
 };
 let renderToken = 0;
 export async function render() {
