@@ -325,6 +325,7 @@ const views = {
   crafting: () => import('./crafting.js'),
   builds: () => import('./builds.js'),
   atlas: () => import('./atlas.js'),
+  faustus: () => import('./faustus.js'),
 };
 let renderToken = 0;
 export async function render() {

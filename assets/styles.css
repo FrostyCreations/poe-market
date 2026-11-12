@@ -297,3 +297,27 @@ svg.zoomed .at-labels text.minor { display: inline; }
 .at-prog input[type=range] { width: 100%; margin: 8px 0 6px; }
 .at-steps { display: flex; gap: 6px; }
 .at-steps button.on { border-color: var(--gold); color: var(--gold2); background: rgba(201,164,92,.15); }
+
+/* Faustus exchange watch */
+.fx-kpis { display: flex; gap: 10px; flex-wrap: wrap; }
+.fx-kpis div { padding: 8px 12px; border-radius: 10px; background: rgba(0,0,0,.25); border: 1px solid var(--line); min-width: 110px; }
+.fx-kpis span { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.fx-kpis b { font-size: 16px; color: var(--gold2); }
+.fx-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 900px) { .fx-cols { grid-template-columns: 1fr; } }
+.fx-h { margin: 0 0 8px; font-family: Cinzel, Georgia, serif; font-size: 15px; color: var(--gold2); }
+.fx-h.neg { color: var(--neg); } .fx-h.pos { color: var(--pos); }
+.fx-alert { display: grid; grid-template-columns: 32px 1fr auto auto; gap: 10px; align-items: center; padding: 8px 6px; border-top: 1px solid rgba(255,255,255,.05); border-left: 3px solid transparent; }
+.fx-alert.down { border-left-color: rgba(214,96,80,.6); } .fx-alert.up { border-left-color: rgba(111,191,115,.6); }
+.fx-alert img { width: 32px; height: 32px; object-fit: contain; }
+.fx-name { display: flex; flex-direction: column; min-width: 0; }
+.fx-name b { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.fx-num { display: flex; flex-direction: column; align-items: flex-end; font-size: 13px; gap: 2px; }
+.fx-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.fx-table th { text-align: left; font-weight: 600; color: var(--muted); font-size: 12px; padding: 8px 10px; border-bottom: 1px solid var(--line); position: sticky; top: 0; background: var(--panel); }
+.fx-table td { padding: 6px 10px; border-bottom: 1px solid rgba(255,255,255,.04); white-space: nowrap; }
+.fx-table tr:hover td { background: rgba(255,255,255,.025); }
+.fx-item { display: inline-flex; align-items: center; gap: 8px; }
+.fx-item img { width: 24px; height: 24px; object-fit: contain; }
+.fx-setup { margin-top: 14px; }
+.fx-name .tag { align-self: flex-start; margin: 2px 0; }

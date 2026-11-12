@@ -1,0 +1,55 @@
+name: Faustus price alerts
+
+# Every hour: read GGG's public Currency Exchange feed (all trades made through Faustus),
+# update the rolling price history on the "faustus" branch, and push buy/sell alerts
+# for sharp price moves to your phone (ntfy) and/or Discord.
+#
+# Secrets (Settings > Secrets and variables > Actions):
+#   NTFY_TOPIC       your private ntfy.sh topic name (install the ntfy app and subscribe to it)
+#   DISCORD_WEBHOOK  optional Discord channel webhook URL
+# Variables (same page, Variables tab), all optional:
+#   FAUSTUS_LEAGUE   league name, default "auto" (follows the current challenge league)
+#   DROP_PCT, RISE_PCT, MIN_VOLUME, PUSH_MAX  alert tuning, see scripts/faustus.mjs
+
+on:
+  schedule:
+    - cron: '12 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: faustus
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Load previous state
+        run: |
+          git fetch --depth=1 origin faustus 2>/dev/null && git show FETCH_HEAD:data/user/faustus.json > /tmp/faustus.json || echo "No previous state, starting fresh"
+      - name: Scan the exchange
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          FAUSTUS_LEAGUE: ${{ vars.FAUSTUS_LEAGUE || 'auto' }}
+          DROP_PCT: ${{ vars.DROP_PCT || '15' }}
+          RISE_PCT: ${{ vars.RISE_PCT || '15' }}
+          MIN_VOLUME: ${{ vars.MIN_VOLUME || '150' }}
+          PUSH_MAX: ${{ vars.PUSH_MAX || '10' }}
+        run: node scripts/faustus.mjs /tmp/faustus.json
+      - name: Publish to the faustus branch
+        run: |
+          mkdir -p /tmp/pub/data/user && cp /tmp/faustus.json /tmp/pub/data/user/faustus.json
+          cd /tmp/pub
+          git init -q -b faustus
+          git -c user.name="Faustus bot" -c user.email="FrostyCreations@users.noreply.github.com" add .
+          git -c user.name="Faustus bot" -c user.email="FrostyCreations@users.noreply.github.com" commit -qm "Faustus data $(date -u +%FT%H:00Z)"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" HEAD:faustus
