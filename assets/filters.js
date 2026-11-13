@@ -78,6 +78,17 @@ const PRESETS = [
     ],
   },
   {
+    id: 'tendrils-leveling', name: "Bradley: MasterT's Tendrils Elementalist leveling", note: 'For the Righteous Fire start into Lightning Tendrils. Highlights wands, sceptres and staves, blue 3-links, any 4-link and rare rings and amulets (cast speed and mana regen live there) until maps.',
+    rules: [
+      { name: 'Leveling: rare spell weapons', classes: ['Wands', 'Sceptres', 'Staves', 'Warstaves'], rarity: ['Rare'], maxArea: 68, size: 45, text: '#ffffff', border: '#5aa0ff', bg: '#16264a', sound: 2, beam: 'Blue', icon: 'Triangle' },
+      { name: 'Leveling: magic spell weapons', classes: ['Wands', 'Sceptres', 'Staves'], rarity: ['Magic'], maxArea: 45, size: 38, text: '#8888ff', border: '#5aa0ff' },
+      { name: 'Leveling: 4-link anything', links: 4, maxArea: 68, size: 42, text: '#ffffff', border: '#5aa0ff', bg: '#16264a', sound: 2, beam: 'Blue', icon: 'Square' },
+      { name: 'Leveling: blue 3-links', socketGroup: 'BBB', maxArea: 68, size: 40, text: '#aaccff', border: '#5aa0ff' },
+      { name: 'Leveling: rare rings and amulets', classes: ['Rings', 'Amulets'], rarity: ['Rare'], maxArea: 68, size: 40, border: '#d0b060', sound: 1 },
+      { name: 'Leveling: energy shield chest and shields', classes: ['Body Armours', 'Shields'], rarity: ['Rare'], maxArea: 45, size: 36, border: '#5aa0ff', extra: ['BaseEnergyShield > 0'] },
+    ],
+  },
+  {
     id: 'essence', name: 'Essence farming', note: 'Makes every Essence and Remnant of Corruption loud, to match your Essence atlas tree.',
     rules: [{ name: 'Essences', classes: ['Stackable Currency'], bases: ['Essence of', 'Remnant of Corruption'], exact: false, size: 45, text: '#000000', border: '#000000', bg: '#c870e0', sound: 3, beam: 'Purple', icon: 'Diamond' }],
   },
@@ -167,7 +178,7 @@ export async function render(el) {
   el.innerHTML = `
     <section class="craft-hero"><div>
       <h2>Item filters</h2>
-      <p class="muted">The most followed filters on the official ladder, the ones to use for your bow Deadeye start, and a filter builder modelled on FilterBlade that starts from NeverSink's filter.</p>
+      <p class="muted">The most followed filters on the official ladder, the ones to use for your bow Deadeye and Bradley's Tendrils Elementalist, and a filter builder modelled on FilterBlade that starts from NeverSink's filter.</p>
     </div></section>
     <div class="fl-tabs" role="tablist">
       <button class="pill active" data-ft="pick">For your league start</button>
@@ -183,13 +194,32 @@ export async function render(el) {
 
 function findF(name, author) { return ladder.filters.find((f) => f.name === name && (!author || f.author === author)); }
 
+const PLAYERS = {
+  francois: {
+    name: 'Francois', build: "Fubgun's bow Deadeye", guide: 'https://mobalytics.gg/poe/builds/fubgun-s-bow-leveling-guide-for-deadeye', preset: 'bow-leveling',
+    steps: [
+      ['Acts 1 to 10', ['Bow Campaign lvling', 'fubgun'], 'Fubgun\'s campaign filter for bow leveling. His notes say to use "bow campaign" for bow leveling, which matches the Deadeye guide.'],
+      ['First white and yellow maps', ['Entering maps Bows', 'fubgun'], 'Switch when you reach maps. Still shows bow bases and links, but hides more junk.'],
+      ['Red maps and farming', ['Endgame Semi-strict', 'fubgun'], 'His main endgame filter and the 8th most followed PoE1 filter. Move to NeverSink very strict or uber strict if it gets too noisy.'],
+    ],
+  },
+  bradley: {
+    name: 'Bradley', build: "MasterT's Whispering Tendrils Elementalist", guide: 'https://mobalytics.gg/poe/profile/mastert/builds/3-29-masterts-whispering-tendrils-elementalist', preset: 'tendrils-leveling',
+    steps: [
+      ['Acts 1 to 10', ['AAAACaster', 'Tytykiller'], 'Tytykiller\'s caster leveling filter and the 9th most followed PoE1 filter. It fits the Fireball into Righteous Fire start. Fubgun\'s "Caster lvling" is the alternative if Bradley likes his style.'],
+      ['First white and yellow maps', ['Entering maps Caster', 'fubgun'], 'Caster version of Fubgun\'s first-maps filter, for when Tendrils takes over and you start mapping.'],
+      ['Red maps and farming', ['Endgame Semi-strict', 'fubgun'], 'MasterT has no filter on the ladder, so use the same endgame filter as Francois, or NeverSink very strict once the build is geared.'],
+    ],
+    alt: [['Caster lvling', 'fubgun'], ['level-caster', 'cdrpoe'], ['AlloFilter ActRun Caster', 'alloces77']],
+  },
+};
+let who = localStorage.getItem('filter-player') || 'francois';
 function pickView(body) {
-  const steps = [
-    ['Acts 1 to 10', findF('Bow Campaign lvling', 'fubgun'), 'Fubgun\'s campaign filter for bow leveling. His notes say to use "bow campaign" for bow leveling, which matches the Deadeye guide you are following.'],
-    ['First white and yellow maps', findF('Entering maps Bows', 'fubgun'), 'Switch when you reach maps. Still shows bow bases and links, but hides more junk.'],
-    ['Red maps and farming', findF('Endgame Semi-strict', 'fubgun'), 'His main endgame filter and the 8th most followed PoE1 filter. Move to NeverSink very strict or uber strict if it gets too noisy.'],
-  ];
+  const P = PLAYERS[who] || PLAYERS.francois;
+  const steps = P.steps.map(([when, [n, a], why]) => [when, findF(n, a), why]);
   body.innerHTML = `
+    <div class="row fl-who">${Object.entries(PLAYERS).map(([k, p]) => `<button class="ghost small ${k === who ? 'on' : ''}" data-who="${k}">${esc(p.name)}</button>`).join('')}
+      <span class="muted small">${esc(P.name)} is playing <a href="${esc(P.guide)}" target="_blank" rel="noopener">${esc(P.build)} ↗</a></span></div>
     <div class="fl-steps">${steps.map(([when, f, why], i) => `
       <article class="panel fl-step">
         <span class="at-stage" style="--c:var(--gold)">Step ${i + 1} · ${esc(when)}</span>
@@ -199,6 +229,7 @@ function pickView(body) {
         ${f ? `<a class="btn-link" href="${esc(f.url)}" target="_blank" rel="noopener">Open and follow on pathofexile.com ↗</a>` : ''}
       </article>`).join('')}
     </div>
+    ${P.alt ? `<p class="muted small" style="margin-top:8px">Other caster leveling filters: ${P.alt.map(([n, a]) => findF(n, a)).filter(Boolean).map((f) => `<a href="${esc(f.url)}" target="_blank" rel="noopener">${esc(f.name)} by ${esc(f.author)}</a>`).join(', ')}.</p>` : ''}
     <div class="panel" style="margin-top:14px">
       <h3>How to use a ladder filter</h3>
       <ol class="craft-steps">
@@ -206,8 +237,9 @@ function pickView(body) {
         <li>In game: Escape, Options, Game, then pick it in the <b>Item Filter</b> list. Followed filters update on their own.</li>
         <li>Swap filters as you go: there is no penalty, and Alt still shows hidden items.</li>
       </ol>
-      <p class="muted small">Want Fubgun's filter with your own tweaks (Essence highlights, louder Divines)? Use <b>Build your own</b>: it starts from NeverSink's filter, which Fubgun's and most streamer filters are based on.</p>
+      <p class="muted small">Want your own tweaks? <b>Build your own</b> has a "${esc(PLAYERS[who].name)}" leveling preset for this build. Settings are saved per browser, so ${esc(P.name)} keeps his own on his PC.</p>
     </div>`;
+  $$('[data-who]', body).forEach((b) => (b.onclick = () => { who = b.dataset.who; try { localStorage.setItem('filter-player', who); } catch { /* storage blocked */ } pickView(body); }));
 }
 
 function ladderView(body) {

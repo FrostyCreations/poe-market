@@ -417,3 +417,6 @@ svg.zoomed .at-labels text.minor { display: inline; }
 .fl-chips { display: flex; flex-wrap: wrap; gap: 4px; margin: 4px 0 8px; }
 .fl-chips button { font-size: 11px; padding: 2px 8px; background: var(--panel2); color: var(--muted); }
 .fl-chips button.on { color: var(--gold2); border-color: var(--gold); }
+
+.fl-who { gap: 8px; margin: 4px 0 12px; align-items: center; flex-wrap: wrap; }
+.fl-who .on { border-color: var(--gold); color: var(--gold2); }
