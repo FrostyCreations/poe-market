@@ -1,5 +1,26 @@
 import { $, $$, esc, fmt, toast } from './app.js';
-import { parse, evaluate, build, tierLists, ruleToBlock } from './filter-engine.js';
+import { parse, evaluate, build, tierLists, ruleToBlock, usedSounds, zip } from './filter-engine.js';
+
+// ---------- sound library: NeverSink's custom sound pack plus files you upload (kept in this browser) ----------
+const BUILTIN_SOUNDS = [
+  ['1maybevaluable.mp3', 'Maybe valuable'], ['2currency.mp3', 'Currency'], ['3uniques.mp3', 'Uniques'], ['4maps.mp3', 'Maps'],
+  ['5highmaps.mp3', 'High tier maps'], ['6veryvaluable.mp3', 'Very valuable'], ['7chancing.mp3', 'Chancing bases'], ['12leveling.mp3', 'Leveling'],
+].map(([file, label]) => ({ file, label: `NeverSink: ${label}`, builtin: true }));
+const SLOTS = [[1, 'Maybe valuable (good rares, mid currency)'], [2, 'Currency'], [3, 'Uniques'], [4, 'Maps'], [5, 'High tier maps'], [6, 'Very valuable (Divines, top drops)']];
+const idb = () => new Promise((res, rej) => { const r = indexedDB.open('exile-ledger-sounds', 1); r.onupgradeneeded = () => r.result.createObjectStore('s', { keyPath: 'file' }); r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); });
+const tx = async (mode, fn) => { const db = await idb(); return new Promise((res, rej) => { const t = db.transaction('s', mode); const out = fn(t.objectStore('s')); t.oncomplete = () => res(out.result); t.onerror = () => rej(t.error); }); };
+const userSounds = async () => { try { return await tx('readonly', (st) => st.getAll()); } catch { return []; } };
+async function soundBytes(file) {
+  const b = BUILTIN_SOUNDS.find((x) => x.file === file);
+  if (b) return new Uint8Array(await (await fetch(`data/filters/sounds/${file}`)).arrayBuffer());
+  const u = (await userSounds()).find((x) => x.file === file);
+  return u ? new Uint8Array(u.data) : null;
+}
+let player = null;
+async function play(file) {
+  const bytes = await soundBytes(file); if (!bytes) return;
+  player?.pause(); player = new Audio(URL.createObjectURL(new Blob([bytes]))); player.volume = 0.8; player.play().catch(() => {});
+}
 
 // Filters tab: the official filter ladder (creator filters), plus a FilterBlade-style builder on top of NeverSink's filter.
 const STRICT = [
@@ -94,7 +115,9 @@ async function loadBase(strict) {
 }
 
 const allRules = () => [...PRESETS.filter((p) => cfg.presets.includes(p.id)).flatMap((p) => p.rules), ...cfg.rules];
-const finalText = () => build(base, { tiers: cfg.tiers, moves: cfg.moves, rules: allRules() });
+const finalText = () => build(base, { tiers: cfg.tiers, moves: cfg.moves, rules: allRules(), soundMap: cfg.soundMap || {}, soundVol: cfg.soundVol || 300 });
+let library = [...BUILTIN_SOUNDS];
+const soundOpts = (sel, none) => `<option value="">${esc(none)}</option>${library.map((x) => `<option value="${esc(x.file)}" ${x.file === sel ? 'selected' : ''}>${esc(x.label)}</option>`).join('')}`;
 
 // ---------- label drawing ----------
 const col = (a, fb) => (a ? `rgba(${a[0]},${a[1]},${a[2]},${(a[3] ?? 255) / 255})` : fb);
@@ -105,7 +128,7 @@ function labelHtml(name, style, hidden) {
   return `<span class="fl-label ${hidden ? 'hidden' : ''}" style="font-size:${size}px;color:${col(style.SetTextColor, '#c8c8c8')};background:${col(style.SetBackgroundColor, 'rgba(0,0,0,.8)')};border-color:${col(style.SetBorderColor, 'transparent')}">${esc(name)}</span>
     ${beam ? `<span class="fl-beam" title="Beam: ${esc(beam)}" style="--b:${esc(beam.toLowerCase())}"></span>` : ''}
     ${icon ? `<span class="fl-icon" title="Minimap icon: ${esc(icon.join(' '))}">${({ Star: '★', Circle: '●', Diamond: '◆', Hexagon: '⬢', Square: '■', Triangle: '▲', Cross: '✚', Moon: '☾', Raindrop: '💧', Kite: '◈', Pentagon: '⬟', UpsideDownHouse: '⌂' })[icon[2]] || '●'}</span>` : ''}
-    ${style.PlayAlertSound ? `<span class="fl-snd" title="Sound ${esc(style.PlayAlertSound[0])}">♪${esc(style.PlayAlertSound[0])}</span>` : ''}`;
+    ${style.CustomAlertSound ? `<span class="fl-snd custom" title="Custom sound ${esc(style.CustomAlertSound[0])}">♪ ${esc(style.CustomAlertSound[0].replace(/^.*\//, '').replace(/\.\w+$/, ''))}</span>` : style.PlayAlertSound ? `<span class="fl-snd" title="Sound ${esc(style.PlayAlertSound[0])}">♪${esc(style.PlayAlertSound[0])}</span>` : ''}`;
 }
 const actsToStyle = (acts) => acts;
 
@@ -225,11 +248,26 @@ async function buildView(body) {
               <label>Background<input id="rBg" type="color" value="#202020"></label>
               <label>Size<input id="rSize" type="range" min="18" max="45" value="40"></label>
               <label>Sound<select id="rSnd"><option value="">None</option>${[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map((n) => `<option>${n}</option>`).join('')}</select></label>
+              <label>Custom sound<select id="rCSnd">${soundOpts('', 'None')}</select></label>
               <label>Beam<select id="rBeam"><option value="">None</option>${['Red', 'Green', 'Blue', 'Brown', 'White', 'Yellow', 'Cyan', 'Grey', 'Orange', 'Pink', 'Purple'].map((c) => `<option>${c}</option>`).join('')}</select></label>
               <label>Minimap icon<select id="rIcon"><option value="">None</option>${['Circle', 'Diamond', 'Hexagon', 'Square', 'Star', 'Triangle', 'Cross', 'Moon', 'Raindrop', 'Kite', 'Pentagon', 'UpsideDownHouse'].map((c) => `<option>${c}</option>`).join('')}</select></label>
             </div>
             <button id="rAdd">Add rule</button>
           </details>
+        </div>
+        <div class="panel">
+          <h3>6. Custom sounds</h3>
+          <p class="muted small">Swap the game's alert sounds for your own files, the same way NeverSink's CustomSounds style does. When a sound is used, the download becomes a zip with the filter and an <code>ExileLedgerSounds</code> folder.</p>
+          <div class="row" style="flex-wrap:wrap;gap:8px;margin:6px 0">
+            <button class="ghost small" id="sPack">Use NeverSink's sound pack</button>
+            <button class="ghost small" id="sClear">Back to game sounds</button>
+            <label class="ghost small fl-upload">Upload sounds (mp3, wav, ogg)<input type="file" id="sUp" accept=".mp3,.wav,.ogg,audio/*" multiple hidden></label>
+            <label class="muted small">Volume <b id="sVolV">${cfg.soundVol || 300}</b> <input type="range" id="sVol" min="50" max="300" step="10" value="${cfg.soundVol || 300}"></label>
+          </div>
+          <table class="fl-slots"><thead><tr><th>Game sound</th><th>Used for</th><th>Plays</th><th></th></tr></thead><tbody id="sSlots"></tbody></table>
+          <h4 class="at-h">Your sound library</h4>
+          <div id="sLib"></div>
+          <p class="muted small">You can also give a single tier (in Tiers) or one of your own rules its own sound. Uploaded sounds stay in this browser only.</p>
         </div>
       </div>
       <div class="fl-right">
@@ -239,10 +277,10 @@ async function buildView(body) {
           <p class="muted small">How sample drops look with your filter. Faded labels are hidden (Alt shows them in game).</p>
         </div>
         <div class="panel">
-          <h3>5. Download</h3>
+          <h3>Download</h3>
           <div class="row"><button id="flDl">Download .filter</button><button class="ghost" id="flCopy">Copy filter text</button><button class="ghost" id="flReset">Reset all</button></div>
           <ol class="craft-steps small">
-            <li>Save it in <code>Documents/My Games/Path of Exile</code>.</li>
+            <li>Save it in <code>Documents/My Games/Path of Exile</code>. If you use custom sounds you get a zip: unzip it there so the <code>ExileLedgerSounds</code> folder sits next to the filter.</li>
             <li>In game: Escape, Options, Game, Item Filter, pick <b>ExileLedger</b>, then Reload.</li>
             <li>Your settings are saved in this browser, so come back and download again after NeverSink updates.</li>
           </ol>
@@ -287,6 +325,7 @@ async function buildView(body) {
           <label>Border <input type="color" data-t="${esc(t.key)}" data-f="border" value="${toHex(st.SetBorderColor, '#000000')}"></label>
           <label>Background <input type="color" data-t="${esc(t.key)}" data-f="bg" value="${toHex(st.SetBackgroundColor, '#000000')}"></label>
           <label>Size <input type="range" min="18" max="45" data-t="${esc(t.key)}" data-f="size" value="${st.SetFontSize?.[0] || 32}"></label>
+          <label>Custom sound <select data-t="${esc(t.key)}" data-f="customSound">${soundOpts(ed.customSound, 'Default')}</select></label>
           ${cfg.tiers[t.key] ? `<button class="ghost small" data-undo="${esc(t.key)}">Undo changes</button>` : ''}
         </div>
         <div class="fl-items">${items.slice(0, 400).map((x) => `<span class="fl-item">${esc(x)} ${moveSel(x)}</span>`).join('')}</div>
@@ -300,6 +339,7 @@ async function buildView(body) {
       if (f === 'show') ed.hide = !e.target.checked;
       else if (f === 'sound' || f === 'beam') ed[f] = e.target.checked ? undefined : false;
       else if (f === 'size') ed.size = +e.target.value;
+      else if (f === 'customSound') ed.customSound = e.target.value || undefined;
       else ed[f] = e.target.value;
       refresh(); drawTiers();
     }
@@ -328,7 +368,7 @@ async function buildView(body) {
   $('#flRules', body).onclick = (e) => { const d = e.target.dataset.del; if (d != null) { cfg.rules.splice(+d, 1); refresh(); } };
   $('#rAdd', body).onclick = () => {
     const v = (id) => $(id, body).value.trim(); const list = (id) => v(id).split(',').map((x) => x.trim()).filter(Boolean);
-    const r = { name: v('#rName') || 'My rule', action: v('#rAct'), classes: list('#rCls'), bases: list('#rBase'), exact: false, rarity: v('#rRar') ? [v('#rRar')] : [], minIlvl: +v('#rIlvl') || 0, maxArea: +v('#rArea') || 0, links: +v('#rLinks') || 0, text: v('#rText'), border: v('#rBorder'), bg: v('#rBg'), size: +v('#rSize'), sound: v('#rSnd'), beam: v('#rBeam'), icon: v('#rIcon') };
+    const r = { name: v('#rName') || 'My rule', action: v('#rAct'), classes: list('#rCls'), bases: list('#rBase'), exact: false, rarity: v('#rRar') ? [v('#rRar')] : [], minIlvl: +v('#rIlvl') || 0, maxArea: +v('#rArea') || 0, links: +v('#rLinks') || 0, text: v('#rText'), border: v('#rBorder'), bg: v('#rBg'), size: +v('#rSize'), sound: v('#rSnd'), customSound: v('#rCSnd'), volume: cfg.soundVol || 300, beam: v('#rBeam'), icon: v('#rIcon') };
     if (!r.classes.length && !r.bases.length && !r.links) { toast('Give the rule an item class, a base type or linked sockets'); return; }
     cfg.rules.push(r); refresh(); toast('Rule added');
   };
@@ -342,11 +382,46 @@ async function buildView(body) {
     }).join('');
   }
 
-  $('#flDl', body).onclick = () => {
-    const blob = new Blob([finalText()], { type: 'text/plain' });
-    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'ExileLedger.filter'; a.click();
+  $('#flDl', body).onclick = async () => {
+    const text = finalText(); const used = usedSounds(text);
+    let blob; let name = 'ExileLedger.filter';
+    if (used.length) {
+      const files = [{ name: 'ExileLedger.filter', data: new TextEncoder().encode(text) }];
+      for (const f of used) { const b = await soundBytes(f); if (b) files.push({ name: `ExileLedgerSounds/${f}`, data: b }); else toast(`Missing sound ${f}, re-upload it`); }
+      blob = zip(files); name = 'ExileLedger-filter-and-sounds.zip';
+    } else blob = new Blob([text], { type: 'text/plain' });
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; a.click();
     setTimeout(() => URL.revokeObjectURL(a.href), 2000);
   };
+
+  // ---------- custom sounds ----------
+  async function loadLibrary() { library = [...BUILTIN_SOUNDS, ...(await userSounds()).map((u) => ({ file: u.file, label: `Yours: ${u.label}` }))]; }
+  function drawSounds() {
+    const map = cfg.soundMap || {};
+    $('#sSlots', body).innerHTML = SLOTS.map(([n, what]) => `<tr><td>Sound ${n}</td><td class="muted small">${esc(what)}</td><td><select data-slot="${n}">${soundOpts(map[n], `Game sound ${n}`)}</select></td><td>${map[n] ? `<button class="ghost small" data-play="${esc(map[n])}">▶</button>` : ''}</td></tr>`).join('');
+    $('#sLib', body).innerHTML = library.map((x) => `<span class="fl-item">${esc(x.label)} <button class="ghost small" data-play="${esc(x.file)}">▶</button>${x.builtin ? '' : `<button class="ghost small" data-delsound="${esc(x.file)}">✕</button>`}</span>`).join(' ');
+  }
+  const soundsChanged = () => { save(); drawSounds(); drawTiers(); drawPrev(); };
+  $('#sSlots', body).onchange = (e) => { const n = e.target.dataset.slot; if (!n) return; cfg.soundMap ||= {}; if (e.target.value) cfg.soundMap[n] = e.target.value; else delete cfg.soundMap[n]; soundsChanged(); };
+  $('#sPack', body).onclick = () => { cfg.soundMap = Object.fromEntries(SLOTS.map(([n]) => [n, BUILTIN_SOUNDS[n - 1].file])); soundsChanged(); toast("NeverSink's sound pack on"); };
+  $('#sClear', body).onclick = () => { cfg.soundMap = {}; soundsChanged(); };
+  $('#sVol', body).oninput = (e) => { cfg.soundVol = +e.target.value; $('#sVolV', body).textContent = cfg.soundVol; save(); };
+  $('#sUp', body).onchange = async (e) => {
+    for (const f of e.target.files) {
+      const file = f.name.toLowerCase().replace(/[^a-z0-9._-]+/g, '-');
+      if (!/\.(mp3|wav|ogg)$/.test(file)) { toast(`${f.name}: use mp3, wav or ogg`); continue; }
+      const data = await f.arrayBuffer();
+      try { await tx('readwrite', (st) => st.put({ file, label: f.name.replace(/\.[^.]+$/, ''), data })); } catch { toast('Could not save the sound in this browser'); }
+    }
+    e.target.value = ''; await loadLibrary(); soundsChanged(); toast('Sounds added');
+  };
+  body.onclick = (e) => {
+    const p = e.target.closest('[data-play]'); if (p) { play(p.dataset.play); return; }
+    const d = e.target.closest('[data-delsound]');
+    if (d) { tx('readwrite', (st) => st.delete(d.dataset.delsound)).then(async () => { await loadLibrary(); soundsChanged(); }); }
+  };
+  await loadLibrary();
+  drawSounds();
   $('#flCopy', body).onclick = async () => { try { await navigator.clipboard.writeText(finalText()); toast('Filter copied'); } catch { toast('Copy failed, use Download'); } };
   $('#flReset', body).onclick = () => { cfg = { strict: cfg.strict, presets: [], tiers: {}, moves: {}, rules: [], area: cfg.area }; save(); buildView(body); };
 
