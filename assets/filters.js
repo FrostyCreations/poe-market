@@ -6,11 +6,39 @@ const BUILTIN_SOUNDS = [
   ['1maybevaluable.mp3', 'Maybe valuable'], ['2currency.mp3', 'Currency'], ['3uniques.mp3', 'Uniques'], ['4maps.mp3', 'Maps'],
   ['5highmaps.mp3', 'High tier maps'], ['6veryvaluable.mp3', 'Very valuable'], ['7chancing.mp3', 'Chancing bases'], ['12leveling.mp3', 'Leveling'],
 ].map(([file, label]) => ({ file, label: `NeverSink: ${label}`, builtin: true }));
+// Community sounds, streamed from cdrg's poe1filtertts project on GitHub (credited, not rehosted here).
+const CDR = 'https://raw.githubusercontent.com/cdrg/poe1filtertts/main/';
+const MEMES = [
+  ['chris wilson progress.mp3', 'Chris Wilson: progress is how you are measured'], ['chris wilson thing.mp3', 'Chris Wilson: thing'],
+  ['jonathan a quest objective.mp3', 'Jonathan: a quest objective'], ['jonathan progress.mp3', 'Jonathan: progress'], ['jonathan quests.mp3', 'Jonathan: quests'],
+  ['neversink wellwellwell.mp3', 'NeverSink: well well well'], ['tyty.mp3', 'Tytykiller'], ['CuteDog_Sustain.mp3', 'CuteDog: sustain'],
+].map(([f, label]) => ({ file: `meme-${f.toLowerCase().replace(/[^a-z0-9.]+/g, '-')}`, label: `Meme: ${label}`, url: `${CDR}voicelines/${encodeURIComponent(f)}` }));
+const VOICES = [['AWSPolly-Brian', 'Brian (British)'], ['AWSPolly-Matthew', 'Matthew (American)'], ['AWSPolly-Nicole', 'Nicole (Australian)'], ['TTSM-Axel', 'Axel'], ['TTSM-Oracle', 'Oracle'], ['TTSM-Titanus', 'Titanus (deep)']];
+const SPOKEN = ['armourers scrap', 'blacksmiths whetstone', 'blessed orb', 'cartographers chisel', 'chaos orb', 'chromatic orb', 'divine orb', 'enkindling orb', 'exalted orb', 'foulborn exalted orb', 'fracturing orb', 'gemcutters prism', 'glassblowers bauble', 'hinekoras lock', 'instilling orb', 'jewellers orb', 'lesser eldritch ember', 'lesser eldritch ichor', 'message in a bottle', 'mirror of kalandra', 'mirror shard', 'orb of alchemy', 'orb of alteration', 'orb of annulment', 'orb of augmentation', 'orb of binding', 'orb of chance', 'orb of dominance', 'orb of fusing', 'orb of horizons', 'orb of regret', 'orb of scouring', 'orb of transmutation', 'orb of unmaking', 'portal scroll', 'regal orb', 'rogues marker', 'sacred orb', 'scroll of wisdom', 'stacked deck', 'vaal orb', 'veiled exalted orb'];
+const SPOKEN_ESS = ['anger', 'anguish', 'contempt', 'doubt', 'fear', 'greed', 'hatred', 'loathing', 'misery', 'rage', 'scorn', 'sorrow', 'spite', 'suffering', 'torment', 'woe', 'wrath', 'zeal', 'envy', 'dread', 'insanity', 'horror', 'delirium', 'hysteria'];
+const SPOKEN_TOP = ['mirror of kalandra', 'mirror shard', 'divine orb', 'hinekoras lock', 'exalted orb', 'fracturing orb', 'orb of dominance', 'sacred orb', 'veiled exalted orb', 'foulborn exalted orb', 'orb of annulment', 'chaos orb'];
+const norm = (x) => x.toLowerCase().replace(/'/g, '');
+// Spoken file for an item, or null. Essences use the "essence of x" clip for every tier of that Essence.
+function spokenFile(item) {
+  const sp = cfg.spoken; if (!sp?.on) return null;
+  const n = norm(item);
+  if (SPOKEN.includes(n) && (sp.all || (sp.items || SPOKEN_TOP).includes(n))) return `spoken/${sp.voice}/${n.replace(/[^a-z0-9]+/g, '-')}.mp3`;
+  const e = /essence of (\w+)$/.exec(n);
+  if (e && sp.essences && SPOKEN_ESS.includes(e[1])) return `spoken/${sp.voice}/essence-of-${e[1]}.mp3`;
+  return null;
+}
+function spokenUrl(file) {
+  const m = /^spoken\/([^/]+)\/(.+)\.mp3$/.exec(file); if (!m) return null;
+  const name = m[2].replace(/-/g, ' ');
+  return `${CDR}${m[1]}/sounds/currency/${name.startsWith('essence of') ? 'essence/' : ''}${encodeURIComponent(name)}.mp3`;
+}
 const SLOTS = [[1, 'Maybe valuable (good rares, mid currency)'], [2, 'Currency'], [3, 'Uniques'], [4, 'Maps'], [5, 'High tier maps'], [6, 'Very valuable (Divines, top drops)']];
 const idb = () => new Promise((res, rej) => { const r = indexedDB.open('exile-ledger-sounds', 1); r.onupgradeneeded = () => r.result.createObjectStore('s', { keyPath: 'file' }); r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); });
 const tx = async (mode, fn) => { const db = await idb(); return new Promise((res, rej) => { const t = db.transaction('s', mode); const out = fn(t.objectStore('s')); t.oncomplete = () => res(out.result); t.onerror = () => rej(t.error); }); };
 const userSounds = async () => { try { return await tx('readonly', (st) => st.getAll()); } catch { return []; } };
 async function soundBytes(file) {
+  const remote = MEMES.find((x) => x.file === file)?.url || spokenUrl(file);
+  if (remote) { try { const r = await fetch(remote); if (r.ok) return new Uint8Array(await r.arrayBuffer()); } catch { /* offline */ } return null; }
   const b = BUILTIN_SOUNDS.find((x) => x.file === file);
   if (b) return new Uint8Array(await (await fetch(`data/filters/sounds/${file}`)).arrayBuffer());
   const u = (await userSounds()).find((x) => x.file === file);
@@ -115,8 +143,8 @@ async function loadBase(strict) {
 }
 
 const allRules = () => [...PRESETS.filter((p) => cfg.presets.includes(p.id)).flatMap((p) => p.rules), ...cfg.rules];
-const finalText = () => build(base, { tiers: cfg.tiers, moves: cfg.moves, rules: allRules(), soundMap: cfg.soundMap || {}, soundVol: cfg.soundVol || 300 });
-let library = [...BUILTIN_SOUNDS];
+const finalText = () => build(base, { tiers: cfg.tiers, moves: cfg.moves, rules: allRules(), soundMap: cfg.soundMap || {}, soundVol: cfg.soundVol || 300, spoken: cfg.spoken?.on ? spokenFile : null });
+let library = [...BUILTIN_SOUNDS, ...MEMES];
 const soundOpts = (sel, none) => `<option value="">${esc(none)}</option>${library.map((x) => `<option value="${esc(x.file)}" ${x.file === sel ? 'selected' : ''}>${esc(x.label)}</option>`).join('')}`;
 
 // ---------- label drawing ----------
@@ -267,7 +295,22 @@ async function buildView(body) {
           <table class="fl-slots"><thead><tr><th>Game sound</th><th>Used for</th><th>Plays</th><th></th></tr></thead><tbody id="sSlots"></tbody></table>
           <h4 class="at-h">Your sound library</h4>
           <div id="sLib"></div>
-          <p class="muted small">You can also give a single tier (in Tiers) or one of your own rules its own sound. Uploaded sounds stay in this browser only.</p>
+          <h4 class="at-h">Say the currency name out loud</h4>
+          <label class="fl-preset"><input type="checkbox" id="spOn" ${cfg.spoken?.on ? 'checked' : ''}><span><b>Spoken drops</b><br><span class="muted small">"Divine Orb!" instead of a ding. Keeps NeverSink's colours and beams.</span></span></label>
+          <div class="row" style="gap:8px;flex-wrap:wrap;margin:6px 0">
+            <label class="muted small">Voice <select id="spVoice">${VOICES.map(([k, l]) => `<option value="${k}" ${(cfg.spoken?.voice || 'AWSPolly-Brian') === k ? 'selected' : ''}>${l}</option>`).join('')}</select></label>
+            <button class="ghost small" data-play="spoken/${esc(cfg.spoken?.voice || 'AWSPolly-Brian')}/divine-orb.mp3" id="spTry">▶ Hear it</button>
+            <label class="muted small"><input type="checkbox" id="spAll" ${cfg.spoken?.all ? 'checked' : ''}> Every currency with a voice line (${SPOKEN.length})</label>
+            <label class="muted small"><input type="checkbox" id="spEss" ${cfg.spoken?.essences ? 'checked' : ''}> Essences too</label>
+          </div>
+          <div class="fl-chips" id="spItems"></div>
+          <h4 class="at-h">More packs to grab yourself</h4>
+          <ul class="plain-list small">
+            <li><a href="https://github.com/cdrg/poe1filtertts" target="_blank" rel="noopener">cdr's text-to-speech packs ↗</a>: the source of the meme lines and spoken currency above, with spoken names for over a thousand items.</li>
+            <li><a href="https://www.pathofexile.com/forum/view-thread/2248103" target="_blank" rel="noopener">MemeLoot ↗</a>: a filter with a meme sound on almost every item, around 1,400 clips.</li>
+            <li><a href="https://oriath.net/audio-index.html" target="_blank" rel="noopener">oriath.net audio index ↗</a>: in-game voice lines, including Shaper and Maven lines that name currency.</li>
+          </ul>
+          <p class="muted small">Download any of these, then use <b>Upload sounds</b> above to add them to your library. You can also give a single tier (in Tiers) or one of your own rules its own sound. Uploaded sounds stay in this browser only; the meme lines and spoken names come from cdr's GitHub when you play or download them.</p>
         </div>
       </div>
       <div class="fl-right">
@@ -395,11 +438,11 @@ async function buildView(body) {
   };
 
   // ---------- custom sounds ----------
-  async function loadLibrary() { library = [...BUILTIN_SOUNDS, ...(await userSounds()).map((u) => ({ file: u.file, label: `Yours: ${u.label}` }))]; }
+  async function loadLibrary() { library = [...BUILTIN_SOUNDS, ...MEMES, ...(await userSounds()).map((u) => ({ file: u.file, label: `Yours: ${u.label}` }))]; }
   function drawSounds() {
     const map = cfg.soundMap || {};
     $('#sSlots', body).innerHTML = SLOTS.map(([n, what]) => `<tr><td>Sound ${n}</td><td class="muted small">${esc(what)}</td><td><select data-slot="${n}">${soundOpts(map[n], `Game sound ${n}`)}</select></td><td>${map[n] ? `<button class="ghost small" data-play="${esc(map[n])}">▶</button>` : ''}</td></tr>`).join('');
-    $('#sLib', body).innerHTML = library.map((x) => `<span class="fl-item">${esc(x.label)} <button class="ghost small" data-play="${esc(x.file)}">▶</button>${x.builtin ? '' : `<button class="ghost small" data-delsound="${esc(x.file)}">✕</button>`}</span>`).join(' ');
+    $('#sLib', body).innerHTML = library.map((x) => `<span class="fl-item">${esc(x.label)} <button class="ghost small" data-play="${esc(x.file)}">▶</button>${x.builtin || x.url ? '' : `<button class="ghost small" data-delsound="${esc(x.file)}">✕</button>`}</span>`).join(' ');
   }
   const soundsChanged = () => { save(); drawSounds(); drawTiers(); drawPrev(); };
   $('#sSlots', body).onchange = (e) => { const n = e.target.dataset.slot; if (!n) return; cfg.soundMap ||= {}; if (e.target.value) cfg.soundMap[n] = e.target.value; else delete cfg.soundMap[n]; soundsChanged(); };
@@ -420,8 +463,20 @@ async function buildView(body) {
     const d = e.target.closest('[data-delsound]');
     if (d) { tx('readwrite', (st) => st.delete(d.dataset.delsound)).then(async () => { await loadLibrary(); soundsChanged(); }); }
   };
+  const sp = () => (cfg.spoken ||= { on: false, voice: 'AWSPolly-Brian', items: [...SPOKEN_TOP], all: false, essences: false });
+  function drawSpoken() {
+    const s2 = sp();
+    $('#spItems', body).innerHTML = s2.all ? '' : SPOKEN.map((n) => `<button class="ghost small ${(s2.items || []).includes(n) ? 'on' : ''}" data-sp="${esc(n)}">${esc(n.replace(/\b\w/g, (c) => c.toUpperCase()))}</button>`).join('');
+    $('#spTry', body).dataset.play = `spoken/${s2.voice}/divine-orb.mp3`;
+  }
+  const spChanged = () => { save(); drawSpoken(); drawPrev(); };
+  $('#spOn', body).onchange = (e) => { sp().on = e.target.checked; spChanged(); };
+  $('#spAll', body).onchange = (e) => { sp().all = e.target.checked; spChanged(); };
+  $('#spEss', body).onchange = (e) => { sp().essences = e.target.checked; spChanged(); };
+  $('#spVoice', body).onchange = (e) => { sp().voice = e.target.value; spChanged(); play(`spoken/${sp().voice}/divine-orb.mp3`); };
+  $('#spItems', body).addEventListener('click', (e) => { const n = e.target.dataset.sp; if (!n) return; const s2 = sp(); s2.items = s2.items.includes(n) ? s2.items.filter((x) => x !== n) : [...s2.items, n]; spChanged(); });
   await loadLibrary();
-  drawSounds();
+  drawSounds(); drawSpoken();
   $('#flCopy', body).onclick = async () => { try { await navigator.clipboard.writeText(finalText()); toast('Filter copied'); } catch { toast('Copy failed, use Download'); } };
   $('#flReset', body).onclick = () => { cfg = { strict: cfg.strict, presets: [], tiers: {}, moves: {}, rules: [], area: cfg.area }; save(); buildView(body); };
 

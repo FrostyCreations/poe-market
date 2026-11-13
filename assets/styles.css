@@ -413,3 +413,7 @@ svg.zoomed .at-labels text.minor { display: inline; }
 .fl-slots select { max-width: 220px; }
 .fl-upload { cursor: pointer; border: 1px solid var(--line); border-radius: 6px; padding: 4px 10px; color: var(--gold2); }
 .fl-snd.custom { color: var(--gold2); }
+
+.fl-chips { display: flex; flex-wrap: wrap; gap: 4px; margin: 4px 0 8px; }
+.fl-chips button { font-size: 11px; padding: 2px 8px; background: var(--panel2); color: var(--muted); }
+.fl-chips button.on { color: var(--gold2); border-color: var(--gold); }

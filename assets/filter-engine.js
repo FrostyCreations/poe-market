@@ -159,6 +159,20 @@ export function build(text, cfg) {
       if (t.bg) setLine(lines, 'SetBackgroundColor', rgb(t.bg));
       if (t.customSound) { setLine(lines, 'PlayAlertSound', null); setLine(lines, 'PlayAlertSoundPositional', null); setLine(lines, 'CustomAlertSound', `"${SOUND_DIR}${t.customSound}" ${cfg.soundVol || 300}`); }
     }
+    // Spoken item names: give each spoken item its own copy of the block (same look) that says its name.
+    if (lines && cfg.spoken && b.action === 'Show' && b.type.startsWith('currency')) {
+      const bl = lines.find((l) => /^\s*BaseType ==/.test(l));
+      if (bl) {
+        const items = tokens(bl.replace(/#.*$/, '').trim()).slice(2).map((x) => x.v);
+        for (const it of items) {
+          const f = cfg.spoken(it); if (!f) continue;
+          const copy = lines.map((l) => (l === bl ? `\tBaseType == "${it}"` : l)).filter((l) => !/^\s*(PlayAlertSound|PlayAlertSoundPositional|CustomAlertSound)\b/.test(l));
+          let j = copy.length; while (j > 0 && !copy[j - 1].trim()) j--;
+          copy.splice(j, 0, `\tCustomAlertSound "${SOUND_DIR}${f}" ${cfg.soundVol || 300}`);
+          out.push([head.replace(/!(\S+)/, '!$1_spoken'), ...copy].join('\n'));
+        }
+      }
+    }
     // Swap the game's numbered alert sounds for custom files, the way NeverSink's CustomSounds style does.
     if (lines && cfg.soundMap) {
       lines = lines.map((l) => {
