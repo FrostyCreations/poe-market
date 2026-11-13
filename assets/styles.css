@@ -348,3 +348,29 @@ svg.zoomed .at-labels text.minor { display: inline; }
 .at-wgrid label { display: grid; grid-template-columns: 1fr 120px 28px; gap: 8px; align-items: center; font-size: 12px; color: var(--muted); }
 .at-fit { font-family: Cinzel, Georgia, serif; color: var(--gold2); font-size: 18px; line-height: 1; }
 .at-by { font-size: 12px; color: var(--c); }
+
+/* Market, laid out like poe.ninja */
+.mk { display: grid; grid-template-columns: 230px 1fr; gap: 16px; align-items: start; }
+.mk-side { position: sticky; top: 90px; max-height: calc(100vh - 110px); overflow: auto; padding: 10px 8px; }
+.mk-jump { width: 100%; margin-bottom: 8px; font-size: 13px; }
+.mk-group { margin-bottom: 10px; }
+.mk-gtitle { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); padding: 6px 8px 4px; }
+.mk-cat { display: flex; align-items: center; gap: 8px; padding: 4px 8px; border-radius: 6px; color: var(--text); text-decoration: none; font-size: 13px; }
+.mk-cat:hover { background: var(--panel2); }
+.mk-cat.active { background: linear-gradient(90deg, #3b2f1c, transparent); color: var(--gold2); box-shadow: inset 2px 0 0 var(--gold); }
+.mk-cat.empty { display: none; }
+.mk-ic { width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; flex: none; }
+.mk-ic img { max-width: 24px; max-height: 24px; }
+.mk-ic.big, .mk-ic.big img { width: 34px; height: 34px; max-width: 34px; max-height: 34px; }
+.mk-main { min-width: 0; }
+.mk-head { margin: 4px 0 12px; }
+.mk-tools { gap: 12px; margin-bottom: 10px; flex-wrap: wrap; }
+.mk-tools input { width: 260px; }
+.mk-tools label { display: flex; gap: 6px; align-items: center; }
+.mk-table { max-height: none; }
+.mk-table td { padding-top: 5px; padding-bottom: 5px; }
+.mk-val small { display: block; font-size: 11px; }
+.mk-spark { display: flex; align-items: center; gap: 8px; }
+.mk-spark span { min-width: 48px; text-align: right; font-size: 12px; }
+.mk-more { display: block; width: 100%; margin-top: 8px; }
+@media (max-width: 900px) { .mk { grid-template-columns: 1fr; } .mk-side { position: static; max-height: 240px; } }
