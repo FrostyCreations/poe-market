@@ -105,7 +105,7 @@ function sidePanel(plan) {
       <div class="row spread"><span class="at-h" style="margin:0">Pick order</span><b id="atUpTo">${hashes.length} points</b></div>
       <input type="range" id="atRange" min="10" max="${plan.order.length}" value="${hashes.length}" step="1">
       <div class="at-steps">${[40, 80, 115].filter((n) => n < plan.order.length - 5).concat(plan.order.length).map((n) => `<button class="ghost small ${hashes.length === n ? 'on' : ''}" data-upto="${n}">${n === plan.order.length ? 'All' : n}</button>`).join('')}</div>
-      <p class="muted small" style="margin:4px 0 0">You only get ${treeData.points} atlas points with a finished atlas. Drag to see what to take first while you level it up.</p>
+      <p class="muted small" style="margin:4px 0 0">You only get ${treeData.points} atlas points with a finished atlas. Drag to see what to take first while you level it up.${plan.orderNote ? ` ${esc(plan.orderNote)}` : ''}</p>
     </div>` : ''}
     <h4 class="at-h">Why it should work</h4>
     <ul class="plain-list at-list">${plan.why.map((w) => `<li>${esc(w)}</li>`).join('')}</ul>
