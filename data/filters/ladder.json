@@ -1,0 +1,906 @@
+{
+ "updated": "2026-11-13",
+ "source": "https://www.pathofexile.com/item-filter/ladder/follower",
+ "filters": [
+  {
+   "rank": 1,
+   "name": "NeverSink-1regular-softcore",
+   "author": "NeverSink",
+   "version": "PoE1 3.30.0",
+   "followers": 1031907,
+   "copies": 260373,
+   "url": "https://www.pathofexile.com/item-filter/G4AtJ5"
+  },
+  {
+   "rank": 2,
+   "name": "NeverSink-2semistr-softcore",
+   "author": "NeverSink",
+   "version": "PoE1 3.30.0",
+   "followers": 746301,
+   "copies": 54543,
+   "url": "https://www.pathofexile.com/item-filter/GmjoTD"
+  },
+  {
+   "rank": 3,
+   "name": "NeverSink-3strict-softcore",
+   "author": "NeverSink",
+   "version": "PoE1 3.30.0",
+   "followers": 718680,
+   "copies": 53766,
+   "url": "https://www.pathofexile.com/item-filter/5XMehq"
+  },
+  {
+   "rank": 4,
+   "name": "NeverSink-4verystr-softcore",
+   "author": "NeverSink",
+   "version": "PoE1 3.30.0",
+   "followers": 625510,
+   "copies": 28125,
+   "url": "https://www.pathofexile.com/item-filter/GmXoTD"
+  },
+  {
+   "rank": 5,
+   "name": "NeverSink-5uberstr-softcore",
+   "author": "NeverSink",
+   "version": "PoE1 3.30.0",
+   "followers": 524140,
+   "copies": 17852,
+   "url": "https://www.pathofexile.com/item-filter/wvPeTJ"
+  },
+  {
+   "rank": 6,
+   "name": "NeverSink-6uberplu-softcore",
+   "author": "NeverSink",
+   "version": "PoE1 3.30.0",
+   "followers": 412901,
+   "copies": 10789,
+   "url": "https://www.pathofexile.com/item-filter/Gg4zsE"
+  },
+  {
+   "rank": 7,
+   "name": "NeverSink-0soft-softcore",
+   "author": "NeverSink",
+   "version": "PoE1 3.30.0",
+   "followers": 208732,
+   "copies": 5057,
+   "url": "https://www.pathofexile.com/item-filter/GlLZt1"
+  },
+  {
+   "rank": 8,
+   "name": "Endgame Semi-strict",
+   "author": "fubgun",
+   "version": "PoE1 3.30.0",
+   "followers": 91342,
+   "copies": 15388,
+   "url": "https://www.pathofexile.com/item-filter/prdz2nSQ"
+  },
+  {
+   "rank": 9,
+   "name": "AAAACaster",
+   "author": "Tytykiller",
+   "version": "PoE1 3.30.0",
+   "followers": 79883,
+   "copies": 10494,
+   "url": "https://www.pathofexile.com/item-filter/A2PpvSM"
+  },
+  {
+   "rank": 10,
+   "name": "AAAAMelee",
+   "author": "Tytykiller",
+   "version": "PoE1 3.30.0",
+   "followers": 62258,
+   "copies": 5268,
+   "url": "https://www.pathofexile.com/item-filter/oOgZOho"
+  },
+  {
+   "rank": 11,
+   "name": "AAAARanged",
+   "author": "Tytykiller",
+   "version": "PoE1 3.30.0",
+   "followers": 55020,
+   "copies": 4422,
+   "url": "https://www.pathofexile.com/item-filter/AvpQvuM"
+  },
+  {
+   "rank": 12,
+   "name": "NeverSink-0soft-hardcore",
+   "author": "NeverSink",
+   "version": "PoE1 3.30.0",
+   "followers": 47265,
+   "copies": 878,
+   "url": "https://www.pathofexile.com/item-filter/WXjRcE"
+  },
+  {
+   "rank": 13,
+   "name": "NeverSink-1regular-hardcore",
+   "author": "NeverSink",
+   "version": "PoE1 3.30.0",
+   "followers": 41753,
+   "copies": 1435,
+   "url": "https://www.pathofexile.com/item-filter/0JX8H0"
+  },
+  {
+   "rank": 14,
+   "name": "Entering maps Bows",
+   "author": "fubgun",
+   "version": "PoE1 3.30.0",
+   "followers": 38567,
+   "copies": 5546,
+   "url": "https://www.pathofexile.com/item-filter/vOzV2RUJ"
+  },
+  {
+   "rank": 15,
+   "name": "NeverSink-2semistr-hardcore",
+   "author": "NeverSink",
+   "version": "PoE1 3.30.0",
+   "followers": 35706,
+   "copies": 821,
+   "url": "https://www.pathofexile.com/item-filter/M479i0"
+  },
+  {
+   "rank": 16,
+   "name": "Bows 1 Early",
+   "author": "Crouching_Tuna",
+   "version": "PoE1 3.30.0",
+   "followers": 35025,
+   "copies": 11578,
+   "url": "https://www.pathofexile.com/item-filter/EQ1OgKhj"
+  },
+  {
+   "rank": 17,
+   "name": "NeverSink-3strict-hardcore",
+   "author": "NeverSink",
+   "version": "PoE1 3.30.0",
+   "followers": 31678,
+   "copies": 598,
+   "url": "https://www.pathofexile.com/item-filter/8kvycE"
+  },
+  {
+   "rank": 18,
+   "name": "NeverSink-4verystr-hardcore",
+   "author": "NeverSink",
+   "version": "PoE1 3.30.0",
+   "followers": 27331,
+   "copies": 392,
+   "url": "https://www.pathofexile.com/item-filter/om2WSo"
+  },
+  {
+   "rank": 19,
+   "name": "NeverSink-5uberstr-hardcore",
+   "author": "NeverSink",
+   "version": "PoE1 3.30.0",
+   "followers": 23435,
+   "copies": 266,
+   "url": "https://www.pathofexile.com/item-filter/kmDDcN"
+  },
+  {
+   "rank": 20,
+   "name": "NeverSink-6uberplu-hardcore",
+   "author": "NeverSink",
+   "version": "PoE1 3.30.0",
+   "followers": 22714,
+   "copies": 279,
+   "url": "https://www.pathofexile.com/item-filter/DEgxfQ"
+  },
+  {
+   "rank": 21,
+   "name": "Bow Campaign lvling",
+   "author": "fubgun",
+   "version": "PoE1 3.30.0",
+   "followers": 20523,
+   "copies": 2907,
+   "url": "https://www.pathofexile.com/item-filter/9MPqD2cO"
+  },
+  {
+   "rank": 22,
+   "name": "Melee Leveling",
+   "author": "Crouching_Tuna",
+   "version": "PoE1 3.30.0",
+   "followers": 13818,
+   "copies": 3881,
+   "url": "https://www.pathofexile.com/item-filter/jLk7XNhJ"
+  },
+  {
+   "rank": 23,
+   "name": "Caster lvling",
+   "author": "fubgun",
+   "version": "PoE1 3.30.0",
+   "followers": 13089,
+   "copies": 1888,
+   "url": "https://www.pathofexile.com/item-filter/QmyRjAiZ"
+  },
+  {
+   "rank": 24,
+   "name": "Slams leveling",
+   "author": "fubgun",
+   "version": "PoE1 3.30.0",
+   "followers": 12029,
+   "copies": 2690,
+   "url": "https://www.pathofexile.com/item-filter/O029NZFE"
+  },
+  {
+   "rank": 25,
+   "name": "Allie 3.30",
+   "author": "Allie",
+   "version": "PoE1 3.30.0",
+   "followers": 11994,
+   "copies": 2435,
+   "url": "https://www.pathofexile.com/item-filter/Nyy78fV"
+  },
+  {
+   "rank": 26,
+   "name": "Balor League Start To Red Maps",
+   "author": "Balormage",
+   "version": "PoE1 3.30.0",
+   "followers": 11956,
+   "copies": 2244,
+   "url": "https://www.pathofexile.com/item-filter/3r9J2TX"
+  },
+  {
+   "rank": 27,
+   "name": "animeprincess leveling pconc pathfinder",
+   "author": "xsnowingx",
+   "version": "PoE1 3.30.0",
+   "followers": 11094,
+   "copies": 2886,
+   "url": "https://www.pathofexile.com/item-filter/Pm2l3yIL"
+  },
+  {
+   "rank": 28,
+   "name": "Entering maps Caster",
+   "author": "fubgun",
+   "version": "PoE1 3.30.0",
+   "followers": 10603,
+   "copies": 1168,
+   "url": "https://www.pathofexile.com/item-filter/2XeaPmij"
+  },
+  {
+   "rank": 29,
+   "name": "Claw Leveling",
+   "author": "fubgun",
+   "version": "PoE1 3.30.0",
+   "followers": 9378,
+   "copies": 2181,
+   "url": "https://www.pathofexile.com/item-filter/rXrW79sX"
+  },
+  {
+   "rank": 30,
+   "name": "Balor Red Maps to 2 Voidstones",
+   "author": "Balormage",
+   "version": "PoE1 3.30.0",
+   "followers": 8926,
+   "copies": 881,
+   "url": "https://www.pathofexile.com/item-filter/rXyAzHX"
+  },
+  {
+   "rank": 31,
+   "name": "AP leveling spellcaster",
+   "author": "xsnowingx",
+   "version": "PoE1 3.30.0",
+   "followers": 7429,
+   "copies": 2137,
+   "url": "https://www.pathofexile.com/item-filter/zOVDoLFz"
+  },
+  {
+   "rank": 32,
+   "name": "Bows 2 Early Endgame",
+   "author": "Crouching_Tuna",
+   "version": "PoE1 3.30.0",
+   "followers": 7352,
+   "copies": 899,
+   "url": "https://www.pathofexile.com/item-filter/3NZr8qSX"
+  },
+  {
+   "rank": 33,
+   "name": "level-caster",
+   "author": "cdrpoe",
+   "version": "PoE1 3.30.0",
+   "followers": 6757,
+   "copies": 765,
+   "url": "https://www.pathofexile.com/item-filter/g4pVJIE"
+  },
+  {
+   "rank": 34,
+   "name": "1-basic seoMinugi",
+   "author": "seominugi",
+   "version": "PoE1 3.30.0",
+   "followers": 6014,
+   "copies": 639,
+   "url": "https://www.pathofexile.com/item-filter/jL8MlMfJ"
+  },
+  {
+   "rank": 35,
+   "name": "Tuna Blasting",
+   "author": "Crouching_Tuna",
+   "version": "PoE1 3.30.0",
+   "followers": 5860,
+   "copies": 1015,
+   "url": "https://www.pathofexile.com/item-filter/PX6DkiL"
+  },
+  {
+   "rank": 36,
+   "name": "Bows Endgame",
+   "author": "Crouching_Tuna",
+   "version": "PoE1 3.30.0",
+   "followers": 5317,
+   "copies": 511,
+   "url": "https://www.pathofexile.com/item-filter/yO32x4h8"
+  },
+  {
+   "rank": 37,
+   "name": "5-end seoMinugi",
+   "author": "seominugi",
+   "version": "PoE1 3.30.0",
+   "followers": 5254,
+   "copies": 231,
+   "url": "https://www.pathofexile.com/item-filter/8Me0VycE"
+  },
+  {
+   "rank": 38,
+   "name": "4-endLite seoMinugi",
+   "author": "seominugi",
+   "version": "PoE1 3.30.0",
+   "followers": 5211,
+   "copies": 220,
+   "url": "https://www.pathofexile.com/item-filter/0Qy0avF0"
+  },
+  {
+   "rank": 39,
+   "name": "cdr-uber",
+   "author": "cdrpoe",
+   "version": "PoE1 3.30.0",
+   "followers": 5139,
+   "copies": 941,
+   "url": "https://www.pathofexile.com/item-filter/6EmzCp"
+  },
+  {
+   "rank": 40,
+   "name": "3-basicMax seoMinugi",
+   "author": "seominugi",
+   "version": "PoE1 3.30.0",
+   "followers": 5092,
+   "copies": 204,
+   "url": "https://www.pathofexile.com/item-filter/n1onNaFR"
+  },
+  {
+   "rank": 41,
+   "name": "Sovereign General",
+   "author": "StupidFatHobbit",
+   "version": "PoE1 3.30.0",
+   "followers": 4895,
+   "copies": 1249,
+   "url": "https://www.pathofexile.com/item-filter/A3BxSM"
+  },
+  {
+   "rank": 42,
+   "name": "2-basicPlus seoMinugi",
+   "author": "seominugi",
+   "version": "PoE1 3.30.0",
+   "followers": 4861,
+   "copies": 189,
+   "url": "https://www.pathofexile.com/item-filter/EQXE3Bij"
+  },
+  {
+   "rank": 43,
+   "name": "gpCasterShieldCharge",
+   "author": "GucciPradas",
+   "version": "PoE1 3.30.0",
+   "followers": 4833,
+   "copies": 495,
+   "url": "https://www.pathofexile.com/item-filter/vOo4mpUJ"
+  },
+  {
+   "rank": 44,
+   "name": "AlloFilter ActRun Caster",
+   "author": "alloces77",
+   "version": "PoE1 3.30.0",
+   "followers": 4780,
+   "copies": 383,
+   "url": "https://www.pathofexile.com/item-filter/E3pMBTj"
+  },
+  {
+   "rank": 45,
+   "name": "6-highEnd seoMinugi",
+   "author": "seominugi",
+   "version": "PoE1 3.30.0",
+   "followers": 4626,
+   "copies": 196,
+   "url": "https://www.pathofexile.com/item-filter/9Ml7xxFO"
+  },
+  {
+   "rank": 46,
+   "name": "gpAttackSlams",
+   "author": "GucciPradas",
+   "version": "PoE1 3.30.0",
+   "followers": 4586,
+   "copies": 453,
+   "url": "https://www.pathofexile.com/item-filter/rOlJqkfX"
+  },
+  {
+   "rank": 47,
+   "name": "7-pinnacle seoMinugi",
+   "author": "seominugi",
+   "version": "PoE1 3.30.0",
+   "followers": 4094,
+   "copies": 76,
+   "url": "https://www.pathofexile.com/item-filter/KKjvNBT1"
+  },
+  {
+   "rank": 48,
+   "name": "Sovereign Strict",
+   "author": "StupidFatHobbit",
+   "version": "PoE1 3.30.0",
+   "followers": 4025,
+   "copies": 583,
+   "url": "https://www.pathofexile.com/item-filter/zOv6Hz"
+  },
+  {
+   "rank": 49,
+   "name": "level-melee",
+   "author": "cdrpoe",
+   "version": "PoE1 3.30.0",
+   "followers": 3784,
+   "copies": 391,
+   "url": "https://www.pathofexile.com/item-filter/lpNO3U1"
+  },
+  {
+   "rank": 50,
+   "name": "AlloFilter T1 Custom",
+   "author": "alloces77",
+   "version": "PoE1 3.30.0",
+   "followers": 3680,
+   "copies": 167,
+   "url": "https://www.pathofexile.com/item-filter/1vvlps1"
+  },
+  {
+   "rank": 51,
+   "name": "8-uber seoMinugi",
+   "author": "seominugi",
+   "version": "PoE1 3.30.0",
+   "followers": 3596,
+   "copies": 60,
+   "url": "https://www.pathofexile.com/item-filter/erWDA4iy"
+  },
+  {
+   "rank": 52,
+   "name": "Templar Static Strike",
+   "author": "ll566847",
+   "version": "PoE1 3.30.0",
+   "followers": 3513,
+   "copies": 622,
+   "url": "https://www.pathofexile.com/item-filter/mgWWKJTD"
+  },
+  {
+   "rank": 53,
+   "name": "SSFHC 2H AXE BERSERKER TEMPLATE",
+   "author": "Ben_",
+   "version": "PoE1 3.30.0",
+   "followers": 3331,
+   "copies": 822,
+   "url": "https://www.pathofexile.com/item-filter/YRgx7otR"
+  },
+  {
+   "rank": 54,
+   "name": "AlloFilter T0 Custom",
+   "author": "alloces77",
+   "version": "PoE1 3.30.0",
+   "followers": 3265,
+   "copies": 128,
+   "url": "https://www.pathofexile.com/item-filter/EErKBIj"
+  },
+  {
+   "rank": 55,
+   "name": "AlloFilter T3 Custom",
+   "author": "alloces77",
+   "version": "PoE1 3.30.0",
+   "followers": 3231,
+   "copies": 178,
+   "url": "https://www.pathofexile.com/item-filter/doovLix"
+  },
+  {
+   "rank": 56,
+   "name": "AlloFilter T2 Custom",
+   "author": "alloces77",
+   "version": "PoE1 3.30.0",
+   "followers": 3084,
+   "copies": 113,
+   "url": "https://www.pathofexile.com/item-filter/o11JqTo"
+  },
+  {
+   "rank": 57,
+   "name": "Sovereign Uberstrict",
+   "author": "StupidFatHobbit",
+   "version": "PoE1 3.30.0",
+   "followers": 3009,
+   "copies": 282,
+   "url": "https://www.pathofexile.com/item-filter/Mpxoi0"
+  },
+  {
+   "rank": 58,
+   "name": "SOLO-ItemFilter",
+   "author": "iammissugg",
+   "version": "PoE1 3.30.0",
+   "followers": 2862,
+   "copies": 479,
+   "url": "https://www.pathofexile.com/item-filter/oMlMWFo"
+  },
+  {
+   "rank": 59,
+   "name": "level-claw",
+   "author": "cdrpoe",
+   "version": "PoE1 3.30.0",
+   "followers": 2506,
+   "copies": 627,
+   "url": "https://www.pathofexile.com/item-filter/J43aD6iX"
+  },
+  {
+   "rank": 60,
+   "name": "level-bow",
+   "author": "cdrpoe",
+   "version": "PoE1 3.30.0",
+   "followers": 2433,
+   "copies": 214,
+   "url": "https://www.pathofexile.com/item-filter/kaa7psN"
+  },
+  {
+   "rank": 61,
+   "name": "Leveling 3.30 Filter",
+   "author": "Jaay4",
+   "version": "PoE1 3.30.0",
+   "followers": 2228,
+   "copies": 399,
+   "url": "https://www.pathofexile.com/item-filter/BOo62qFx"
+  },
+  {
+   "rank": 62,
+   "name": "gpWander",
+   "author": "GucciPradas",
+   "version": "PoE1 3.30.0",
+   "followers": 2166,
+   "copies": 294,
+   "url": "https://www.pathofexile.com/item-filter/6M6Ndkcp"
+  },
+  {
+   "rank": 63,
+   "name": "Absolution Leveling",
+   "author": "Crouching_Tuna",
+   "version": "PoE1 3.30.0",
+   "followers": 2120,
+   "copies": 437,
+   "url": "https://www.pathofexile.com/item-filter/0mXY0qt0"
+  },
+  {
+   "rank": 64,
+   "name": "level-wander",
+   "author": "cdrpoe",
+   "version": "PoE1 3.30.0",
+   "followers": 2017,
+   "copies": 227,
+   "url": "https://www.pathofexile.com/item-filter/PlLggEhL"
+  },
+  {
+   "rank": 65,
+   "name": "level-minion",
+   "author": "cdrpoe",
+   "version": "PoE1 3.30.0",
+   "followers": 1977,
+   "copies": 212,
+   "url": "https://www.pathofexile.com/item-filter/79zvaHP"
+  },
+  {
+   "rank": 66,
+   "name": "SOLO-ItemFilter-S",
+   "author": "iammissugg",
+   "version": "PoE1 3.30.0",
+   "followers": 1952,
+   "copies": 146,
+   "url": "https://www.pathofexile.com/item-filter/k323DtN"
+  },
+  {
+   "rank": 67,
+   "name": "gpCasterLeapSlam",
+   "author": "GucciPradas",
+   "version": "PoE1 3.30.0",
+   "followers": 1639,
+   "copies": 87,
+   "url": "https://www.pathofexile.com/item-filter/0Qlx8vu0"
+  },
+  {
+   "rank": 68,
+   "name": "New Casino 16T Stash",
+   "author": "\uc774\ud0dc\ubc31",
+   "version": "PoE1 3.30.0",
+   "followers": 1630,
+   "copies": 214,
+   "url": "https://www.pathofexile.com/item-filter/YPYONOhR"
+  },
+  {
+   "rank": 69,
+   "name": "SSF1",
+   "author": "ll566847",
+   "version": "PoE1 3.30.0",
+   "followers": 1626,
+   "copies": 278,
+   "url": "https://www.pathofexile.com/item-filter/8lXO2ZFE"
+  },
+  {
+   "rank": 70,
+   "name": "level-armacrema",
+   "author": "cdrpoe",
+   "version": "PoE1 3.30.0",
+   "followers": 1607,
+   "copies": 121,
+   "url": "https://www.pathofexile.com/item-filter/la8krt1"
+  },
+  {
+   "rank": 71,
+   "name": "level-mine",
+   "author": "cdrpoe",
+   "version": "PoE1 3.30.0",
+   "followers": 1594,
+   "copies": 131,
+   "url": "https://www.pathofexile.com/item-filter/EWndeSj"
+  },
+  {
+   "rank": 72,
+   "name": "AlloFilter End Farm",
+   "author": "alloces77",
+   "version": "PoE1 3.30.0",
+   "followers": 1577,
+   "copies": 73,
+   "url": "https://www.pathofexile.com/item-filter/mlNKYHD"
+  },
+  {
+   "rank": 73,
+   "name": "mamba",
+   "author": "Crouching_Tuna",
+   "version": "PoE1 3.30.0",
+   "followers": 1499,
+   "copies": 362,
+   "url": "https://www.pathofexile.com/item-filter/DM6Nz9CQ"
+  },
+  {
+   "rank": 74,
+   "name": "gpEPconc",
+   "author": "GucciPradas",
+   "version": "PoE1 3.30.0",
+   "followers": 1318,
+   "copies": 72,
+   "url": "https://www.pathofexile.com/item-filter/yPYN2Wf8"
+  },
+  {
+   "rank": 75,
+   "name": "ichigo.Start 3.30",
+   "author": "ichigo",
+   "version": "PoE1 3.30.0",
+   "followers": 1302,
+   "copies": 375,
+   "url": "https://www.pathofexile.com/item-filter/dNqxATx"
+  },
+  {
+   "rank": 76,
+   "name": "SimpleFilter",
+   "author": "koszmarnica",
+   "version": "PoE1 3.30.0",
+   "followers": 1296,
+   "copies": 778,
+   "url": "https://www.pathofexile.com/item-filter/N76jTV"
+  },
+  {
+   "rank": 77,
+   "name": "SSF2",
+   "author": "ll566847",
+   "version": "PoE1 3.30.0",
+   "followers": 1285,
+   "copies": 176,
+   "url": "https://www.pathofexile.com/item-filter/pg1yjXFQ"
+  },
+  {
+   "rank": 78,
+   "name": "New Casino_5_Uber Strict",
+   "author": "\uc774\ud0dc\ubc31",
+   "version": "PoE1 3.30.0",
+   "followers": 1284,
+   "copies": 77,
+   "url": "https://www.pathofexile.com/item-filter/2gArK6Uj"
+  },
+  {
+   "rank": 79,
+   "name": "POE1 - B - Strict - MNT1.13",
+   "author": "Sephiloss",
+   "version": "PoE1 3.30.0",
+   "followers": 1256,
+   "copies": 248,
+   "url": "https://www.pathofexile.com/item-filter/pNeN1HQ"
+  },
+  {
+   "rank": 80,
+   "name": "cdr-strict",
+   "author": "cdrpoe",
+   "version": "PoE1 3.30.0",
+   "followers": 1206,
+   "copies": 58,
+   "url": "https://www.pathofexile.com/item-filter/A2a0LxHM"
+  },
+  {
+   "rank": 81,
+   "name": "New Casino_4_Very Strict",
+   "author": "\uc774\ud0dc\ubc31",
+   "version": "PoE1 3.30.0",
+   "followers": 1179,
+   "copies": 83,
+   "url": "https://www.pathofexile.com/item-filter/ERY08ysj"
+  },
+  {
+   "rank": 82,
+   "name": "Sovereign General - CS",
+   "author": "StupidFatHobbit",
+   "version": "PoE1 3.30.0",
+   "followers": 1144,
+   "copies": 147,
+   "url": "https://www.pathofexile.com/item-filter/REv4H8"
+  },
+  {
+   "rank": 83,
+   "name": "Sovereign Strict - CS",
+   "author": "StupidFatHobbit",
+   "version": "PoE1 3.30.0",
+   "followers": 1126,
+   "copies": 147,
+   "url": "https://www.pathofexile.com/item-filter/3DZxHX"
+  },
+  {
+   "rank": 84,
+   "name": "New Casino_6_Uber Plus Strict",
+   "author": "\uc774\ud0dc\ubc31",
+   "version": "PoE1 3.30.0",
+   "followers": 1111,
+   "copies": 64,
+   "url": "https://www.pathofexile.com/item-filter/KKmoMLf1"
+  },
+  {
+   "rank": 85,
+   "name": "POE1 - C - Very Strict - MNT1.13",
+   "author": "Sephiloss",
+   "version": "PoE1 3.30.0",
+   "followers": 1044,
+   "copies": 149,
+   "url": "https://www.pathofexile.com/item-filter/8JmZQsE"
+  },
+  {
+   "rank": 86,
+   "name": "Melee Maps",
+   "author": "Crouching_Tuna",
+   "version": "PoE1 3.30.0",
+   "followers": 1040,
+   "copies": 149,
+   "url": "https://www.pathofexile.com/item-filter/QaWVOdSZ"
+  },
+  {
+   "rank": 87,
+   "name": "Sovereign Uberstrict - CS",
+   "author": "StupidFatHobbit",
+   "version": "PoE1 3.30.0",
+   "followers": 1008,
+   "copies": 124,
+   "url": "https://www.pathofexile.com/item-filter/K2PRi1"
+  },
+  {
+   "rank": 88,
+   "name": "Poe 1 Lig Start Filteri 3.30",
+   "author": "Oliviannam",
+   "version": "PoE1 3.30.0",
+   "followers": 966,
+   "copies": 67,
+   "url": "https://www.pathofexile.com/item-filter/jeBmQLTJ"
+  },
+  {
+   "rank": 89,
+   "name": "Zen Normal",
+   "author": "kojiek7",
+   "version": "PoE1 3.30.0",
+   "followers": 957,
+   "copies": 100,
+   "url": "https://www.pathofexile.com/item-filter/qO7RvjsV"
+  },
+  {
+   "rank": 90,
+   "name": "New Casino_3_Strict",
+   "author": "\uc774\ud0dc\ubc31",
+   "version": "PoE1 3.30.0",
+   "followers": 931,
+   "copies": 39,
+   "url": "https://www.pathofexile.com/item-filter/KKmoylT1"
+  },
+  {
+   "rank": 91,
+   "name": "Tati_SpellTotems_Regular",
+   "author": "Tatiantel2",
+   "version": "PoE1 3.30.0",
+   "followers": 887,
+   "copies": 154,
+   "url": "https://www.pathofexile.com/item-filter/4pr2QlCJ"
+  },
+  {
+   "rank": 92,
+   "name": "gpAttackSpecThrow",
+   "author": "GucciPradas",
+   "version": "PoE1 3.30.0",
+   "followers": 847,
+   "copies": 34,
+   "url": "https://www.pathofexile.com/item-filter/YRgD2ZiR"
+  },
+  {
+   "rank": 93,
+   "name": "SOLO-ItemFilter-EG",
+   "author": "iammissugg",
+   "version": "PoE1 3.30.0",
+   "followers": 815,
+   "copies": 20,
+   "url": "https://www.pathofexile.com/item-filter/6pN3Mvup"
+  },
+  {
+   "rank": 94,
+   "name": "Poe 1 Memur Filter 3.30",
+   "author": "Oliviannam",
+   "version": "PoE1 3.30.0",
+   "followers": 802,
+   "copies": 22,
+   "url": "https://www.pathofexile.com/item-filter/r13jo9cX"
+  },
+  {
+   "rank": 95,
+   "name": "New Casino 16T Breach",
+   "author": "\uc774\ud0dc\ubc31",
+   "version": "PoE1 3.30.0",
+   "followers": 787,
+   "copies": 37,
+   "url": "https://www.pathofexile.com/item-filter/d7YXJ2ux"
+  },
+  {
+   "rank": 96,
+   "name": "POE1 - A - Less Restricted - MNT1.13",
+   "author": "Sephiloss",
+   "version": "PoE1 3.30.0",
+   "followers": 784,
+   "copies": 92,
+   "url": "https://www.pathofexile.com/item-filter/Px3gVtL"
+  },
+  {
+   "rank": 97,
+   "name": "MyGO",
+   "author": "kojiek7",
+   "version": "PoE1 3.30.0",
+   "followers": 768,
+   "copies": 47,
+   "url": "https://www.pathofexile.com/item-filter/zzEoMAHz"
+  },
+  {
+   "rank": 98,
+   "name": "New Casino_2_Semi-Strict",
+   "author": "\uc774\ud0dc\ubc31",
+   "version": "PoE1 3.30.0",
+   "followers": 761,
+   "copies": 28,
+   "url": "https://www.pathofexile.com/item-filter/9Mq7WxhO"
+  },
+  {
+   "rank": 99,
+   "name": "3.30 Campaign to Voidstones",
+   "author": "CorruptVicious",
+   "version": "PoE1 3.30.0",
+   "followers": 720,
+   "copies": 190,
+   "url": "https://www.pathofexile.com/item-filter/78A2zahP"
+  },
+  {
+   "rank": 100,
+   "name": "New Casino_1_Regular",
+   "author": "\uc774\ud0dc\ubc31",
+   "version": "PoE1 3.30.0",
+   "followers": 704,
+   "copies": 32,
+   "url": "https://www.pathofexile.com/item-filter/LnmVpkcB"
+  }
+ ]
+}
