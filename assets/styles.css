@@ -420,3 +420,8 @@ svg.zoomed .at-labels text.minor { display: inline; }
 
 .fl-who { gap: 8px; margin: 4px 0 12px; align-items: center; flex-wrap: wrap; }
 .fl-who .on { border-color: var(--gold); color: var(--gold2); }
+
+.fl-regex { margin-top: 14px; }
+.fl-rx { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+.fl-rx:last-child { border-bottom: 0; }
+.fl-rx code { display: block; margin: 4px 0; padding: 6px 8px; background: #050505; border: 1px solid var(--line); border-radius: 6px; color: var(--gold2); font-size: 14px; user-select: all; }

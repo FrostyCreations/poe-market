@@ -197,6 +197,9 @@ function findF(name, author) { return ladder.filters.find((f) => f.name === name
 const PLAYERS = {
   francois: {
     name: 'Francois', build: "Fubgun's bow Deadeye", guide: 'https://mobalytics.gg/poe/builds/fubgun-s-bow-leveling-guide-for-deadeye', preset: 'bow-leveling',
+    regex: [
+      ['Vendors while leveling', String.raw`nne|rint|llion|g-g-|-g-g|-\w-\w-|to \d+ ph`, 'Movement speed boots (Runner\'s, Sprinter\'s, Stallion\'s), 3-links with two or more green sockets, any 4-link, and flat physical damage (bows, quivers, rings).'],
+    ],
     steps: [
       ['Acts 1 to 10', ['Bow Campaign lvling', 'fubgun'], 'Fubgun\'s campaign filter for bow leveling. His notes say to use "bow campaign" for bow leveling, which matches the Deadeye guide.'],
       ['First white and yellow maps', ['Entering maps Bows', 'fubgun'], 'Switch when you reach maps. Still shows bow bases and links, but hides more junk.'],
@@ -205,6 +208,10 @@ const PLAYERS = {
   },
   bradley: {
     name: 'Bradley', build: "MasterT's Whispering Tendrils Elementalist", guide: 'https://mobalytics.gg/poe/profile/mastert/builds/3-29-masterts-whispering-tendrils-elementalist', preset: 'tendrils-leveling',
+    regex: [
+      ['Vendors while leveling', String.raw`nne|rint|llion|b-b-|-b-b|-\w-\w-|[eg] damage to sp`, 'Movement speed boots, 3-links with two or more blue sockets, any 4-link, and wands or sceptres with flat fire (Fireball, Righteous Fire) or lightning (Tendrils) damage to spells.'],
+      ['Cast speed version', String.raw`nne|rint|b-b-|-b-b|-\w-\w-|[eg] damage to s|ast sp`, 'Same idea, swaps Stallion\'s boots for cast speed, which MasterT calls king on rings until the endgame setup.'],
+    ],
     steps: [
       ['Acts 1 to 10', ['AAAACaster', 'Tytykiller'], 'Tytykiller\'s caster leveling filter and the 9th most followed PoE1 filter. It fits the Fireball into Righteous Fire start. Fubgun\'s "Caster lvling" is the alternative if Bradley likes his style.'],
       ['First white and yellow maps', ['Entering maps Caster', 'fubgun'], 'Caster version of Fubgun\'s first-maps filter, for when Tendrils takes over and you start mapping.'],
@@ -229,6 +236,11 @@ function pickView(body) {
         ${f ? `<a class="btn-link" href="${esc(f.url)}" target="_blank" rel="noopener">Open and follow on pathofexile.com ↗</a>` : ''}
       </article>`).join('')}
     </div>
+    <div class="panel fl-regex">
+      <h3>Vendor regex for ${esc(P.name)}</h3>
+      <p class="muted small">Paste into the search box at any vendor (or your stash) and matching items light up. Each one is 50 characters or less, the game's limit.</p>
+      ${P.regex.map(([t, r, why]) => `<div class="fl-rx"><div><b>${esc(t)}</b><code>${esc(r)}</code><div class="muted small">${esc(why)}</div></div><button class="ghost small" data-copy="${esc(r)}">Copy</button></div>`).join('')}
+    </div>
     ${P.alt ? `<p class="muted small" style="margin-top:8px">Other caster leveling filters: ${P.alt.map(([n, a]) => findF(n, a)).filter(Boolean).map((f) => `<a href="${esc(f.url)}" target="_blank" rel="noopener">${esc(f.name)} by ${esc(f.author)}</a>`).join(', ')}.</p>` : ''}
     <div class="panel" style="margin-top:14px">
       <h3>How to use a ladder filter</h3>
@@ -239,6 +251,7 @@ function pickView(body) {
       </ol>
       <p class="muted small">Want your own tweaks? <b>Build your own</b> has a "${esc(PLAYERS[who].name)}" leveling preset for this build. Settings are saved per browser, so ${esc(P.name)} keeps his own on his PC.</p>
     </div>`;
+  $$('[data-copy]', body).forEach((b) => (b.onclick = async () => { try { await navigator.clipboard.writeText(b.dataset.copy); toast('Regex copied'); } catch { toast('Copy failed, select the text instead'); } }));
   $$('[data-who]', body).forEach((b) => (b.onclick = () => { who = b.dataset.who; try { localStorage.setItem('filter-player', who); } catch { /* storage blocked */ } pickView(body); }));
 }
 
