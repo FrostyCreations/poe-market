@@ -281,6 +281,196 @@
   ],
   "targets": [
     {
+      "uid": "g-isogear",
+      "title": "Gear up the Ice Shot Warden",
+      "why": "SnooBAE85's PoB, in buying order. P1 is buy-first, P3 can wait. Uniques show the cheapest normal listing on the selected league; the rest are crafts or rares you buy by mods. Levels as Deadeye with Galvanic Arrow, then Elemental Hit of the Spectrum in early maps, then Ice Shot of Penetration once the swap items are in.",
+      "steps": [
+        {
+          "t": "Elemental Hit of the Spectrum gem, buy it around Act 6 when you reach Master Fletcher and Multishot",
+          "done": false,
+          "prio": 1,
+          "item": "Elemental Hit of the Spectrum",
+          "type": "SkillGem",
+          "phase": "1. Campaign (chaos buys)"
+        },
+        {
+          "t": "Prismweave belt: flat elemental damage for every hit",
+          "done": false,
+          "prio": 1,
+          "item": "Prismweave",
+          "type": "UniqueAccessory"
+        },
+        {
+          "t": "Wake of Destruction boots: movement speed and flat lightning",
+          "done": false,
+          "prio": 2,
+          "item": "Wake of Destruction",
+          "type": "UniqueArmour"
+        },
+        {
+          "t": "Quill Rain bow: his best leveling bow until high red maps",
+          "done": false,
+          "prio": 2,
+          "item": "Quill Rain",
+          "type": "UniqueWeapon"
+        },
+        {
+          "t": "Movement speed Quicksilver flask, then Jade and a bleed-removal life flask",
+          "done": false,
+          "prio": 2
+        },
+        {
+          "t": "Fury Valve amulet: stays all the way to endgame, buy this first",
+          "done": false,
+          "prio": 1,
+          "item": "Fury Valve",
+          "type": "UniqueAccessory",
+          "phase": "2. First divs (early maps)"
+        },
+        {
+          "t": "Heatshiver helmet: also stays to endgame",
+          "done": false,
+          "prio": 1,
+          "item": "Heatshiver",
+          "type": "UniqueArmour"
+        },
+        {
+          "t": "Ahuana's Bite quiver: needed for the Ice Shot swap",
+          "done": false,
+          "prio": 1,
+          "item": "Ahuana's Bite",
+          "type": "UniqueArmour"
+        },
+        {
+          "t": "Painseeker gloves until your rare gloves are crafted",
+          "done": false,
+          "prio": 3,
+          "item": "Painseeker",
+          "type": "UniqueArmour"
+        },
+        {
+          "t": "Endless Diamond Flask plus a Lynx Quicksilver (accuracy, crit)",
+          "done": false,
+          "prio": 2
+        },
+        {
+          "t": "Cap elemental resists and spell suppression, reach 85, swap Deadeye to Warden at the 4th lab",
+          "done": false,
+          "prio": 1
+        },
+        {
+          "t": "Ice Shot of Penetration gem, plus quality on the main link and Sniper's Mark",
+          "done": false,
+          "prio": 1,
+          "item": "Ice Shot of Penetration",
+          "type": "SkillGem",
+          "phase": "3. Swap to Ice Shot of Penetration"
+        },
+        {
+          "t": "Bow: high flat cold and lightning, attack speed, bench craft Str/Int + crit (his notes say a 500 pdps bow is enough to start the swap)",
+          "done": false,
+          "prio": 1
+        },
+        {
+          "t": "Eldritch gloves: Exarch rage on hit, Eater suppression, life, resists, attack speed",
+          "done": false,
+          "prio": 2
+        },
+        {
+          "t": "Eldritch boots: Exarch action speed, Eater travel skill cooldown, life, resists, movement speed",
+          "done": false,
+          "prio": 2
+        },
+        {
+          "t": "Hyrri's Ire body armour",
+          "done": false,
+          "prio": 2,
+          "item": "Hyrri's Ire",
+          "type": "UniqueArmour"
+        },
+        {
+          "t": "Death Rush ring",
+          "done": false,
+          "prio": 2,
+          "item": "Death Rush",
+          "type": "UniqueAccessory"
+        },
+        {
+          "t": "Winterweave ring",
+          "done": false,
+          "prio": 2,
+          "item": "Winterweave",
+          "type": "UniqueAccessory"
+        },
+        {
+          "t": "Maligaro's Restraint belt (replaces Prismweave)",
+          "done": false,
+          "prio": 2,
+          "item": "Maligaro's Restraint",
+          "type": "UniqueAccessory"
+        },
+        {
+          "t": "The Writhing Jar flask",
+          "done": false,
+          "prio": 3,
+          "item": "The Writhing Jar",
+          "type": "UniqueFlask"
+        },
+        {
+          "t": "Doedre's Elixir flask",
+          "done": false,
+          "prio": 3,
+          "item": "Doedre's Elixir",
+          "type": "UniqueFlask"
+        },
+        {
+          "t": "Lioneye's Fall jewel: turns melee nodes near it into bow nodes",
+          "done": false,
+          "prio": 2,
+          "item": "Lioneye's Fall",
+          "type": "UniqueJewel"
+        },
+        {
+          "t": "The Light of Meaning, Life variant",
+          "done": false,
+          "prio": 3,
+          "item": "The Light of Meaning",
+          "type": "UniqueJewel"
+        },
+        {
+          "t": "Rare quiver: life, bow crit multiplier, attack speed, flat lightning (replaces Ahuana's Bite)",
+          "done": false,
+          "prio": 3
+        },
+        {
+          "t": "Rare ring for the third slot: life, chaos resistance, all resists, Intelligence",
+          "done": false,
+          "prio": 3
+        },
+        {
+          "t": "Rare jewel: crit multiplier with elemental skills, 6% life, reduced shock",
+          "done": false,
+          "prio": 3
+        },
+        {
+          "t": "Then chase Reclaimed Malevolence (Ephemeral Bolts), see the goal above",
+          "done": false,
+          "prio": 3,
+          "phase": "4. After that"
+        }
+      ],
+      "links": [
+        {
+          "name": "SnooBAE85 PoB",
+          "url": "https://pobb.in/UZcCoQJdB7YD"
+        },
+        {
+          "name": "Guide (Mobalytics)",
+          "url": "https://mobalytics.gg/poe/builds/cold-convert-ice-shot-of-penetration-warden"
+        }
+      ]
+    },
+    {
       "uid": "g-ephemeral",
       "title": "Get Ephemeral Bolts for Ice Shot",
       "item": "Reclaimed Malevolence",

@@ -134,12 +134,20 @@ export async function render(view, { token }) {
   const targets = file.targets || [];
   const saveTargets = (list, msg) => save({ ...file, weights, targets: list }, msg).then(() => (file.targets = list));
   const priceCache = {};
+  const loadType = (type) => (priceCache[type] ??= loadCategory(state.game, state.league, type).then((r) => r.rows).catch(() => []));
+  // cheapest normal copy: skips corrupted and 5/6-linked listings when a plain one exists
   const lookup = async (type, name) => {
     if (!state.league) return null;
-    priceCache[type] ??= loadCategory(state.game, state.league, type).then((r) => r.rows).catch(() => []);
-    const rows = await priceCache[type];
-    return rows.filter((r) => r.name === name).sort((a, b) => (a.div ?? 1e9) - (b.div ?? 1e9))[0] || null;
+    for (const t of [type, ...['UniqueAccessory', 'UniqueArmour', 'UniqueWeapon', 'UniqueFlask', 'UniqueJewel'].filter((x) => x !== type)]) {
+      if (!t) continue;
+      const rows = (await loadType(t)).filter((r) => r.name === name && r.div != null);
+      if (!rows.length) continue;
+      const plain = rows.filter((r) => !r.corrupted && !(r.links >= 5));
+      return (plain.length ? plain : rows).sort((a, b) => a.div - b.div)[0];
+    }
+    return null;
   };
+  const shortPrice = (r) => (!r ? '' : r.div >= 1 ? `${fmt(r.div)} div` : r.chaos != null ? `${fmt(r.chaos, 0)}c` : `${fmt(r.div, 2)} div`);
   const divTxt = (r) => (r?.div != null ? `${fmt(r.div)} div` : 'no price yet');
   const drawGoals = () => {
     $('#goals', view).innerHTML = targets.length
@@ -153,12 +161,21 @@ export async function render(view, { token }) {
             <div class="bar"><div style="width:${pctDone}%"></div></div>
             ${g.item ? `<div class="gl-prices small" data-gp="${g.uid}"><span class="muted">Checking live prices...</span></div>` : ''}
             ${g.why ? `<div class="small">${esc(g.why)}</div>` : ''}
-            <ul class="gl-steps">${steps.map((s, i) => `<li><label class="${s.done ? 'done' : ''}"><input type="checkbox" data-step="${i}" ${s.done ? 'checked' : ''} ${state.admin ? '' : 'disabled'}><span>${esc(s.t)}</span></label></li>`).join('')}</ul>
+            <ul class="gl-steps">${steps.map((s, i) => `${s.phase ? `<li class="gl-phase">${esc(s.phase)}</li>` : ''}<li><label class="${s.done ? 'done' : ''}"><input type="checkbox" data-step="${i}" ${s.done ? 'checked' : ''} ${state.admin ? '' : 'disabled'}><span>${s.prio ? `<b class="gl-prio p${esc(s.prio)}">P${esc(s.prio)}</b> ` : ''}${esc(s.t)}</span>${s.item ? `<em class="gl-sp" data-sp="${g.uid}:${i}">...</em>` : ''}</label></li>`).join('')}</ul>
             <div class="row">${(g.links || []).map((l) => `<a class="small" href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.name)} ↗</a>`).join('')}
               <span style="flex:1"></span><button class="admin-only small ghost" data-ga="edit">Edit</button><button class="admin-only small danger" data-ga="del">✕</button></div>
           </div>`;
         }).join('')
       : '<div class="empty-state">No goals yet.</div>';
+    for (const g of targets) {
+      (g.steps || []).forEach((st, i) => {
+        if (!st.item) return;
+        lookup(st.type, st.item).then((r) => {
+          const el = $(`[data-sp="${g.uid}:${i}"]`, view);
+          if (el) { el.textContent = r ? shortPrice(r) : 'no price'; el.title = r ? `${st.item}, cheapest normal listing on ${state.league}` : 'Not on poe.ninja yet'; }
+        });
+      });
+    }
     for (const g of targets.filter((x) => x.item)) {
       Promise.all([lookup(g.type || 'UniqueJewel', g.item), ...(g.parts || []).map((n) => lookup(g.type || 'UniqueJewel', n))]).then(([main, ...parts]) => {
         const el = $(`[data-gp="${g.uid}"]`, view);
@@ -181,9 +198,9 @@ export async function render(view, { token }) {
     { k: 'stepsText', label: 'Steps (one per line)', type: 'textarea' },
   ];
   const toGoal = (v, old = {}) => {
-    const prev = Object.fromEntries((old.steps || []).map((s) => [s.t, s.done]));
+    const prev = Object.fromEntries((old.steps || []).map((s) => [s.t, s]));
     const { stepsText, ...rest } = v;
-    return { ...old, ...rest, steps: (stepsText || '').split('\n').map((t) => t.trim()).filter(Boolean).map((t) => ({ t, done: !!prev[t] })) };
+    return { ...old, ...rest, steps: (stepsText || '').split('\n').map((t) => t.trim()).filter(Boolean).map((t) => ({ ...(prev[t] || {}), t, done: !!prev[t]?.done })) };
   };
   const addG = $('#addG', view);
   if (addG) addG.onclick = () => formModal('Add goal', gFields, {}, async (v) => {

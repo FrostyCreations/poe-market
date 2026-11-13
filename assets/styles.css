@@ -330,3 +330,11 @@ svg.zoomed .at-labels text.minor { display: inline; }
 .gl-steps label:hover { background: #1d1811; }
 .gl-steps input { accent-color: var(--gold); margin-top: 2px; flex: none; }
 .gl-steps label.done span { color: var(--muted); text-decoration: line-through; text-decoration-color: #5a4626; }
+.gl-steps label { align-items: center; }
+.gl-steps label > span { flex: 1; }
+.gl-sp { font-style: normal; font-size: 12px; color: var(--gold); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.gl-phase { margin: 10px 0 2px; padding-top: 8px; border-top: 1px solid var(--line); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.gl-phase:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+.gl-prio { display: inline-block; min-width: 22px; text-align: center; font-size: 10px; padding: 1px 4px; border-radius: 4px; margin-right: 2px; background: #2a2116; color: var(--muted); }
+.gl-prio.p1 { background: #4a3214; color: #f0c674; }
+.gl-prio.p2 { background: #33281a; color: #d9b77a; }
