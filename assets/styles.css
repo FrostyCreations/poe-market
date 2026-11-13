@@ -338,3 +338,13 @@ svg.zoomed .at-labels text.minor { display: inline; }
 .gl-prio { display: inline-block; min-width: 22px; text-align: center; font-size: 10px; padding: 1px 4px; border-radius: 4px; margin-right: 2px; background: #2a2116; color: var(--muted); }
 .gl-prio.p1 { background: #4a3214; color: #f0c674; }
 .gl-prio.p2 { background: #33281a; color: #d9b77a; }
+
+.at-filters { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 16px 0 4px; }
+.at-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.at-chips .on { border-color: var(--gold2); color: var(--gold2); }
+.at-weights { position: relative; }
+.at-weights summary { cursor: pointer; color: var(--gold2); font-size: 13px; }
+.at-wgrid { display: grid; grid-template-columns: 1fr; gap: 6px; margin: 8px 0; min-width: 280px; }
+.at-wgrid label { display: grid; grid-template-columns: 1fr 120px 28px; gap: 8px; align-items: center; font-size: 12px; color: var(--muted); }
+.at-fit { font-family: Cinzel, Georgia, serif; color: var(--gold2); font-size: 18px; line-height: 1; }
+.at-by { font-size: 12px; color: var(--c); }

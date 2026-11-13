@@ -9,6 +9,23 @@ let upTo = null; // points shown on the progression slider (null = all)
 
 const KIND_R = [26, 44, 62];
 
+// Ratings work like the Builds tab: 1 to 5 per criterion, weighted into a 0-100 fit score.
+const DEFAULT_CRITERIA = [['start', 'League start'], ['sustain', 'Map sustain'], ['profit', 'Profit'], ['easy', 'Easy to run'], ['scaling', 'Endgame scaling']];
+const criteria = () => plans.criteria || DEFAULT_CRITERIA;
+const weights = () => {
+  let w = {};
+  try { w = JSON.parse(localStorage.getItem('atlas-weights') || '{}'); } catch { /* storage blocked */ }
+  return { ...(plans.weights || {}), ...w };
+};
+const fitScore = (p, w = weights()) => {
+  if (!p.rating) return 0;
+  const tot = criteria().reduce((a, [k]) => a + (+w[k] || 0), 0) || 1;
+  return criteria().reduce((a, [k]) => a + ((p.rating[k] || 0) / 5) * (+w[k] || 0), 0) / tot * 100;
+};
+const STAGES = [['all', 'All'], ['early', 'Early (up to 80)'], ['mid', 'Mid (81 to 145)'], ['full', 'Full atlas (146+)']];
+const stageOf = (p) => (p.hashes.length <= 80 ? 'early' : p.hashes.length <= 145 ? 'mid' : 'full');
+let filt = { stage: 'all', author: 'all', sort: 'fit' };
+
 async function load() {
   if (!treeData) {
     const [t, p] = await Promise.all([
@@ -81,11 +98,13 @@ function sidePanel(plan) {
       <button class="ghost small" id="atCopy">Copy link</button>
       <span class="tag gold">${plan.hashes.length} / ${treeData.points} points</span>
     </div>
-    ${plan.author !== 'Exile Ledger draft' ? `<p class="at-credit">By <b>${esc(plan.author)}</b> · <a href="${esc(plan.video)}" target="_blank" rel="noopener">Watch the video ↗</a><br><span class="muted small">${esc(plan.note || '')}</span></p>` : ''}
+    ${plan.author !== 'Exile Ledger draft' ? `<p class="at-credit">By <b>${esc(plan.author)}</b> · <a href="${esc(plan.video)}" target="_blank" rel="noopener">${esc(plan.videoTitle || 'Watch the video')} ↗</a>${plan.source && plan.source !== plan.poedb ? ` · <a href="${esc(plan.source)}" target="_blank" rel="noopener">His original link ↗</a>` : ''}<br><span class="muted small">${esc(plan.note || '')}</span></p>` : ''}
+    ${plan.rating ? `<div class="row spread" style="margin-top:10px"><h4 class="at-h" style="margin:0">Our rating</h4><div class="fit" title="Fit score with your weights">${fitScore(plan).toFixed(0)}</div></div>
+      <div class="scores">${criteria().map(([k, l]) => `<span class="muted">${esc(l.split(' (')[0])}</span><div class="bar"><div style="width:${((plan.rating[k] || 0) / 5) * 100}%"></div></div><b>${plan.rating[k] || 0}</b>`).join('')}</div>` : ''}
     ${plan.order ? `<div class="at-prog">
       <div class="row spread"><span class="at-h" style="margin:0">Pick order</span><b id="atUpTo">${hashes.length} points</b></div>
       <input type="range" id="atRange" min="10" max="${plan.order.length}" value="${hashes.length}" step="1">
-      <div class="at-steps">${[40, 80, 115, plan.order.length].map((n) => `<button class="ghost small ${hashes.length === n ? 'on' : ''}" data-upto="${n}">${n === plan.order.length ? 'All' : n}</button>`).join('')}</div>
+      <div class="at-steps">${[40, 80, 115].filter((n) => n < plan.order.length - 5).concat(plan.order.length).map((n) => `<button class="ghost small ${hashes.length === n ? 'on' : ''}" data-upto="${n}">${n === plan.order.length ? 'All' : n}</button>`).join('')}</div>
       <p class="muted small" style="margin:4px 0 0">You only get ${treeData.points} atlas points with a finished atlas. Drag to see what to take first while you level it up.</p>
     </div>` : ''}
     <h4 class="at-h">Why it should work</h4>
@@ -114,19 +133,20 @@ export async function render(el) {
     <section class="craft-hero">
       <div>
         <h2>3.30 Atlas trees</h2>
-        <p class="muted">Our three drafted trees for Covens of Umbra, plus Fuzzy Duckzy's three league start trees. Ours use all 150 points, so use the pick order slider while your atlas is still filling up.</p>
+        <p class="muted">${plans.trees.length} trees: our three drafts plus every tree linked in this week's 3.30 atlas videos, from ${new Set(plans.trees.filter((p) => p.author !== 'Exile Ledger draft').map((p) => p.author)).size} creators. Each one is rated 1 to 5 like the builds and ranked by fit with your weights. Ratings are our read before launch, so adjust them once the league is live.</p>
       </div>
     </section>
     ${reads.length ? `<div class="brief-grid at-reads">${reads.map((r) => `<article class="brief-card tone-${r.tone}"><h4>${esc(r.title)}</h4><p>${esc(r.body)}</p></article>`).join('')}</div>` : ''}
-    ${[['Our drafts', (p) => p.author === 'Exile Ledger draft', ''],
-       ["Fuzzy Duckzy's league start trees", (p) => p.author === 'Fuzzy Duckzy Gaming', plans.trees.find((p) => p.video)?.video]].map(([title, test, link]) => `
-      <div class="row spread at-group"><h3 class="section-title" style="margin:0">${esc(title)}</h3>${link ? `<a class="small" href="${esc(link)}" target="_blank" rel="noopener">Watch his video ↗</a>` : ''}</div>
-      <div class="at-pick" role="tablist">${plans.trees.map((p, i) => (test(p) ? `
-        <button class="at-card ${i === current ? 'active' : ''}" data-i="${i}" style="--c:${p.color}" role="tab">
-          <span class="at-stage">${esc(p.stage)}</span>
-          <b>${esc(p.name)}</b>
-          <small>${esc(p.tagline)}</small>
-        </button>` : '')).join('')}</div>`).join('')}
+    <div class="at-filters">
+      <div class="at-chips">${STAGES.map(([k, l]) => `<button class="ghost small ${filt.stage === k ? 'on' : ''}" data-stage="${k}">${esc(l)}</button>`).join('')}</div>
+      <select id="atAuthor"><option value="all">All creators</option>${[...new Set(plans.trees.map((p) => p.author))].map((a) => `<option ${filt.author === a ? 'selected' : ''}>${esc(a)}</option>`).join('')}</select>
+      <select id="atSort">${[['fit', 'Best fit first'], ['points', 'Fewest points first'], ['author', 'By creator']].map(([k, l]) => `<option value="${k}" ${filt.sort === k ? 'selected' : ''}>${l}</option>`).join('')}</select>
+      <details class="at-weights"><summary>Your weights</summary>
+        <div class="at-wgrid">${criteria().map(([k, l]) => `<label>${esc(l)}<input type="range" min="0" max="50" step="5" data-w="${k}" value="${weights()[k] || 0}"><b>${weights()[k] || 0}</b></label>`).join('')}</div>
+        <button class="ghost small" id="atWReset">Reset</button>
+      </details>
+    </div>
+    <div class="at-pick" role="tablist" id="atCards"></div>
     <div class="at-layout">
       <div class="at-viewer panel">
         <svg id="atSvg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">${svgMarkup(treeData)}</svg>
@@ -141,9 +161,32 @@ export async function render(el) {
       </div>
       <aside class="at-side panel" id="atSide"></aside>
     </div>
-    <p class="muted small" style="margin-top:12px">Tree data: <a href="${esc(treeData.source)}" target="_blank" rel="noopener">poedb 3.30 atlas tree</a>. Point counts are checked against poedb's planner.</p>`;
+    <p class="muted small" style="margin-top:12px">Tree data: <a href="${esc(treeData.source)}" target="_blank" rel="noopener">poedb 3.30 atlas tree</a>. Creator trees are copied from the planner links in their video descriptions, and every one opens in poedb.</p>`;
 
   const svg = $('#atSvg', el); const tip = $('#atTip', el); const side = $('#atSide', el);
+  const cards = $('#atCards', el);
+  const drawCards = () => {
+    const w = weights();
+    const list = plans.trees.map((p, i) => ({ p, i, fit: fitScore(p, w) }))
+      .filter(({ p }) => (filt.stage === 'all' || stageOf(p) === filt.stage) && (filt.author === 'all' || p.author === filt.author))
+      .sort((a, b) => (filt.sort === 'points' ? a.p.hashes.length - b.p.hashes.length : filt.sort === 'author' ? a.p.author.localeCompare(b.p.author) || b.fit - a.fit : b.fit - a.fit));
+    cards.innerHTML = list.length ? list.map(({ p, i, fit }) => `
+        <button class="at-card ${i === current ? 'active' : ''}" data-i="${i}" style="--c:${p.color}" role="tab">
+          <span class="row spread" style="width:100%"><span class="at-stage">${esc(p.stage)}</span><span class="at-fit" title="Fit score">${fit.toFixed(0)}</span></span>
+          <b>${esc(p.name)}</b>
+          <span class="at-by">${p.author === 'Exile Ledger draft' ? 'Our draft' : `by ${esc(p.author)}`}</span>
+          <small>${esc(p.tagline)}</small>
+        </button>`).join('') : '<p class="muted">No trees match these filters.</p>';
+  };
+  drawCards();
+  $$('[data-stage]', el).forEach((b) => (b.onclick = () => { filt.stage = b.dataset.stage; $$('[data-stage]', el).forEach((x) => x.classList.toggle('on', x === b)); drawCards(); }));
+  $('#atAuthor', el).onchange = (e) => { filt.author = e.target.value; drawCards(); };
+  $('#atSort', el).onchange = (e) => { filt.sort = e.target.value; drawCards(); };
+  const saveW = (w) => { try { localStorage.setItem('atlas-weights', JSON.stringify(w)); } catch { /* storage blocked */ } };
+  $$('[data-w]', el).forEach((r) => (r.oninput = () => {
+    const w = weights(); w[r.dataset.w] = +r.value; saveW(w); r.nextElementSibling.textContent = r.value; drawCards(); pick(current, false);
+  }));
+  $('#atWReset', el).onclick = () => { try { localStorage.removeItem('atlas-weights'); } catch { /* storage blocked */ } $$('[data-w]', el).forEach((r) => { r.value = weights()[r.dataset.w] || 0; r.nextElementSibling.textContent = r.value; }); drawCards(); pick(current, false); };
   const pick = (i, refit = true) => {
     if (i !== current) upTo = null;
     current = i;
@@ -155,7 +198,7 @@ export async function render(el) {
   };
   requestAnimationFrame(() => pick(current));
 
-  $$('.at-pick', el).forEach((g) => (g.onclick = (e) => { const b = e.target.closest('.at-card'); if (b) pick(+b.dataset.i); }));
+  cards.onclick = (e) => { const b = e.target.closest('.at-card'); if (b) pick(+b.dataset.i); };
   const setUpTo = (n, full) => {
     const plan = plans.trees[current];
     upTo = Math.min(n, plan.order.length);
