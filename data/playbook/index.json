@@ -3,19 +3,19 @@
     "slug": "poe1-covens",
     "game": "poe1",
     "league": "Covens",
-    "start": "2026-11-13",
+    "start": "2026-11-14",
     "days": 5,
-    "items": 165,
-    "generated": "2026-11-17T15:59:33.161Z"
+    "items": 295,
+    "generated": "2026-11-18T15:44:35.781Z"
   },
   {
     "slug": "poe2-forbiddenrites",
     "game": "poe2",
     "league": "Forbidden Rites",
     "start": "2026-09-05",
-    "days": 73,
-    "items": 601,
-    "generated": "2026-11-16T15:38:41.283Z"
+    "days": 75,
+    "items": 300,
+    "generated": "2026-11-18T15:51:34.921Z"
   },
   {
     "slug": "poe1-allflame",
